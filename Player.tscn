@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://bixhdevifb1rs"]
+
+[ext_resource type="Script" path="res://RayCast3D.gd" id="1_svq4i"]
+[ext_resource type="Script" path="res://Player.gd" id="1_w4vpl"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uq044"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_uqjpu"]
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0131631, 0)
+script = ExtResource("1_w4vpl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_uq044")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_uqjpu")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+current = true
+
+[node name="Hand" type="MeshInstance3D" parent="Camera"]
+transform = Transform3D(0.0977523, 0.0982769, -0.00762619, 0, 0.180861, 0.0932286, 0.021083, -0.455665, 0.0353592, -0.433114, -0.36724, -0.400613)
+mesh = SubResource("CapsuleMesh_uqjpu")
+skeleton = NodePath("../..")
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera"]
+target_position = Vector3(0, 0, -1.5)
+script = ExtResource("1_svq4i")
+
+[node name="Prompt" type="Label" parent="Camera/RayCast3D"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -13.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+text = "Default prompt text"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HoldPosition" type="Node3D" parent="Camera"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://p788lh3xxqx3"]
+
+[ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_bp4ug"]
+[ext_resource type="PackedScene" uid="uid://buodhiohf2mn3" path="res://vending_machine.glb" id="2_x7ttj"]
+[ext_resource type="AudioStream" uid="uid://dfaso220bn0re" path="res://horror_chase_loop.mp3" id="3_784wr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5w5ix"]
+size = Vector3(1, 1.01831, 1)
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_bp4ug")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.85, 0, 2.22045e-15, 0, 1.8, -3.55271e-15, -2.66454e-15, 0, 0.8, 0, 0.925348, -0.39019)
+shape = SubResource("BoxShape3D_5w5ix")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="vending_machine" parent="." instance=ExtResource("2_x7ttj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.930489, -0.762549)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_784wr")
+volume_db = 21.631
+unit_size = 2.0
+max_db = 3.5
+autoplay = true
+max_distance = 50.0
