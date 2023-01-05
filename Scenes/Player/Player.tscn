@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bixhdevifb1rs"]
+[gd_scene load_steps=5 format=3 uid="uid://b3fkgqs8ygk85"]
 
-[ext_resource type="Script" path="res://RayCast3D.gd" id="1_svq4i"]
-[ext_resource type="Script" path="res://Player.gd" id="1_w4vpl"]
+[ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_ktb2n"]
+[ext_resource type="Script" path="res://Scenes/Player/RayCast3D.gd" id="2_l3bbq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uq044"]
 
@@ -9,7 +9,7 @@
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0131631, 0)
-script = ExtResource("1_w4vpl")
+script = ExtResource("1_ktb2n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -30,7 +30,7 @@ skeleton = NodePath("../..")
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera"]
 target_position = Vector3(0, 0, -1.5)
-script = ExtResource("1_svq4i")
+script = ExtResource("2_l3bbq")
 
 [node name="Prompt" type="Label" parent="Camera/RayCast3D"]
 anchors_preset = 14

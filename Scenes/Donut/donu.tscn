@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://pbvwwsu83mae"]
 
-[ext_resource type="Script" path="res://Donu.gd" id="1_q7bj0"]
+[ext_resource type="Script" path="res://Scenes/Donut/Donu.gd" id="1_h62v2"]
 
 [sub_resource type="TorusMesh" id="TorusMesh_ywjsx"]
 
@@ -25,7 +25,8 @@ emission_enabled = true
 emission = Color(1, 1, 1, 1)
 
 [node name="Donu" type="StaticBody3D"]
-script = ExtResource("1_q7bj0")
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.172764, 0)
+script = ExtResource("1_h62v2")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("TorusMesh_ywjsx")

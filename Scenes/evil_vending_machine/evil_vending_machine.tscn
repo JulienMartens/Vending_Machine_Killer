@@ -1,14 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://p788lh3xxqx3"]
+[gd_scene load_steps=5 format=3 uid="uid://daanr7clix57f"]
 
-[ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_bp4ug"]
-[ext_resource type="PackedScene" uid="uid://buodhiohf2mn3" path="res://vending_machine.glb" id="2_x7ttj"]
-[ext_resource type="AudioStream" uid="uid://dfaso220bn0re" path="res://horror_chase_loop.mp3" id="3_784wr"]
+[ext_resource type="Script" path="res://Scenes/evil_vending_machine/evil_vending_machine.gd" id="1_ci7w0"]
+[ext_resource type="PackedScene" uid="uid://buodhiohf2mn3" path="res://Scenes/evil_vending_machine/vending_machine.glb" id="2_ph8s8"]
+[ext_resource type="AudioStream" uid="uid://dfaso220bn0re" path="res://Scenes/evil_vending_machine/horror_chase_loop.mp3" id="3_bcxst"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5w5ix"]
 size = Vector3(1, 1.01831, 1)
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
-script = ExtResource("1_bp4ug")
+[node name="evil_vending_machine" type="CharacterBody3D"]
+script = ExtResource("1_ci7w0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.85, 0, 2.22045e-15, 0, 1.8, -3.55271e-15, -2.66454e-15, 0, 0.8, 0, 0.925348, -0.39019)
@@ -16,11 +16,11 @@ shape = SubResource("BoxShape3D_5w5ix")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
-[node name="vending_machine" parent="." instance=ExtResource("2_x7ttj")]
+[node name="vending_machine" parent="." instance=ExtResource("2_ph8s8")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.930489, -0.762549)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_784wr")
+stream = ExtResource("3_bcxst")
 volume_db = 21.631
 unit_size = 2.0
 max_db = 3.5

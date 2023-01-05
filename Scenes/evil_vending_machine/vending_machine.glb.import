@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://buodhiohf2mn3"
-path="res://.godot/imported/vending_machine.glb-206552e068f825f70e538f1190b71f88.scn"
+path="res://.godot/imported/vending_machine.glb-c19d6e06ddb55aae80703badfa86812e.scn"
 
 [deps]
 
-source_file="res://vending_machine.glb"
-dest_files=["res://.godot/imported/vending_machine.glb-206552e068f825f70e538f1190b71f88.scn"]
+source_file="res://Scenes/evil_vending_machine/vending_machine.glb"
+dest_files=["res://.godot/imported/vending_machine.glb-c19d6e06ddb55aae80703badfa86812e.scn"]
 
 [params]
 
