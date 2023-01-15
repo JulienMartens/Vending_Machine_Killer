@@ -12,4 +12,9 @@ func get_prompt():
 	return prompt_message + "\n[" + key_name+ "]"
 
 func interact(body):
+	var evil_vending_machine = load("res://Scenes/evil_vending_machine/evil_vending_machine.tscn").instantiate()
+	evil_vending_machine.position.z = 95
+	evil_vending_machine.position.x = 5
+	evil_vending_machine.add_to_group("ennemies")
+	get_tree().get_root().get_node("World").add_child(evil_vending_machine)
 	queue_free()

@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://lw58qoy2sxxo"]
+
+[ext_resource type="Script" path="res://Scenes/PNJ/pnj.gd" id="1_s4av3"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_20oxr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vitk8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dkjt4"]
+radius = 3.0
+
+[sub_resource type="TorusMesh" id="TorusMesh_or2ya"]
+inner_radius = 0.001
+outer_radius = 0.4
+
+[node name="PNJ" type="CharacterBody3D"]
+script = ExtResource("1_s4av3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_20oxr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_vitk8")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_dkjt4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 0, 1.5, -1.5)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53797, -0.241094)
+mesh = SubResource("TorusMesh_or2ya")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

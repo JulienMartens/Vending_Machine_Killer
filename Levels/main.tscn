@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b3fkgqs8ygk85" path="res://Scenes/Player/Player.tscn" id="2_fath2"]
 [ext_resource type="PackedScene" uid="uid://buodhiohf2mn3" path="res://Scenes/evil_vending_machine/vending_machine.glb" id="2_temco"]
 [ext_resource type="PackedScene" uid="uid://pbvwwsu83mae" path="res://Scenes/Donut/donu.tscn" id="4_gq7c6"]
-[ext_resource type="PackedScene" uid="uid://daanr7clix57f" path="res://Scenes/evil_vending_machine/evil_vending_machine.tscn" id="5_b7qdf"]
+[ext_resource type="PackedScene" uid="uid://lw58qoy2sxxo" path="res://Scenes/PNJ/pnj.tscn" id="6_aav65"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3hvra"]
 sky_top_color = Color(0.160784, 0.196078, 0.25098, 1)
@@ -21,6 +21,12 @@ sky = SubResource("Sky_45yri")
 tonemap_mode = 2
 ssao_enabled = true
 glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.184314, 0.203922, 0.235294, 1)
+fog_density = 0.0452
+fog_sky_affect = 0.888
+fog_height = 0.05
+fog_height_density = 1.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1ox7a"]
 size = Vector3(1, 1.01831, 1)
@@ -158,8 +164,8 @@ shape = SubResource("WorldBoundaryShape3D_w1wq1")
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 mesh = SubResource("PlaneMesh_xexkm")
 
-[node name="Evil vending machine" parent="." groups=["ennemies"] instance=ExtResource("5_b7qdf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.79355, 0, 97.2942)
-
 [node name="Donu" parent="." instance=ExtResource("4_gq7c6")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.38904, 0.184061, -6.95026)
+
+[node name="PNJ" parent="." instance=ExtResource("6_aav65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7553, -0.528555, -0.914154)

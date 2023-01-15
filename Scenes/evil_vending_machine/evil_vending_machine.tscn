@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://daanr7clix57f"]
+[gd_scene load_steps=6 format=3 uid="uid://daanr7clix57f"]
 
 [ext_resource type="Script" path="res://Scenes/evil_vending_machine/evil_vending_machine.gd" id="1_ci7w0"]
 [ext_resource type="PackedScene" uid="uid://buodhiohf2mn3" path="res://Scenes/evil_vending_machine/vending_machine.glb" id="2_ph8s8"]
@@ -6,6 +6,8 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5w5ix"]
 size = Vector3(1, 1.01831, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1wbh3"]
 
 [node name="evil_vending_machine" type="CharacterBody3D"]
 script = ExtResource("1_ci7w0")
@@ -26,3 +28,14 @@ unit_size = 2.0
 max_db = 3.5
 autoplay = true
 max_distance = 50.0
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, -0.414378)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_1wbh3")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, -5.01436e-08, -7.16125e-08, 0, 0.819152, -0.573576, 8.74228e-08, -0.573576, -0.819152, 0, 0.4, -1.4)
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
