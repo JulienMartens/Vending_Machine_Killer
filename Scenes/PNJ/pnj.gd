@@ -14,7 +14,7 @@ func _on_area_3d_body_entered(body):
 		label.text = "Uesh il faut pas trainer dans la forêt comme ça...mange au moins un donut"
 		triggered_state = 1
 
-func _process(delta):
+func _process(_delta):
 	look_at(player.global_transform.origin)
 	if Input.is_action_just_pressed("interact") and triggered_state == 1:
 		player.axis_lock_linear_x = false
@@ -24,3 +24,7 @@ func _process(delta):
 		var label = player.get_node("Camera").get_node("UI").get_node("Label")
 		label.text = ""
 		triggered_state = 2
+
+#get_tree().paused = true
+#	if Input.is_action_just_pressed("interact"):
+#	triggered_state = 1

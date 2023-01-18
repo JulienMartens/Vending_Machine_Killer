@@ -20,7 +20,7 @@ func _process(_delta):
 			highlight = detected.get_node("highlight")
 			highlight.visible = true
 			if Input.is_action_just_pressed(detected.prompt_action):
-				detected.interact(owner)
+				detected.interact()
 				
 	else:
 		if highlight != null:

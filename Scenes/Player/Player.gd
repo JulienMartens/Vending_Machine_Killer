@@ -7,7 +7,7 @@ const JUMP_VELOCITY = 4.5
 var mouseSensibility = 1200
 var mouse_relative_x = 0
 var mouse_relative_y = 0
-var held_object = Object
+var interacting = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")

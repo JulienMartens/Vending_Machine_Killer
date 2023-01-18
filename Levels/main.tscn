@@ -1,10 +1,16 @@
-[gd_scene load_steps=19 format=3 uid="uid://bdkwfl1mf3d1x"]
+[gd_scene load_steps=26 format=3 uid="uid://bdkwfl1mf3d1x"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_5w7m4"]
 [ext_resource type="PackedScene" uid="uid://b3fkgqs8ygk85" path="res://Scenes/Player/Player.tscn" id="2_fath2"]
 [ext_resource type="PackedScene" uid="uid://buodhiohf2mn3" path="res://Scenes/evil_vending_machine/vending_machine.glb" id="2_temco"]
 [ext_resource type="PackedScene" uid="uid://pbvwwsu83mae" path="res://Scenes/Donut/donu.tscn" id="4_gq7c6"]
+[ext_resource type="Texture2D" uid="uid://cj8k55db7vfls" path="res://Assets/Dirt/Ground040_1K_Color.png" id="4_yf6ed"]
+[ext_resource type="Texture2D" uid="uid://cwicpc2hfwfgk" path="res://Assets/Pavement/PavingStones096_1K_AmbientOcclusion.jpg" id="5_a2q5g"]
+[ext_resource type="Texture2D" uid="uid://c15qy2ljyh0p2" path="res://Assets/Dirt/Ground040_1K_NormalGL.png" id="6_01adx"]
 [ext_resource type="PackedScene" uid="uid://lw58qoy2sxxo" path="res://Scenes/PNJ/pnj.tscn" id="6_aav65"]
+[ext_resource type="Texture2D" uid="uid://dr78g0uq6we2v" path="res://Assets/Dirt/Ground040_1K_Roughness.png" id="7_qees8"]
+[ext_resource type="PackedScene" uid="uid://be67vvqimpjk6" path="res://Assets/Arb/Arb2/scene.gltf" id="11_vtpqe"]
+[ext_resource type="PackedScene" uid="uid://cj2qx8h1s3bfu" path="res://Assets/Arb/Arb3/scene.gltf" id="12_nxojr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3hvra"]
 sky_top_color = Color(0.160784, 0.196078, 0.25098, 1)
@@ -53,6 +59,16 @@ cell_height = 0.01
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xexkm"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3oilh"]
+albedo_texture = ExtResource("4_yf6ed")
+roughness_texture = ExtResource("7_qees8")
+normal_enabled = true
+normal_texture = ExtResource("6_01adx")
+ao_enabled = true
+ao_texture = ExtResource("5_a2q5g")
+uv1_scale = Vector3(10, 10, 10)
+uv1_triplanar = true
+
 [node name="World" type="Node3D"]
 script = ExtResource("1_5w7m4")
 
@@ -80,6 +96,7 @@ transform = Transform3D(0.85, 0, 2.22045e-15, 0, 1.8, -3.55271e-15, -2.66454e-15
 shape = SubResource("BoxShape3D_1ox7a")
 
 [node name="Walls" type="Node3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -100)
@@ -163,9 +180,28 @@ shape = SubResource("WorldBoundaryShape3D_w1wq1")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Ground"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 mesh = SubResource("PlaneMesh_xexkm")
+surface_material_override/0 = SubResource("StandardMaterial3D_3oilh")
 
 [node name="Donu" parent="." instance=ExtResource("4_gq7c6")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.38904, 0.184061, -6.95026)
 
 [node name="PNJ" parent="." instance=ExtResource("6_aav65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7553, -0.528555, -0.914154)
+
+[node name="Arb2" parent="." instance=ExtResource("11_vtpqe")]
+transform = Transform3D(0.0212505, 0, -0.0131687, 0, 0.025, 0, 0.0131687, 0, 0.0212505, -20.5604, -0.257692, 19.9818)
+
+[node name="Arb5" parent="." instance=ExtResource("12_nxojr")]
+transform = Transform3D(0.00400877, 0, 0.00916132, 0, 0.01, 0, -0.00916132, 0, 0.00400877, -37.9607, -0.228148, 20.4197)
+
+[node name="Arb4" parent="." instance=ExtResource("12_nxojr")]
+transform = Transform3D(0.00880287, 0, -0.00474442, 0, 0.01, 0, 0.00474442, 0, 0.00880287, -14.1369, -0.228148, -20.4369)
+
+[node name="Arb6" parent="." instance=ExtResource("12_nxojr")]
+transform = Transform3D(-0.00574648, 0, -0.008184, 0, 0.01, 0, 0.008184, 0, -0.00574648, 31.3941, -0.228148, 33.5157)
+
+[node name="Arb3" parent="." instance=ExtResource("12_nxojr")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 11.8716, -0.225889, 2.2144)
+
+[node name="Arb7" parent="." instance=ExtResource("12_nxojr")]
+transform = Transform3D(0.00998279, 0, 0.000586443, 0, 0.01, 0, -0.000586443, 0, 0.00998279, 31.3941, -0.228148, -26.0161)

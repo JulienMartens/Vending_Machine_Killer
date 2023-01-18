@@ -1,11 +1,12 @@
 extends CharacterBody3D
 @onready var nav_agent = $NavigationAgent3D
-@onready var target_location
 @onready var player = get_tree().get_root().get_node("World").get_node("Player")
 const SPEED = 4.5
 
 func _physics_process(delta):
 	var current_location = global_transform.origin
+	var target_location = player.global_transform.origin
+	nav_agent.set_target_location(target_location)
 	var next_location = nav_agent.get_next_location()
 	var new_velocity = (next_location - current_location).normalized() * SPEED
 
@@ -13,9 +14,6 @@ func _physics_process(delta):
 	look_at(target_location)
 	move_and_slide()
 	
-func update_target_location(player_location):
-	target_location = player_location
-	nav_agent.set_target_location(target_location)
 
 
 func _on_area_3d_body_entered(body):
