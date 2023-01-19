@@ -2,12 +2,12 @@ extends CharacterBody3D
 
 @onready var raycast = $Camera/RayCast3D
 @onready var holdPosition = $Camera/HoldPosition
-const SPEED = 10.0
+const SPEED = 11.0
 const JUMP_VELOCITY = 4.5
 var mouseSensibility = 1200
 var mouse_relative_x = 0
 var mouse_relative_y = 0
-var interacting = false
+var ennemies_present = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -47,8 +47,15 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
-				
-		
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+
+	if ennemies_present:
+		var ennemies = get_tree().get_nodes_in_group("ennemies")
+		var closest_ennemy_distance = global_transform.origin.distance_to(ennemies[0].global_transform.origin)
+		for ennemy in ennemies:
+			var current_ennemy_distance = global_transform.origin.distance_to(ennemy.global_transform.origin)
+			if closest_ennemy_distance > current_ennemy_distance:
+				closest_ennemy_distance = current_ennemy_distance
+		$AudioStreamPlayer.volume_db=(8-closest_ennemy_distance)

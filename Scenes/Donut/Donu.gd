@@ -3,6 +3,7 @@ extends StaticBody3D
 
 @export var prompt_message = "Manger le donut sucré au sucre"
 @export var prompt_action = "interact"
+var rand = RandomNumberGenerator.new()
 
 
 func get_prompt():
@@ -12,8 +13,7 @@ func get_prompt():
 
 func interact():
 	var evil_vending_machine = load("res://Scenes/evil_vending_machine/evil_vending_machine.tscn").instantiate()
-	evil_vending_machine.position.z = 45
-	evil_vending_machine.position.x = 5
-	evil_vending_machine.add_to_group("ennemies")
+	evil_vending_machine.position.z = rand.randf_range(-49,49)
+	evil_vending_machine.position.x = rand.randf_range(-49,49)
 	get_tree().get_root().get_node("World").add_child(evil_vending_machine)
 	queue_free()

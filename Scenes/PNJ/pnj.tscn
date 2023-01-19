@@ -36,5 +36,4 @@ transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53797, -0.241094)
 mesh = SubResource("TorusMesh_or2ya")
 
-[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

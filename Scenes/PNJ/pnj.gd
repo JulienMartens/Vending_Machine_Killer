@@ -11,7 +11,7 @@ func _on_area_3d_body_entered(body):
 		player.axis_lock_linear_y = true
 		player.axis_lock_linear_z = true
 		camera_pnj.current = true
-		label.text = "Uesh il faut pas trainer dans la forêt comme ça...mange au moins un donut"
+		label.text = "Uesh mec c'est chaud ce qu'il se passe ici, il y a des distributeurs automatiques qui fument tout le monde ! \n Il faut que tu trouves tous les donuts et que tu les grailles ou t'es mort poto... y'en a genre 10, aller bonne chance"
 		triggered_state = 1
 
 func _process(_delta):
@@ -24,7 +24,3 @@ func _process(_delta):
 		var label = player.get_node("Camera").get_node("UI").get_node("Label")
 		label.text = ""
 		triggered_state = 2
-
-#get_tree().paused = true
-#	if Input.is_action_just_pressed("interact"):
-#	triggered_state = 1

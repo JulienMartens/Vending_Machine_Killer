@@ -1,13 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://daanr7clix57f"]
+[gd_scene load_steps=8 format=3 uid="uid://daanr7clix57f"]
 
 [ext_resource type="Script" path="res://Scenes/evil_vending_machine/evil_vending_machine.gd" id="1_ci7w0"]
 [ext_resource type="PackedScene" uid="uid://buodhiohf2mn3" path="res://Scenes/evil_vending_machine/vending_machine.glb" id="2_ph8s8"]
-[ext_resource type="AudioStream" uid="uid://dfaso220bn0re" path="res://Scenes/evil_vending_machine/horror_chase_loop.mp3" id="3_bcxst"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5w5ix"]
 size = Vector3(1, 1.01831, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1wbh3"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ays5e"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jb8v8"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_if00k"]
 
 [node name="evil_vending_machine" type="CharacterBody3D"]
 script = ExtResource("1_ci7w0")
@@ -21,14 +26,6 @@ shape = SubResource("BoxShape3D_5w5ix")
 [node name="vending_machine" parent="." instance=ExtResource("2_ph8s8")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.930489, -0.762549)
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_bcxst")
-volume_db = 21.631
-unit_size = 2.0
-max_db = 3.5
-autoplay = true
-max_distance = 50.0
-
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, -0.414378)
 
@@ -37,5 +34,25 @@ shape = SubResource("SphereShape3D_1wbh3")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-1, -5.01436e-08, -7.16125e-08, 0, 0.819152, -0.573576, 8.74228e-08, -0.573576, -0.819152, 0, 0.4, -1.4)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, 0.233427, 1.50901, -0.705945)
+mesh = SubResource("SphereMesh_ays5e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.109813, -0.417889, 7.30661e-09, 0, -2.18557e-08, -0.2, 0.167156, 0.274533, -4.80009e-09, -0.0707654, -0.19309, -0.611413)
+mesh = SubResource("CapsuleMesh_jb8v8")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.0121956, -0.248134, 0, 0.0992536, 0.030489, 0.0665849, 0.87689, -0.73344)
+mesh = SubResource("TorusMesh_if00k")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, -0.0727775, 1.50901, -0.705945)
+mesh = SubResource("SphereMesh_ays5e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D2"]
+transform = Transform3D(-0.0955974, -0.439184, 1.53876e-08, 3.7232e-10, -4.43027e-08, -0.2, 0.175673, -0.238993, 8.79747e-09, -0.00973147, -0.19309, -0.615145)
+mesh = SubResource("CapsuleMesh_jb8v8")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

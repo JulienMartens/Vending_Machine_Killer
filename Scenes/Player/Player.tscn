@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3fkgqs8ygk85"]
+[gd_scene load_steps=6 format=3 uid="uid://b3fkgqs8ygk85"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_ktb2n"]
 [ext_resource type="Script" path="res://Scenes/Player/RayCast3D.gd" id="2_l3bbq"]
+[ext_resource type="AudioStream" uid="uid://dfaso220bn0re" path="res://Scenes/Player/horror_chase_loop.mp3" id="3_rvnue"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uq044"]
 
@@ -40,6 +41,8 @@ offset_bottom = 168.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Hand" type="MeshInstance3D" parent="Camera"]
 transform = Transform3D(0.0977523, 0.0982769, -0.00762619, 0, 0.180861, 0.0932286, 0.021083, -0.455665, 0.0353592, -0.433114, -0.36724, -0.400613)
@@ -68,3 +71,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HoldPosition" type="Node3D" parent="Camera"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_rvnue")
+volume_db = -80.0
+autoplay = true
