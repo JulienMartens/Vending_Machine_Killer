@@ -6,7 +6,7 @@ const SPEED = 7.5
 func _ready():
 		add_to_group("ennemies")
 		
-func _physics_process(delta):
+func _physics_process(_delta):
 	var current_location = global_transform.origin
 	var target_location = player.global_transform.origin
 	nav_agent.set_target_location(target_location)
@@ -23,7 +23,7 @@ func _physics_process(delta):
 func _on_area_3d_body_entered(body):
 	if body.name=="Player":
 		player.look_at(global_transform.origin)
-		var label = player.get_node("Camera").get_node("UI").get_node("Label")
+		var label = player.get_node("Camera/UI/HBoxContainer/Dialogue")
 		player.axis_lock_linear_x = true
 		player.axis_lock_linear_y = true
 		player.axis_lock_linear_z = true

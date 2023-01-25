@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-@onready var raycast = $Camera/RayCast3D
 @onready var holdPosition = $Camera/HoldPosition
 const SPEED = 11.0
 const JUMP_VELOCITY = 4.5
@@ -8,6 +7,8 @@ var mouseSensibility = 1200
 var mouse_relative_x = 0
 var mouse_relative_y = 0
 var ennemies_present = false
+@onready var donut_eaten = 0
+signal interact
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -22,6 +23,8 @@ func _input(event):
 		$Camera.rotation.x = clamp($Camera.rotation.x, deg_to_rad(-90), deg_to_rad(90) )
 		mouse_relative_x = clamp(event.relative.x, -50, 50)
 		mouse_relative_y = clamp(event.relative.y, -50, 10)
+	if event.is_action_pressed("interact"):
+		emit_signal("interact");
 		
 func _physics_process(delta):
 	move_and_slide()
@@ -34,7 +37,6 @@ func _physics_process(delta):
 		if collision.get_collider() is RigidBody3D:
 			collision.get_collider().apply_central_impulse(-collision.get_normal() * 0.3)
 			collision.get_collider().apply_impulse(-collision.get_normal() * 0.01, collision.get_position())
-
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -58,4 +60,10 @@ func _physics_process(delta):
 			var current_ennemy_distance = global_transform.origin.distance_to(ennemy.global_transform.origin)
 			if closest_ennemy_distance > current_ennemy_distance:
 				closest_ennemy_distance = current_ennemy_distance
-		$AudioStreamPlayer.volume_db=(8-closest_ennemy_distance)
+		$AudioStreamPlayer3D.volume_db=(-closest_ennemy_distance)
+
+func increment_donut():
+	donut_eaten+=1
+	if donut_eaten==10:
+		$Camera/UI/HBoxContainer/Dialogue.text = "BRAVO TU AS MANGÉ TOUS LES DONUTS WOW T'ES CHAUD !! \n Tu peux demander au dev d'ajouter ton nom a la liste des gens qui ont réussi, bien joué : \n Maxime Martens, le fabriquant de distributeurs automatiques"
+		get_tree().paused = true

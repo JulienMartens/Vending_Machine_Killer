@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3fkgqs8ygk85"]
+[gd_scene load_steps=5 format=3 uid="uid://b3fkgqs8ygk85"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_ktb2n"]
-[ext_resource type="Script" path="res://Scenes/Player/RayCast3D.gd" id="2_l3bbq"]
 [ext_resource type="AudioStream" uid="uid://dfaso220bn0re" path="res://Scenes/Player/horror_chase_loop.mp3" id="3_rvnue"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uq044"]
@@ -25,54 +24,37 @@ mesh = SubResource("CapsuleMesh_uqjpu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 current = true
 
-[node name="UI" type="CanvasLayer" parent="Camera"]
-follow_viewport_enabled = true
-
-[node name="Label" type="Label" parent="Camera/UI"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -28.0
-offset_top = 136.0
-offset_right = 28.0
-offset_bottom = 168.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Hand" type="MeshInstance3D" parent="Camera"]
 transform = Transform3D(0.0977523, 0.0982769, -0.00762619, 0, 0.180861, 0.0932286, 0.021083, -0.455665, 0.0353592, -0.433114, -0.36724, -0.400613)
 mesh = SubResource("CapsuleMesh_uqjpu")
 skeleton = NodePath("../..")
 
-[node name="RayCast3D" type="RayCast3D" parent="Camera"]
-target_position = Vector3(0, 0, -1.5)
-script = ExtResource("2_l3bbq")
+[node name="HoldPosition" type="Node3D" parent="Camera"]
 
-[node name="Prompt" type="Label" parent="Camera/RayCast3D"]
-anchors_preset = 8
+[node name="UI" type="VBoxContainer" parent="Camera"]
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.856
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -77.5
-offset_top = -13.0
-offset_right = 77.5
-offset_bottom = 13.0
+anchor_bottom = 0.856
+offset_left = -80.0
+offset_top = -66.0
+offset_right = 80.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera/UI"]
+layout_mode = 2
 size_flags_horizontal = 4
-text = "Default prompt text"
+
+[node name="Dialogue" type="Label" parent="Camera/UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HoldPosition" type="Node3D" parent="Camera"]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_rvnue")
 volume_db = -80.0
+max_db = -2.0
 autoplay = true
