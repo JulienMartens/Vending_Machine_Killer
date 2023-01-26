@@ -1,7 +1,7 @@
 [gd_scene load_steps=30 format=3 uid="uid://dasipbfdhxdxu"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_5w7m4"]
-[ext_resource type="PackedScene" uid="uid://b3fkgqs8ygk85" path="res://Scenes/Player/Player.tscn" id="2_fath2"]
+[ext_resource type="PackedScene" uid="uid://dcolqeoj6f8m1" path="res://Scenes/Player/Player.tscn" id="2_fath2"]
 [ext_resource type="PackedScene" uid="uid://buodhiohf2mn3" path="res://Scenes/evil_vending_machine/vending_machine.glb" id="2_temco"]
 [ext_resource type="Material" uid="uid://vsu8101a1dh" path="res://Assets/Materials/Pavement/PavingStones.tres" id="4_7rngi"]
 [ext_resource type="PackedScene" uid="uid://pbvwwsu83mae" path="res://Scenes/Donut/donu.tscn" id="4_gq7c6"]

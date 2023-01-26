@@ -7,6 +7,7 @@ var mouseSensibility = 1200
 var mouse_relative_x = 0
 var mouse_relative_y = 0
 var ennemies_present = false
+var player_caught = false
 @onready var donut_eaten = 0
 signal interact
 
@@ -60,6 +61,8 @@ func _physics_process(delta):
 			var current_ennemy_distance = global_transform.origin.distance_to(ennemy.global_transform.origin)
 			if closest_ennemy_distance > current_ennemy_distance:
 				closest_ennemy_distance = current_ennemy_distance
+		if not $AudioStreamPlayer3D.playing:
+			$AudioStreamPlayer3D.play()
 		$AudioStreamPlayer3D.volume_db=(-closest_ennemy_distance)
 
 func increment_donut():
