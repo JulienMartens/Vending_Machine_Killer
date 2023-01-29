@@ -1,17 +1,52 @@
-[gd_scene load_steps=6 format=3 uid="uid://lw58qoy2sxxo"]
+[gd_scene load_steps=9 format=3 uid="uid://lw58qoy2sxxo"]
 
 [ext_resource type="Script" path="res://Scenes/PNJ/pnj.gd" id="1_s4av3"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_20oxr"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vitk8"]
+[sub_resource type="TorusMesh" id="TorusMesh_or2ya"]
+inner_radius = 0.001
+outer_radius = 0.4
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fmey5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dkjt4"]
 radius = 3.0
 
-[sub_resource type="TorusMesh" id="TorusMesh_or2ya"]
-inner_radius = 0.001
-outer_radius = 0.4
+[sub_resource type="Animation" id="Animation_ulyx1"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1, 0)
+
+[sub_resource type="Animation" id="Animation_smc7v"]
+resource_name = "walk"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1, 0, 0.4, 1, -0.412364, 1.04196, 0, 0.8, 1, 0, 1, 0, 1.2, 1, 0.591689, 1.02045, 0, 1.6, 1, 0, 1, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.4, 1, 0, 0, 0.129799, 0.99154, 0.8, 1, 0, 0, 0, 1, 1.2, 1, 0, 0, -0.196793, 0.980445, 1.6, 1, 0, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sbqhc"]
+_data = {
+"RESET": SubResource("Animation_ulyx1"),
+"walk": SubResource("Animation_smc7v")
+}
 
 [node name="PNJ" type="CharacterBody3D"]
 script = ExtResource("1_s4av3")
@@ -20,9 +55,14 @@ script = ExtResource("1_s4av3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_20oxr")
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53797, -0.241094)
+mesh = SubResource("TorusMesh_or2ya")
+skeleton = NodePath("../..")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_vitk8")
+transform = Transform3D(0.9, 0, 0, 0, 2, 0, 0, 0, 0.9, 0, 1, 0)
+shape = SubResource("BoxShape3D_fmey5")
 
 [node name="Area3D" type="Area3D" parent="."]
 
@@ -32,8 +72,12 @@ shape = SubResource("SphereShape3D_dkjt4")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 0, 1.5, -1.5)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53797, -0.241094)
-mesh = SubResource("TorusMesh_or2ya")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sbqhc")
+}
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+agent_height_offset = 0.2
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
