@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dasipbfdhxdxu"]
+[gd_scene load_steps=31 format=3 uid="uid://dasipbfdhxdxu"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_5w7m4"]
 [ext_resource type="PackedScene" uid="uid://dcolqeoj6f8m1" path="res://Scenes/Player/Player.tscn" id="2_fath2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://vsu8101a1dh" path="res://Assets/Materials/Pavement/PavingStones.tres" id="4_7rngi"]
 [ext_resource type="PackedScene" uid="uid://pbvwwsu83mae" path="res://Scenes/Donut/donu.tscn" id="4_gq7c6"]
 [ext_resource type="PackedScene" uid="uid://lw58qoy2sxxo" path="res://Scenes/PNJ/pnj.tscn" id="6_aav65"]
+[ext_resource type="PackedScene" uid="uid://djgkhp8v8ckrh" path="res://Scenes/Coin/coin.tscn" id="7_rnlaw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3hvra"]
 sky_top_color = Color(0.160784, 0.196078, 0.25098, 1)
@@ -658,35 +659,43 @@ skeleton = NodePath("../..")
 transform = Transform3D(1.5, 0, 0, 0, 2.5, 0, 0, 0, 1.5, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_kcqid")
 
-[node name="Donu" parent="." instance=ExtResource("4_gq7c6")]
+[node name="Donuts" type="Node3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -45.2586, 0.184059, -20.4066)
+visible = false
+
+[node name="Donu" parent="Donuts" instance=ExtResource("4_gq7c6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Donu4" parent="Donuts" instance=ExtResource("4_gq7c6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.4781, 8.01682e-06, 90.8992)
+
+[node name="Donu5" parent="Donuts" instance=ExtResource("4_gq7c6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 139.42, 4.02331e-06, -2.6186)
+
+[node name="Donu6" parent="Donuts" instance=ExtResource("4_gq7c6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27341, -1.99676e-06, -21.1322)
+
+[node name="Donu7" parent="Donuts" instance=ExtResource("4_gq7c6")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 84.6243, 13.5913, -39.96)
+
+[node name="Donu8" parent="Donuts" instance=ExtResource("4_gq7c6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.3134, 4.02331e-06, 1.524)
+
+[node name="Donu2" parent="Donuts" instance=ExtResource("4_gq7c6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 178.642, 0, -44.617)
+
+[node name="Donu3" parent="Donuts" instance=ExtResource("4_gq7c6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 173.684, 4.02331e-06, 130.777)
+
+[node name="Donu9" parent="Donuts" instance=ExtResource("4_gq7c6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.7489, 4.02331e-06, 106.532)
+
+[node name="Donu10" parent="Donuts" instance=ExtResource("4_gq7c6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2944, 4.02331e-06, 134.066)
 
 [node name="PNJ" parent="." instance=ExtResource("6_aav65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38986, -0.528557, -6.75239)
 
-[node name="Donu4" parent="." instance=ExtResource("4_gq7c6")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.01956, 0.184063, 25.043)
-
-[node name="Donu5" parent="." instance=ExtResource("4_gq7c6")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 24.4513, 0.184061, -21.7159)
-
-[node name="Donu6" parent="." instance=ExtResource("4_gq7c6")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -46.3953, 0.184058, -30.9727)
-
-[node name="Donu7" parent="." instance=ExtResource("4_gq7c6")]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -2.94645, 6.97971, -40.3866)
-
-[node name="Donu8" parent="." instance=ExtResource("4_gq7c6")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.10189, 0.184061, -19.6446)
-
-[node name="Donu2" parent="." instance=ExtResource("4_gq7c6")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 44.0622, 0.184059, -42.7151)
-
-[node name="Donu3" parent="." instance=ExtResource("4_gq7c6")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 41.5834, 0.184061, 44.982)
-
-[node name="Donu9" parent="." instance=ExtResource("4_gq7c6")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3.38417, 0.184061, 32.8593)
-
-[node name="Donu10" parent="." instance=ExtResource("4_gq7c6")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -47.4058, 0.184061, 46.6266)
+[node name="Coin" parent="." instance=ExtResource("7_rnlaw")]
+transform = Transform3D(1.61283e-07, 0.998822, -0.0485231, 1, -1.62921e-07, -2.98023e-08, -3.76727e-08, -0.0485231, -0.998822, -3.68027, 3.8147e-06, 24.0522)
+visible = false

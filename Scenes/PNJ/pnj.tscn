@@ -1,14 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://lw58qoy2sxxo"]
+[gd_scene load_steps=10 format=3 uid="uid://lw58qoy2sxxo"]
 
 [ext_resource type="Script" path="res://Scenes/PNJ/pnj.gd" id="1_s4av3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fmey5"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_20oxr"]
 
 [sub_resource type="TorusMesh" id="TorusMesh_or2ya"]
 inner_radius = 0.001
 outer_radius = 0.4
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_fmey5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dkjt4"]
 radius = 3.0
@@ -22,6 +22,13 @@ tracks/0/path = NodePath("MeshInstance3D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 1, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_smc7v"]
 resource_name = "walk"
@@ -42,14 +49,51 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.4, 1, 0, 0, 0.129799, 0.99154, 0.8, 1, 0, 0, 0, 1, 1.2, 1, 0, 0, -0.196793, 0.980445, 1.6, 1, 0, 0, 0, 1)
 
+[sub_resource type="Animation" id="Animation_wxk3s"]
+resource_name = "dead"
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.707354, 0.70686)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.390286, 0)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape3D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0.413677, 0)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape3D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0.707, 0.707)
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sbqhc"]
 _data = {
 "RESET": SubResource("Animation_ulyx1"),
+"dead": SubResource("Animation_wxk3s"),
 "walk": SubResource("Animation_smc7v")
 }
 
 [node name="PNJ" type="CharacterBody3D"]
 script = ExtResource("1_s4av3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.00260749, -1.99999, 0, 0.899996, 0.00579443, 0, 0, 0, 0.9, 0, 0.413677, 0)
+shape = SubResource("BoxShape3D_fmey5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -59,10 +103,6 @@ mesh = SubResource("CapsuleMesh_20oxr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53797, -0.241094)
 mesh = SubResource("TorusMesh_or2ya")
 skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.9, 0, 0, 0, 2, 0, 0, 0, 0.9, 0, 1, 0)
-shape = SubResource("BoxShape3D_fmey5")
 
 [node name="Area3D" type="Area3D" parent="."]
 

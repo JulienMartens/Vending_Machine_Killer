@@ -6,13 +6,14 @@ extends StaticBody3D
 @onready var dialogue = player.get_node("Camera/UI/HBoxContainer/Dialogue")
 @onready var player_close = false
 var eaten = false
+@onready var donuts = get_tree().get_root().get_node("World/Donuts")
 var rand = RandomNumberGenerator.new()
 
 func _ready():
 	player.interact.connect(interact)
 
 func interact():
-	if player_close :
+	if player_close and donuts.visible :
 		var evil_vending_machine = load("res://Scenes/evil_vending_machine/evil_vending_machine.tscn").instantiate()
 		evil_vending_machine.position.z = rand.randf_range(-49,49)
 		evil_vending_machine.position.x = rand.randf_range(-49,49)
@@ -24,7 +25,7 @@ func interact():
 
 
 func _on_area_3d_body_entered(body):
-	if body == player :
+	if body == player and donuts.visible :
 		var key_name = OS.get_keycode_string(InputMap.action_get_events("interact")[0].get_physical_keycode_with_modifiers())
 		dialogue.text = "Manger le donut sucré au sucre"+"\n[" + key_name+ "]"
 		player_close = true
@@ -32,7 +33,7 @@ func _on_area_3d_body_entered(body):
 
 
 func _on_area_3d_body_exited(body):
-	if body == player and not eaten :
+	if body == player and donuts.visible and not eaten :
 		dialogue.text = ""
 		player_close = false
 		$highlight.visible = false

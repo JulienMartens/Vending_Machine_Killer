@@ -1,6 +1,6 @@
 extends CharacterBody3D
 @onready var nav_agent = $NavigationAgent3D
-@onready var player = get_tree().get_root().get_node("World").get_node("Player")
+@onready var player = get_tree().get_root().get_node("World/Player")
 const SPEED = 7.5
 
 func _ready():
