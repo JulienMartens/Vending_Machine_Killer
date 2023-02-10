@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @onready var holdPosition = $Camera/HoldPosition
+@onready var ennemyMusicAudioPlayer = $AudioRotationNode/AudioStreamPlayer3D
 const SPEED = 11.0
 const JUMP_VELOCITY = 4.5
 var mouseSensibility = 1200
@@ -56,14 +57,17 @@ func _physics_process(delta):
 
 	if ennemies_present:
 		var ennemies = get_tree().get_nodes_in_group("ennemies")
-		var closest_ennemy_distance = global_transform.origin.distance_to(ennemies[0].global_transform.origin)
+		var closest_ennemy_position = ennemies[0].global_transform.origin
+		var closest_ennemy_distance = global_transform.origin.distance_to(closest_ennemy_position)
 		for ennemy in ennemies:
 			var current_ennemy_distance = global_transform.origin.distance_to(ennemy.global_transform.origin)
 			if closest_ennemy_distance > current_ennemy_distance:
+				closest_ennemy_position = ennemy.global_transform.origin
 				closest_ennemy_distance = current_ennemy_distance
-		if not $AudioStreamPlayer3D.playing:
-			$AudioStreamPlayer3D.play()
-		$AudioStreamPlayer3D.volume_db=(-closest_ennemy_distance)
+		if not ennemyMusicAudioPlayer.playing:
+			ennemyMusicAudioPlayer.play()
+		ennemyMusicAudioPlayer.volume_db=(-closest_ennemy_distance)
+		$AudioRotationNode.look_at(closest_ennemy_position)
 
 func increment_donut():
 	donut_eaten+=1

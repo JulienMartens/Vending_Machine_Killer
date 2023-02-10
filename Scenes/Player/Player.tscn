@@ -53,7 +53,11 @@ size_flags_horizontal = 4
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioRotationNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.02445e-08, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="AudioRotationNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.56949)
 stream = ExtResource("2_53hbd")
 volume_db = -80.0
 max_db = -2.0
