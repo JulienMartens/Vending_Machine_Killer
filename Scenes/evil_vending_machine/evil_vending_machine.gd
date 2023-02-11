@@ -31,7 +31,7 @@ func _on_area_3d_body_entered(body):
 		$Camera3D.current = true
 		$AnimationPlayer.play("win")
 		player.ennemies_present=false
-		player.get_node("AudioStreamPlayer3D").stop()
+		player.get_node("AudioRotationNode/AudioStreamPlayer3D").stop()
 		$AudioStreamPlayer.play()
 		player.visible = false
 		label.text = "t mor sale merd"
