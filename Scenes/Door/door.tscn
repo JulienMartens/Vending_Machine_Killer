@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxmpocau8d6c0"]
+[gd_scene load_steps=13 format=3 uid="uid://bxmpocau8d6c0"]
 
 [ext_resource type="Script" path="res://Scenes/Door/Door.gd" id="1_qsa20"]
 
@@ -96,56 +96,96 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_22n6q")
 
-[sub_resource type="Animation" id="Animation_tb4rc"]
-length = 0.001
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_habmh"]
+[sub_resource type="Animation" id="Animation_p5jc5"]
 resource_name = "OpenIn"
 length = 0.5
 tracks/0/type = "rotation_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".")
+tracks/0/path = NodePath("Node3D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0.707107, 0, 0.707107)
 
-[sub_resource type="Animation" id="Animation_p5dyb"]
-resource_name = "OpenOut"
-length = 0.5
-loop_mode = 2
+[sub_resource type="Animation" id="Animation_htq31"]
+length = 0.001
 tracks/0/type = "rotation_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".")
+tracks/0/path = NodePath("Node3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_4tn85"]
+resource_name = "OpenOut"
+length = 0.5
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, -0.707107, 0, 0.707107)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_jfccl"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gyxgn"]
 _data = {
-"OpenIn": SubResource("Animation_habmh"),
-"OpenOut": SubResource("Animation_p5dyb"),
-"RESET": SubResource("Animation_tb4rc")
+"OpenIn": SubResource("Animation_p5jc5"),
+"OpenOut": SubResource("Animation_4tn85"),
+"RESET": SubResource("Animation_htq31")
 }
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s0gbx"]
+size = Vector3(2.01371, 2.00271, 2.04104)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2kkh6"]
+size = Vector3(0.662061, 0.665815, 6.27428)
 
 [node name="Door" type="Node3D"]
-transform = Transform3D(1.08, 0, 0, 0, 1.08, 0, 0, 0, 1.08, 0, 0, 0)
-script = ExtResource("1_qsa20")
 
-[node name="Door2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-7.45058e-08, -8.88178e-15, -0.154975, -1.86309e-07, 3.00518, 0, -2.13113, -2.62722e-07, 4.65661e-09, 0, 0, 0)
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.32831e-10, 0, 1.16415e-10)
+
+[node name="Model" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(2.13113, -2.62722e-07, 0, 1.86309e-07, 3.00518, 0, 0, 0, -0.154975, 0.00257111, 0.00120282, 0.00157356)
 mesh = SubResource("ArrayMesh_bq7tc")
 skeleton = NodePath("")
+script = ExtResource("1_qsa20")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node3D/Model"]
+root_node = NodePath("../../..")
+autoplay = "RESET"
 libraries = {
-"": SubResource("AnimationLibrary_jfccl")
+"": SubResource("AnimationLibrary_gyxgn")
 }
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node3D/Model"]
+transform = Transform3D(0.469235, 0, 0, 0, 0.332758, 0, 0, 0, -6.45266, -0.00120645, -0.000400249, 0.0101537)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Model/StaticBody3D"]
+transform = Transform3D(2.13113, -2.62721e-07, 0, 1.86309e-07, 3.00518, 0, 0, 0, -0.154975, 2.12758, 2.99525, 0)
+shape = SubResource("BoxShape3D_s0gbx")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="Node3D/Model"]
+transform = Transform3D(1, -1.23278e-07, -4.44089e-16, 6.1996e-08, 0.999999, -2.75317e-23, 5.68434e-14, 1.35525e-20, 1, 1.00218, 1.00002, 0.0101537)
+
+[node name="BackArea" type="Area3D" parent="Node3D/Model"]
+transform = Transform3D(1, -1.23278e-07, 1.63157e-30, 6.19959e-08, 0.999999, -1.32349e-23, 1.13687e-13, 4.74338e-20, 1, 1.00835, 1.12287, -3.53341)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Model/BackArea"]
+transform = Transform3D(3, -8.52651e-14, 1.77636e-15, -9.9476e-14, 3, 1.05879e-22, 4.54747e-13, 9.48677e-20, 3, 4.76837e-07, -0.0985043, 13.4898)
+shape = SubResource("BoxShape3D_2kkh6")
+
+[node name="FrontArea" type="Area3D" parent="Node3D/Model"]
+transform = Transform3D(1, -1.23278e-07, -4.44089e-16, 6.1996e-08, 0.999999, -2.75317e-23, 5.68434e-14, 0, 1, 1.00835, 1.12287, -22.4966)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Model/FrontArea"]
+transform = Transform3D(3, -8.52651e-14, 1.77636e-15, -9.9476e-14, 3, 1.05879e-22, 4.54747e-13, 9.48677e-20, 3, 4.76837e-07, -0.0985043, 13.4898)
+shape = SubResource("BoxShape3D_2kkh6")
+
+[connection signal="screen_entered" from="Node3D/Model/VisibleOnScreenNotifier3D" to="Node3D/Model" method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="Node3D/Model/VisibleOnScreenNotifier3D" to="Node3D/Model" method="_on_visible_on_screen_notifier_3d_screen_exited"]
+[connection signal="body_entered" from="Node3D/Model/BackArea" to="Node3D/Model" method="_on_back_area_body_entered"]
+[connection signal="body_exited" from="Node3D/Model/BackArea" to="Node3D/Model" method="_on_back_area_body_exited"]
+[connection signal="body_entered" from="Node3D/Model/FrontArea" to="Node3D/Model" method="_on_front_area_body_entered"]
+[connection signal="body_exited" from="Node3D/Model/FrontArea" to="Node3D/Model" method="_on_front_area_body_exited"]

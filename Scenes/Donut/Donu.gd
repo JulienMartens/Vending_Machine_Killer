@@ -1,7 +1,6 @@
 class_name Interactable
 extends StaticBody3D
 
-@onready var prompt_action = "interact"
 @onready var player = get_tree().get_root().get_node("World/Player")
 @onready var dialogue = player.get_node("Camera/UI/HBoxContainer/Dialogue")
 @onready var player_close = false

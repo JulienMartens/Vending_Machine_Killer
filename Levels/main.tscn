@@ -97,6 +97,7 @@ shadow_enabled = true
 environment = SubResource("Environment_fthbx")
 
 [node name="Player" parent="." instance=ExtResource("2_fath2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.386236, 0)
 
 [node name="VendingMachine" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, -5.58794e-09, 0, 1, 2.98023e-08, 3.72529e-09, -2.98023e-08, 1, -2.70377, 7.01196, -36.8143)
