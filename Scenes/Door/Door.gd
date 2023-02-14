@@ -48,7 +48,6 @@ func interact():
 			doorPosition = "closed"
 
 func _process(_delta):
-	print(visibleOnScreen)
 	if visibleOnScreen and not playerPosition=="far":
 		var key_name = OS.get_keycode_string(InputMap.action_get_events("interact")[0].get_physical_keycode_with_modifiers())
 		if doorPosition == "closed":
