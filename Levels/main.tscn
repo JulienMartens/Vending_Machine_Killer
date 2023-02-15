@@ -1,16 +1,16 @@
-[gd_scene load_steps=23 format=3 uid="uid://c0o0yp1lfepp6"]
+[gd_scene load_steps=21 format=3 uid="uid://c0o0yp1lfepp6"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_5w7m4"]
 [ext_resource type="PackedScene" uid="uid://dcolqeoj6f8m1" path="res://Scenes/Player/Player.tscn" id="2_fath2"]
 [ext_resource type="PackedScene" uid="uid://bt7hecbroolb7" path="res://Scenes/evil_vending_machine/VendingMachineHD.glb" id="3_cvq1a"]
-[ext_resource type="PackedScene" path="res://Scenes/Buildings/BuildingBigX/building_big_x.tscn" id="4_4wm8i"]
+[ext_resource type="PackedScene" uid="uid://cwxxtfs36agg0" path="res://Scenes/Buildings/BuildingBigX/building_big_x.tscn" id="4_4wm8i"]
 [ext_resource type="Material" uid="uid://vsu8101a1dh" path="res://Assets/Materials/Pavement/PavingStones.tres" id="4_7rngi"]
 [ext_resource type="PackedScene" uid="uid://pbvwwsu83mae" path="res://Scenes/Donut/donu.tscn" id="4_gq7c6"]
 [ext_resource type="PackedScene" uid="uid://b3cfb0kuivtxa" path="res://Scenes/Buildings/BuildingMiniPassThrough/building_mini_pass_through.tscn" id="5_g0ua5"]
 [ext_resource type="PackedScene" uid="uid://lw58qoy2sxxo" path="res://Scenes/PNJ/pnj.tscn" id="6_aav65"]
 [ext_resource type="PackedScene" uid="uid://vqqs466hbysh" path="res://Scenes/Buildings/BuildingMiniDeadEnd/building_mini_dead_end.tscn" id="6_lhjgk"]
+[ext_resource type="PackedScene" uid="uid://c17mojdlqve5l" path="res://Scenes/Buildings/BuildingBigFake/building_big_fake.tscn" id="7_4keph"]
 [ext_resource type="PackedScene" uid="uid://djgkhp8v8ckrh" path="res://Scenes/Coin/coin.tscn" id="7_rnlaw"]
-[ext_resource type="Material" uid="uid://g2680ttw1jp2" path="res://Assets/Materials/Bricks/Bricks1.tres" id="8_hhycx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3hvra"]
 sky_top_color = Color(0.160784, 0.196078, 0.25098, 1)
@@ -51,11 +51,6 @@ cell_height = 0.01
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xexkm"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_l21rx"]
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_y2qdw"]
-points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
-
 [node name="World" type="Node3D"]
 script = ExtResource("1_5w7m4")
 
@@ -70,10 +65,10 @@ shadow_enabled = true
 environment = SubResource("Environment_fthbx")
 
 [node name="Player" parent="." instance=ExtResource("2_fath2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.386236, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.86778, -0.386236, 0)
 
 [node name="VendingMachine" type="RigidBody3D" parent="."]
-transform = Transform3D(1.2, 1.33227e-16, -4.47035e-09, 0, 1.2, 3.57628e-08, 4.47035e-09, -3.57628e-08, 1.2, -2.704, 0.943408, -36.814)
+transform = Transform3D(1.2, 1.33227e-16, -4.47035e-09, 0, 1.2, 3.57628e-08, 4.47035e-09, -3.57628e-08, 1.2, -15.1044, 0.943406, -26.2949)
 mass = 0.28
 
 [node name="VendingMachineHD" parent="VendingMachine" instance=ExtResource("3_cvq1a")]
@@ -137,13 +132,48 @@ navigation_mesh = SubResource("NavigationMesh_xquvr")
 [node name="Buildings" type="Node3D" parent="NavigationRegion3D"]
 
 [node name="Building_BigX" parent="NavigationRegion3D/Buildings" instance=ExtResource("4_4wm8i")]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 33.5382, -0.528555, 1.88213)
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 34.9511, -0.528555, 27.7474)
 
 [node name="Building_MiniPassThrough" parent="NavigationRegion3D/Buildings" instance=ExtResource("5_g0ua5")]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 12.037, -0.528555, 17.1304)
+transform = Transform3D(-1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, 10.35, -0.528555, -23.2243)
 
 [node name="Building_MiniDeadEnd" parent="NavigationRegion3D/Buildings" instance=ExtResource("6_lhjgk")]
-transform = Transform3D(-1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, -7.47828, -0.528555, -1.99769)
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -38.6306, -0.528553, -41.91)
+
+[node name="Building_MiniDeadEnd2" parent="NavigationRegion3D/Buildings" instance=ExtResource("6_lhjgk")]
+transform = Transform3D(-1.74846e-08, 0, -0.4, 0, 0.4, 0, 0.4, 0, -1.74846e-08, 45.6156, -0.528553, -45.9937)
+
+[node name="Building_MiniDeadEnd3" parent="NavigationRegion3D/Buildings" instance=ExtResource("6_lhjgk")]
+transform = Transform3D(-0.4, 0, -3.49691e-08, 0, 0.4, 0, 3.49691e-08, 0, -0.4, 0.0505104, -0.528549, 45.8604)
+
+[node name="Fakes" type="Node3D" parent="NavigationRegion3D/Buildings"]
+
+[node name="Building_BigFake" parent="NavigationRegion3D/Buildings/Fakes" instance=ExtResource("7_4keph")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 21.309, -0.528555, 50.3071)
+
+[node name="Building_BigFake2" parent="NavigationRegion3D/Buildings/Fakes" instance=ExtResource("7_4keph")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 50.9572, -0.528555, 50.2802)
+
+[node name="Building_BigFake3" parent="NavigationRegion3D/Buildings/Fakes" instance=ExtResource("7_4keph")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -33.8727, -0.528555, 40.962)
+
+[node name="Building_BigFake6" parent="NavigationRegion3D/Buildings/Fakes" instance=ExtResource("7_4keph")]
+transform = Transform3D(-1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, 14.2962, -0.528555, -39.5796)
+
+[node name="Building_BigFake4" parent="NavigationRegion3D/Buildings/Fakes" instance=ExtResource("7_4keph")]
+transform = Transform3D(-1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, 14.2655, -0.528559, 0.455644)
+
+[node name="Building_BigFake7" parent="NavigationRegion3D/Buildings/Fakes" instance=ExtResource("7_4keph")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -16.7481, -0.528555, -29.8217)
+
+[node name="Building_BigFake8" parent="NavigationRegion3D/Buildings/Fakes" instance=ExtResource("7_4keph")]
+transform = Transform3D(-1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, 39.285, -0.528559, -29.0331)
+
+[node name="Building_BigFake9" parent="NavigationRegion3D/Buildings/Fakes" instance=ExtResource("7_4keph")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -43.707, -0.528555, -12.9309)
+
+[node name="Building_BigX2" parent="NavigationRegion3D/Buildings" instance=ExtResource("4_4wm8i")]
+transform = Transform3D(-1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, -30.7264, -0.528551, 7.31342)
 
 [node name="Ground" type="StaticBody3D" parent="NavigationRegion3D"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -2.55422, -0.528555, 0)
@@ -156,56 +186,42 @@ transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 mesh = SubResource("PlaneMesh_xexkm")
 surface_material_override/0 = ExtResource("4_7rngi")
 
-[node name="Walls" type="Node3D" parent="NavigationRegion3D"]
-
-[node name="Wall" type="StaticBody3D" parent="NavigationRegion3D/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.0835, 0, -25.8639)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Walls/Wall"]
-transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("BoxMesh_l21rx")
-surface_material_override/0 = ExtResource("8_hhycx")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Walls/Wall"]
-transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_y2qdw")
-
 [node name="Donuts" type="Node3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -45.2586, 0.184059, -20.4066)
 visible = false
 
 [node name="Donu" parent="Donuts" instance=ExtResource("4_gq7c6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0243, -1.19209e-07, -42.0408)
 
 [node name="Donu4" parent="Donuts" instance=ExtResource("4_gq7c6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.4781, 8.01682e-06, 90.8992)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.99225, 8.01682e-06, 133.674)
 
 [node name="Donu5" parent="Donuts" instance=ExtResource("4_gq7c6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 139.42, 4.02331e-06, -2.6186)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.084, 4.02331e-06, -7.22502)
 
 [node name="Donu6" parent="Donuts" instance=ExtResource("4_gq7c6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27341, -1.99676e-06, -21.1322)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.409187, -1.99676e-06, 21.7999)
 
 [node name="Donu7" parent="Donuts" instance=ExtResource("4_gq7c6")]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 84.6243, 13.5913, -39.96)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 84.624, 0, -53.0175)
 
 [node name="Donu8" parent="Donuts" instance=ExtResource("4_gq7c6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.3134, 4.02331e-06, 1.524)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.2926, 4.97699e-06, -10.8988)
 
 [node name="Donu2" parent="Donuts" instance=ExtResource("4_gq7c6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 178.642, 0, -44.617)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 183.47, 0, -51.4)
 
 [node name="Donu3" parent="Donuts" instance=ExtResource("4_gq7c6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 173.684, 4.02331e-06, 130.777)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 164.425, 4.02331e-06, 132.576)
 
 [node name="Donu9" parent="Donuts" instance=ExtResource("4_gq7c6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.7489, 4.02331e-06, 106.532)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.62, 4.02331e-06, 131.619)
 
 [node name="Donu10" parent="Donuts" instance=ExtResource("4_gq7c6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2944, 4.02331e-06, 134.066)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4096, 4.26173e-06, 65.0971)
 
 [node name="PNJ" parent="." instance=ExtResource("6_aav65")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38986, -0.528557, -6.75239)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.47792, -0.528557, -6.75239)
 
 [node name="Coin" parent="." instance=ExtResource("7_rnlaw")]
 transform = Transform3D(1.61283e-07, 0.998822, -0.0485231, 1, -1.62921e-07, -2.98023e-08, -3.76727e-08, -0.0485231, -0.998822, -3.68027, 3.8147e-06, 24.0522)

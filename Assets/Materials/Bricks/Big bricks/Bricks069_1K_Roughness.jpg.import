@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://civhxogr4roye"
-path.s3tc="res://.godot/imported/Bricks009_1K_Color.jpg-70b7f89bfeae6148e809e04d7015a842.s3tc.ctex"
-path.etc2="res://.godot/imported/Bricks009_1K_Color.jpg-70b7f89bfeae6148e809e04d7015a842.etc2.ctex"
+uid="uid://bw7arl1hhvxik"
+path.s3tc="res://.godot/imported/Bricks069_1K_Roughness.jpg-f860cdc42e9028a342c3db91c88afb76.s3tc.ctex"
+path.etc2="res://.godot/imported/Bricks069_1K_Roughness.jpg-f860cdc42e9028a342c3db91c88afb76.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc", "etc2"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Materials/Bricks/Bricks009_1K-JPG/Bricks009_1K_Color.jpg"
-dest_files=["res://.godot/imported/Bricks009_1K_Color.jpg-70b7f89bfeae6148e809e04d7015a842.s3tc.ctex", "res://.godot/imported/Bricks009_1K_Color.jpg-70b7f89bfeae6148e809e04d7015a842.etc2.ctex"]
+source_file="res://Assets/Materials/Bricks/Big bricks/Bricks069_1K_Roughness.jpg"
+dest_files=["res://.godot/imported/Bricks069_1K_Roughness.jpg-f860cdc42e9028a342c3db91c88afb76.s3tc.ctex", "res://.godot/imported/Bricks069_1K_Roughness.jpg-f860cdc42e9028a342c3db91c88afb76.etc2.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cg3kibouwmklj"
-path="res://.godot/imported/Bricks060_1K_Roughness.jpg-9b98f884fd830e08e74d447a6d41b73c.ctex"
+uid="uid://c2bof1l6u2iuf"
+path="res://.godot/imported/Bricks069_1K_Displacement.jpg-fb2a51c9f4da0bba04c7ccc3d0e960e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Materials/Bricks/Bricks060_1K-JPG/Bricks060_1K_Roughness.jpg"
-dest_files=["res://.godot/imported/Bricks060_1K_Roughness.jpg-9b98f884fd830e08e74d447a6d41b73c.ctex"]
+source_file="res://Assets/Materials/Bricks/Big bricks/Bricks069_1K_Displacement.jpg"
+dest_files=["res://.godot/imported/Bricks069_1K_Displacement.jpg-fb2a51c9f4da0bba04c7ccc3d0e960e5.ctex"]
 
 [params]
 
