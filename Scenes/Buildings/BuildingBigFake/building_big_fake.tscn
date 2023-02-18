@@ -69,7 +69,7 @@ shadow_mesh = SubResource("ArrayMesh_nb6ul")
 [node name="Building_BigFake" type="Node3D"]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 
-[node name="BigFake" type="MeshInstance3D" parent="."]
+[node name="BigFake" type="MeshInstance3D" parent="." groups=["navigation_mesh_source_group"]]
 transform = Transform3D(1.27786, 0, 0, 0, 1, 0, 0, 0, 0.907289, 0.920862, 4.46073, -18.1716)
 mesh = SubResource("ArrayMesh_233k6")
 skeleton = NodePath("")

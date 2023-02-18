@@ -92,7 +92,7 @@ data = PackedVector3Array(-20, 15.5822, -12, -20, 17.6688, -20, -20, 17.6688, -1
 [node name="Building_MiniPassThrough" type="Node3D"]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 
-[node name="MiniPassThrough" type="MeshInstance3D" parent="."]
+[node name="MiniPassThrough" type="MeshInstance3D" parent="." groups=["navigation_mesh_source_group"]]
 transform = Transform3D(0.489917, 0, 0, 0, 1, 0, 0, 0, 0.493533, -0.119629, 20.0128, 0)
 mesh = SubResource("ArrayMesh_xeb73")
 skeleton = NodePath("")

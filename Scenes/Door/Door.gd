@@ -13,7 +13,8 @@ func _on_visible_on_screen_notifier_3d_screen_entered():
 	visibleOnScreen = true
 func _on_visible_on_screen_notifier_3d_screen_exited():
 	visibleOnScreen = false
-	dialogue.text = ""
+	if playerPosition != "far":
+		dialogue.text = ""
 
 func _on_back_area_body_entered(body):
 	if body == player :
