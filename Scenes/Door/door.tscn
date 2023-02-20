@@ -152,6 +152,10 @@ mesh = SubResource("ArrayMesh_bq7tc")
 skeleton = NodePath("")
 script = ExtResource("1_qsa20")
 
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="Node3D/Model"]
+estimate_radius = false
+radius = 10.77
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node3D/Model"]
 root_node = NodePath("../../..")
 autoplay = "RESET"

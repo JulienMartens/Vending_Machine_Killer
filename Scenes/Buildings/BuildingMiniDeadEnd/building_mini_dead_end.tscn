@@ -94,12 +94,12 @@ data = PackedVector3Array(4, -12.8718, -18.928, 12, -7.1575, -18.928, 4, -7.1575
 [node name="Building_MiniDeadEnd" type="Node3D"]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 
-[node name="MiniDeadEnd" type="MeshInstance3D" parent="."]
+[node name="MiniDeadEnd" type="MeshInstance3D" parent="." groups=["navigation_mesh_source_group"]]
 transform = Transform3D(0.489917, 0, 0, 0, 1, 0, 0, 0, 0.493533, 0, 19.885, -0.055)
 mesh = SubResource("ArrayMesh_ysjh4")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MiniDeadEnd" groups=["navigation_mesh_source_group"]]
+[node name="StaticBody3D" type="StaticBody3D" parent="MiniDeadEnd"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MiniDeadEnd/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_o2cs5")

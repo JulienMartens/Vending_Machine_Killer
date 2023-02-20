@@ -1,13 +1,15 @@
 extends CharacterBody3D
 @onready var nav_agent = $NavigationAgent3D
+@onready var timer = get_node("Timer")
 @onready var player = get_tree().get_root().get_node("World/Player")
+var chasing_player = false
 const SPEED = 7.5
 
 func _ready():
 		add_to_group("ennemies")
 		
 func _physics_process(_delta):
-	if not player.player_caught:
+	if chasing_player:
 		var current_location = global_transform.origin
 		var target_location = player.global_transform.origin
 		nav_agent.set_target_location(target_location)
@@ -19,8 +21,27 @@ func _physics_process(_delta):
 		$AnimationPlayer.play("walk")
 		if player.ennemies_present==false:
 			player.ennemies_present=true
+	else:
+		$AnimationPlayer.play("RESET")
 
-func _on_area_3d_body_entered(body):
+func _on_detection_area_body_entered(body):
+	if body.name=="Player" and not player.player_caught:
+		player.increment_ennemies_chasing_player()
+		chasing_player = true
+
+
+
+func _on_detection_area_body_exited(body):
+	if body.name=="Player" and not player.player_caught:
+		timer.start(10)
+	
+func _on_timer_timeout():
+	player.decrement_ennemies_chasing_player()
+	chasing_player = false
+
+
+
+func _on_death_area_body_entered(body):
 	if body.name=="Player":
 		player.player_caught = true
 		player.look_at(global_transform.origin)

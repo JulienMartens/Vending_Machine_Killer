@@ -92,9 +92,10 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_m5pa6")
 
 [node name="Building_BigX" type="Node3D"]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, -2.882)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.882)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1.27786, 0, 0, 0, 1, 0, 0, 0, 0.907289, 0.365372, 7.11335, -15.3028)

@@ -8,6 +8,7 @@ var mouseSensibility = 1200
 var mouse_relative_x = 0
 var mouse_relative_y = 0
 var ennemies_present = false
+var ennemies_chasing_player = 0
 var player_caught = false
 @onready var donut_eaten = 0
 signal interact
@@ -54,8 +55,9 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
-	if ennemies_present:
+	
+	print(ennemies_chasing_player)
+	if ennemies_present and ennemies_chasing_player:
 		var ennemies = get_tree().get_nodes_in_group("ennemies")
 		var closest_ennemy_position = ennemies[0].global_transform.origin
 		var closest_ennemy_distance = global_transform.origin.distance_to(closest_ennemy_position)
@@ -68,9 +70,17 @@ func _physics_process(delta):
 			ennemyMusicAudioPlayer.play()
 		ennemyMusicAudioPlayer.volume_db=(-closest_ennemy_distance)
 		$AudioRotationNode.look_at(closest_ennemy_position)
+	else:
+		ennemyMusicAudioPlayer.stop()
 
 func increment_donut():
 	donut_eaten+=1
 	if donut_eaten==10:
 		$Camera/UI/HBoxContainer/Dialogue.text = "BRAVO TU AS MANGÉ TOUS LES DONUTS WOW T'ES CHAUD !! \n Tu peux demander au dev d'ajouter ton nom a la liste des gens qui ont réussi, bien joué : \n Maxime Martens, le fabriquant de distributeurs automatiques"
 		get_tree().paused = true
+
+func increment_ennemies_chasing_player():
+	ennemies_chasing_player += 1
+	
+func decrement_ennemies_chasing_player():
+	ennemies_chasing_player -= 1
