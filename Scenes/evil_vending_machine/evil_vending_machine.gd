@@ -12,11 +12,11 @@ func _physics_process(_delta):
 	if chasing_player:
 		var current_location = global_transform.origin
 		var target_location = player.global_transform.origin
-		nav_agent.set_target_location(target_location)
-		var next_location = nav_agent.get_next_location()
+		nav_agent.set_target_position(target_location)
+		var next_location = nav_agent.get_target_position()
 		var new_velocity = (next_location - current_location).normalized() * SPEED
 		velocity = velocity.move_toward(new_velocity,0.25)
-		look_at(target_location)
+		look_at(target_locpation)
 		move_and_slide()
 		$AnimationPlayer.play("walk")
 		if player.ennemies_present==false:
