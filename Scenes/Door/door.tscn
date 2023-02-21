@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bxmpocau8d6c0"]
+[gd_scene load_steps=15 format=3 uid="uid://bxmpocau8d6c0"]
 
 [ext_resource type="Script" path="res://Scenes/Door/Door.gd" id="1_qsa20"]
 
@@ -128,8 +128,48 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
+[sub_resource type="Animation" id="Animation_bvggi"]
+resource_name = "BreakIn"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -2.32831e-10, 0, 1.16415e-10, 0.1, 1, -0.108481, 0, -0.281101, 0.2, 1, -2.32831e-10, 0, 1.16415e-10)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.0197384, 0, 0.999805, 0.1, 1, 0, 0.0535298, 0, 0.998566, 0.2, 1, 0, 0.0197384, 0, 0.999805)
+
+[sub_resource type="Animation" id="Animation_1pbei"]
+resource_name = "BrokenIn"
+length = 0.45
+step = 0.05
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -2.32831e-10, 0, 1.16415e-10, 0.1, 1, -2.32831e-10, 0.804934, -3.29944, 0.25, 1, -2.32831e-10, -0.0541906, -6.99471, 0.4, 1, -2.32831e-10, -0.0541906, -9.53105)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.0197384, 0, 0.999805, 0.1, 1, -0.0863999, 0.0196645, -0.00170573, 0.996065, 0.25, 1, -0.317061, 0.0187196, -0.00625949, 0.9482, 0.4, 1, -0.707097, 0.00370238, 0.00370239, 0.707097)
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gyxgn"]
 _data = {
+"BreakIn": SubResource("Animation_bvggi"),
+"BrokenIn": SubResource("Animation_1pbei"),
 "OpenIn": SubResource("Animation_p5jc5"),
 "OpenOut": SubResource("Animation_4tn85"),
 "RESET": SubResource("Animation_htq31")
@@ -144,7 +184,7 @@ size = Vector3(0.662061, 0.665815, 6.27428)
 [node name="Door" type="Node3D"]
 
 [node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.32831e-10, 0, 1.16415e-10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Model" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(2.13113, -2.62722e-07, 0, 1.86309e-07, 3.00518, 0, 0, 0, -0.154975, 0.00257111, 0.00120282, 0.00157356)
@@ -187,9 +227,14 @@ transform = Transform3D(1, -1.23278e-07, -4.44089e-16, 6.1996e-08, 0.999999, -2.
 transform = Transform3D(3, -8.52651e-14, 1.77636e-15, -9.9476e-14, 3, 1.05879e-22, 4.54747e-13, 9.48677e-20, 3, 4.76837e-07, -0.0985043, 13.4898)
 shape = SubResource("BoxShape3D_2kkh6")
 
+[node name="Timer" type="Timer" parent="Node3D/Model"]
+wait_time = 10.0
+one_shot = true
+
 [connection signal="screen_entered" from="Node3D/Model/VisibleOnScreenNotifier3D" to="Node3D/Model" method="_on_visible_on_screen_notifier_3d_screen_entered"]
 [connection signal="screen_exited" from="Node3D/Model/VisibleOnScreenNotifier3D" to="Node3D/Model" method="_on_visible_on_screen_notifier_3d_screen_exited"]
 [connection signal="body_entered" from="Node3D/Model/BackArea" to="Node3D/Model" method="_on_back_area_body_entered"]
 [connection signal="body_exited" from="Node3D/Model/BackArea" to="Node3D/Model" method="_on_back_area_body_exited"]
 [connection signal="body_entered" from="Node3D/Model/FrontArea" to="Node3D/Model" method="_on_front_area_body_entered"]
 [connection signal="body_exited" from="Node3D/Model/FrontArea" to="Node3D/Model" method="_on_front_area_body_exited"]
+[connection signal="timeout" from="Node3D/Model/Timer" to="Node3D/Model" method="_on_timer_timeout"]

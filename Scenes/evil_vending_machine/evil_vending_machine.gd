@@ -26,10 +26,12 @@ func _physics_process(_delta):
 		$AnimationPlayer.play("RESET")
 
 func _on_detection_area_body_entered(body):
-	if body.name=="Player" and not player.player_caught and not chasing_player:
+	if body.name=="Player" and not player.player_caught:
+		if not chasing_player:
 			player.increment_ennemies_chasing_player()
 			chasing_player = true
-
+		else:
+			timer.stop()
 
 
 func _on_detection_area_body_exited(body):
@@ -45,6 +47,7 @@ func _on_timer_timeout():
 func _on_death_area_body_entered(body):
 	if body.name=="Player":
 		player.player_caught = true
+		chasing_player = false
 		player.look_at(global_transform.origin)
 		var label = player.get_node("Camera/UI/HBoxContainer/Dialogue")
 		player.axis_lock_linear_x = true
@@ -57,5 +60,3 @@ func _on_death_area_body_entered(body):
 		$AudioStreamPlayer.play()
 		player.visible = false
 		label.text = "t mor sale merd"
-	if body.name=="door":
-		pass

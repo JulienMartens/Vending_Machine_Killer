@@ -2,9 +2,11 @@ extends Node3D
 
 @onready var player = get_tree().get_root().get_node("World/Player")
 @onready var dialogue = player.get_node("Camera/UI/HBoxContainer/Dialogue")
+@onready var timer = get_node("Timer")
 var playerPosition = "far"
 var visibleOnScreen = true
-var doorPosition = "closed"
+var doorPositionsEnum = {Closed="Closed",OpenIn="OpenIn",OpenOut="OpenOut",Broken="Broken"}
+var currentDoorPosition = doorPositionsEnum.Closed
 
 func _ready():
 	player.interact.connect(interact)
@@ -27,31 +29,45 @@ func _on_back_area_body_exited(body):
 func _on_front_area_body_entered(body):
 	if body == player :
 		playerPosition = "front"
+	if body.name == "evil_vending_machine" and currentDoorPosition == doorPositionsEnum.Closed :
+		print("POUET")
+		$AnimationPlayer.play("BreakIn")
+		timer.start()
 func _on_front_area_body_exited(body):
 	if body == player :
 		playerPosition = "far"
 		dialogue.text = ""
+	if body.name == "evil_vending_machine" :
+		print("SAD POUET")
+		timer.stop()
+		
 
+func _on_timer_timeout():
+	$AnimationPlayer.play("BrokenIn")
+	currentDoorPosition = doorPositionsEnum.Broken
+
+		
 func interact():
 	if visibleOnScreen and not playerPosition=="far":
-		if doorPosition == "closed":
+		if currentDoorPosition == doorPositionsEnum.Closed:
 			if playerPosition == "front":
-				$AnimationPlayer.play("OpenIn")
-				doorPosition = "OpenIn"
+				$AnimationPlayer.play(doorPositionsEnum.OpenIn)
+				currentDoorPosition = doorPositionsEnum.OpenIn
 			elif playerPosition == "back":
-				$AnimationPlayer.play("OpenOut")
-				doorPosition = "OpenOut"
-		elif doorPosition == "OpenIn":
-			$AnimationPlayer.play_backwards("OpenIn")
-			doorPosition = "closed"
-		elif doorPosition == "OpenOut":
-			$AnimationPlayer.play_backwards("OpenOut")
-			doorPosition = "closed"
+				$AnimationPlayer.play(doorPositionsEnum.OpenOut)
+				currentDoorPosition = doorPositionsEnum.OpenOut
+		elif currentDoorPosition == doorPositionsEnum.OpenIn:
+			$AnimationPlayer.play_backwards(doorPositionsEnum.OpenIn)
+			currentDoorPosition = doorPositionsEnum.Closed
+		elif currentDoorPosition == doorPositionsEnum.OpenOut:
+			$AnimationPlayer.play_backwards(doorPositionsEnum.OpenOut)
+			currentDoorPosition = doorPositionsEnum.Closed
 
 func _process(_delta):
 	if visibleOnScreen and not playerPosition=="far":
 		var key_name = OS.get_keycode_string(InputMap.action_get_events("interact")[0].get_physical_keycode_with_modifiers())
-		if doorPosition == "closed":
+		if currentDoorPosition == doorPositionsEnum.Closed:
 			dialogue.text = "Ouvrir la porte"+"\n[" + key_name+ "]"
-		else :
+		elif currentDoorPosition in [doorPositionsEnum.OpenIn,doorPositionsEnum.OpenOut]:
 			dialogue.text = "Fermer la porte"+"\n[" + key_name+ "]"
+		

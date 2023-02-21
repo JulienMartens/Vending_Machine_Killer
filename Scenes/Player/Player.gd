@@ -55,7 +55,6 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-	print(ennemies_chasing_player)
 	if ennemies_present and ennemies_chasing_player:
 		var ennemies = get_tree().get_nodes_in_group("ennemies")
 		var closest_ennemy_position = ennemies[0].global_transform.origin
