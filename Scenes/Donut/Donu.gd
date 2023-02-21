@@ -20,6 +20,7 @@ func interact():
 		dialogue.text = ""
 		player.increment_donut()
 		eaten = true
+		get_tree().get_root().get_node("World/EatingSoundPlayer").play()
 		queue_free()
 
 
