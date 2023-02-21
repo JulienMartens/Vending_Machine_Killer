@@ -10,12 +10,13 @@ func _ready():
 		
 func _physics_process(_delta):
 	if chasing_player:
-		var current_location = global_transform.origin
 		var target_location = player.global_transform.origin
 		nav_agent.set_target_position(target_location)
-		var next_location = nav_agent.get_target_position()
-		var new_velocity = (next_location - current_location).normalized() * SPEED
-		velocity = velocity.move_toward(new_velocity,0.25)
+		var current_position : Vector3 = global_transform.origin
+		var next_path_position : Vector3 = nav_agent.get_next_path_position()
+		var new_velocity : Vector3 = next_path_position - current_position
+		new_velocity = new_velocity.normalized() * SPEED
+		set_velocity(new_velocity)
 		look_at(target_location)
 		move_and_slide()
 		$AnimationPlayer.play("walk")
@@ -25,9 +26,9 @@ func _physics_process(_delta):
 		$AnimationPlayer.play("RESET")
 
 func _on_detection_area_body_entered(body):
-	if body.name=="Player" and not player.player_caught:
-		player.increment_ennemies_chasing_player()
-		chasing_player = true
+	if body.name=="Player" and not player.player_caught and not chasing_player:
+			player.increment_ennemies_chasing_player()
+			chasing_player = true
 
 
 
@@ -56,3 +57,5 @@ func _on_death_area_body_entered(body):
 		$AudioStreamPlayer.play()
 		player.visible = false
 		label.text = "t mor sale merd"
+	if body.name=="door":
+		pass

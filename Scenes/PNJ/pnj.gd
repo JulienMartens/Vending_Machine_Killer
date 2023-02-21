@@ -23,10 +23,12 @@ func _process(_delta):
 		look_at(player.global_transform.origin)
 	if triggered_state == 2:
 		var target_location = get_tree().get_root().get_node("World").get_node("VendingMachine").global_transform.origin
-		$NavigationAgent3D.set_target_position(target_location)
-		var next_location = $NavigationAgent3D.get_target_position()
-		var new_velocity = (next_location - global_transform.origin).normalized() * SPEED
-		velocity = velocity.move_toward(new_velocity,0.25)
+		nav_agent.set_target_position(target_location)
+		var current_position : Vector3 = global_transform.origin
+		var next_path_position : Vector3 = nav_agent.get_next_path_position()
+		var new_velocity : Vector3 = next_path_position - current_position
+		new_velocity = new_velocity.normalized() * SPEED
+		set_velocity(new_velocity)
 		look_at(target_location)
 		move_and_slide()
 		$AnimationPlayer.play("walk")
