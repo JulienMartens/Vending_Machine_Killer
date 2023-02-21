@@ -16,7 +16,7 @@ func _physics_process(_delta):
 		var next_location = nav_agent.get_target_position()
 		var new_velocity = (next_location - current_location).normalized() * SPEED
 		velocity = velocity.move_toward(new_velocity,0.25)
-		look_at(target_locpation)
+		look_at(target_location)
 		move_and_slide()
 		$AnimationPlayer.play("walk")
 		if player.ennemies_present==false:

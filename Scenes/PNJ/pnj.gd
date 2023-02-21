@@ -23,8 +23,8 @@ func _process(_delta):
 		look_at(player.global_transform.origin)
 	if triggered_state == 2:
 		var target_location = get_tree().get_root().get_node("World").get_node("VendingMachine").global_transform.origin
-		$NavigationAgent3D.set_target_location(target_location)
-		var next_location = $NavigationAgent3D.get_next_location()
+		$NavigationAgent3D.set_target_position(target_location)
+		var next_location = $NavigationAgent3D.get_target_position()
 		var new_velocity = (next_location - global_transform.origin).normalized() * SPEED
 		velocity = velocity.move_toward(new_velocity,0.25)
 		look_at(target_location)
