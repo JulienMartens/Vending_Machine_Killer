@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c0o0yp1lfepp6"]
+[gd_scene load_steps=23 format=3 uid="uid://c0o0yp1lfepp6"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_5w7m4"]
 [ext_resource type="PackedScene" uid="uid://dcolqeoj6f8m1" path="res://Scenes/Player/Player.tscn" id="2_fath2"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c17mojdlqve5l" path="res://Scenes/Buildings/BuildingBigFake/building_big_fake.tscn" id="7_4keph"]
 [ext_resource type="PackedScene" uid="uid://djgkhp8v8ckrh" path="res://Scenes/Coin/coin.tscn" id="7_rnlaw"]
 [ext_resource type="PackedScene" uid="uid://daanr7clix57f" path="res://Scenes/evil_vending_machine/evil_vending_machine.tscn" id="12_0kpvi"]
+[ext_resource type="AudioStream" uid="uid://d1e5cfv0hfkh8" path="res://Scenes/Donut/eating.mp3" id="13_46wa6"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_23j2p"]
 
@@ -233,3 +234,6 @@ visible = false
 
 [node name="evil_vending_machine" parent="." instance=ExtResource("12_0kpvi")]
 transform = Transform3D(-0.305363, 0, -0.952236, 0, 1, 0, 0.952236, 0, -0.305363, -31.5397, -0.528555, -11.3008)
+
+[node name="EatingSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_46wa6")
