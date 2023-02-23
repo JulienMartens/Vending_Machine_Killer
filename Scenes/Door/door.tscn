@@ -115,6 +115,25 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.0197384, 0, 0.999805, 0.1, 1, 0, 0.0535298, 0, 0.998566, 0.2, 1, 0, 0.0197384, 0, 0.999805)
 
+[sub_resource type="Animation" id="Animation_fdivf"]
+resource_name = "BreakOut"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -2.32831e-10, 0, 1.16415e-10, 0.1, 1, 0.108, 0, 0.281, 0.2, 1, -2.32831e-10, 0, 1.16415e-10)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.0197384, 0, 0.999805, 0.1, 1, 0, -0.054, 0, 0.999, 0.2, 1, 0, 0.0197384, 0, 0.999805)
+
 [sub_resource type="Animation" id="Animation_1pbei"]
 resource_name = "BrokenIn"
 length = 0.45
@@ -126,6 +145,24 @@ tracks/0/path = NodePath("Node3D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, -2.32831e-10, 0, 1.16415e-10, 0.1, 1, -2.32831e-10, 0.804934, -3.29944, 0.25, 1, -2.32831e-10, -0.0541906, -6.99471, 0.4, 1, -2.32831e-10, -0.0541906, -9.53105)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.0197384, 0, 0.999805, 0.1, 1, -0.0863999, 0.0196645, -0.00170573, 0.996065, 0.25, 1, -0.317061, 0.0187196, -0.00625949, 0.9482, 0.4, 1, -0.707097, 0.00370238, 0.00370239, 0.707097)
+
+[sub_resource type="Animation" id="Animation_6d70j"]
+resource_name = "BrokenOut"
+length = 0.45
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -2.32831e-10, 0, 1.16415e-10, 0.1, 1, 0, 0.805, 3.299, 0.25, 1, 0, -0.054, 6.995, 0.4, 1, 0, -0.054, 9.531)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -165,43 +202,6 @@ tracks/0/path = NodePath("Node3D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_fdivf"]
-resource_name = "BreakOut"
-length = 1.2
-loop_mode = 1
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Node3D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -2.32831e-10, 0, 1.16415e-10, 0.1, 1, 0.108, 0, 0.281, 0.2, 1, -2.32831e-10, 0, 1.16415e-10)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Node3D")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.0197384, 0, 0.999805, 0.1, 1, 0, -0.054, 0, 0.999, 0.2, 1, 0, 0.0197384, 0, 0.999805)
-
-[sub_resource type="Animation" id="Animation_6d70j"]
-resource_name = "BrokenOut"
-length = 0.45
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Node3D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -2.32831e-10, 0, 1.16415e-10, 0.1, 1, 0, 0.805, 3.299, 0.25, 1, 0, -0.054, 6.995, 0.4, 1, 0, -0.054, 9.531)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Node3D")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.0197384, 0, 0.999805, 0.1, 1, -0.0863999, 0.0196645, -0.00170573, 0.996065, 0.25, 1, -0.317061, 0.0187196, -0.00625949, 0.9482, 0.4, 1, -0.707097, 0.00370238, 0.00370239, 0.707097)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gyxgn"]
 _data = {
