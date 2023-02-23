@@ -22,7 +22,7 @@ func _physics_process(_delta):
 		$AnimationPlayer.play("walk")
 		if player.ennemies_present==false:
 			player.ennemies_present=true
-	else:
+	elif not player.player_caught:
 		$AnimationPlayer.play("RESET")
 
 func _on_detection_area_body_entered(body):

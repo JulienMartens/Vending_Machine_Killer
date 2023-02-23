@@ -4,6 +4,7 @@ extends Node3D
 @onready var dialogue = player.get_node("Camera/UI/HBoxContainer/Dialogue")
 @onready var timer = get_node("Timer")
 var playerPosition = "far"
+var vendingMachinePosition = "far"
 var visibleOnScreen = true
 var doorPositionsEnum = {Closed="Closed",OpenIn="OpenIn",OpenOut="OpenOut",Broken="Broken"}
 var currentDoorPosition = doorPositionsEnum.Closed
@@ -21,31 +22,41 @@ func _on_visible_on_screen_notifier_3d_screen_exited():
 func _on_back_area_body_entered(body):
 	if body == player :
 		playerPosition = "back"
+	if body.name == "evil_vending_machine" and currentDoorPosition == doorPositionsEnum.Closed :
+		vendingMachinePosition = "back"
+		$AnimationPlayer.play("BreakOut")
+		timer.start()
 func _on_back_area_body_exited(body):
 	if body == player :
 		playerPosition = "far"
 		dialogue.text = ""
+	if body.name == "evil_vending_machine" :
+		vendingMachinePosition = "far"
+		timer.stop()
 
 func _on_front_area_body_entered(body):
 	if body == player :
 		playerPosition = "front"
 	if body.name == "evil_vending_machine" and currentDoorPosition == doorPositionsEnum.Closed :
-		print("POUET")
 		$AnimationPlayer.play("BreakIn")
+		vendingMachinePosition = "front"
 		timer.start()
 func _on_front_area_body_exited(body):
 	if body == player :
 		playerPosition = "far"
 		dialogue.text = ""
 	if body.name == "evil_vending_machine" :
-		print("SAD POUET")
+		vendingMachinePosition = "far"
 		timer.stop()
 		
 
 func _on_timer_timeout():
-	$AnimationPlayer.play("BrokenIn")
+	if vendingMachinePosition == "front":
+		$AnimationPlayer.play("BrokenIn")
+	elif vendingMachinePosition == "back":
+		$AnimationPlayer.play("BrokenOut")
 	currentDoorPosition = doorPositionsEnum.Broken
-
+	$StaticBody3D.queue_free()
 		
 func interact():
 	if visibleOnScreen and not playerPosition=="far":
