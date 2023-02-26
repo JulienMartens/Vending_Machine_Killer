@@ -53,6 +53,14 @@ size_flags_horizontal = 4
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06871, -0.0361241)
+light_energy = 0.15
+distance_fade_enabled = true
+distance_fade_begin = 2.0
+distance_fade_length = 2.0
+omni_range = 6.68824
+
 [node name="AudioRotationNode" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.02445e-08, 0)
 

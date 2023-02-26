@@ -57,7 +57,6 @@ func _on_timer_timeout():
 	currentMachineState = machineStatesEnum.stopped
 
 
-
 func _on_death_area_body_entered(body):
 	if body.name=="Player":
 		player.player_caught = true
