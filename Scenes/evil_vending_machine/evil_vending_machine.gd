@@ -1,12 +1,15 @@
 extends CharacterBody3D
 @onready var nav_agent = $NavigationAgent3D
-@onready var timer = get_node("Timer")
+@onready var timer = $Timer
+@onready var raycast : RayCast3D = $RayCastNode/RayCast3D
 @onready var player = get_tree().get_root().get_node("World/Player")
-@onready var target_location = player.global_transform.origin
 @onready var patrol_points = get_tree().get_nodes_in_group("patrol_waypoints_group")
+@onready var target_location = Vector3()
 var machineStatesEnum = {chasing_player="chasing_player",looking_around="looking_around",patrolling="patrolling",stopped="stopped"}
 var currentMachineState = machineStatesEnum.looking_around
 var look_around_animation_played = true
+var player_in_detection_area = false
+var chase_stopped = false
 const CHASING_SPEED = 7.5
 const SPEED = 4
 
@@ -15,6 +18,7 @@ func _ready():
 		
 func _physics_process(_delta):
 	var current_speed = SPEED
+	
 	if not player.player_caught:
 		if currentMachineState==machineStatesEnum.chasing_player:
 			if player.ennemies_present==false:
@@ -28,33 +32,45 @@ func _physics_process(_delta):
 			current_speed = SPEED
 			currentMachineState = machineStatesEnum.patrolling
 			look_around_animation_played = false
+		goto(current_speed)
+		if player_in_detection_area and currentMachineState!=machineStatesEnum.chasing_player:
+			$RayCastNode.look_at(player.global_transform.origin)
+			if raycast.get_collider():
+				if raycast.get_collider().name == "Player":
+					player.increment_ennemies_chasing_player()
+					currentMachineState=machineStatesEnum.chasing_player
+
+func goto(speed):
+	if !chase_stopped:
 		nav_agent.set_target_position(target_location)
 		var current_position : Vector3 = global_transform.origin
 		var next_path_position : Vector3 = nav_agent.get_next_path_position()
 		var new_velocity : Vector3 = next_path_position - current_position
-		new_velocity = new_velocity.normalized() * current_speed
+		new_velocity = new_velocity.normalized() * speed
 		set_velocity(new_velocity)
 		if currentMachineState==machineStatesEnum.chasing_player or nav_agent.distance_to_target()>3:
 			look_at(target_location)
 		move_and_slide()
-
-
+	
 func _on_detection_area_body_entered(body):
 	if body.name=="Player" and not player.player_caught:
-		if not currentMachineState==machineStatesEnum.chasing_player:
-			player.increment_ennemies_chasing_player()
-			currentMachineState=machineStatesEnum.chasing_player
-		else:
+		player_in_detection_area = true
+		if currentMachineState==machineStatesEnum.chasing_player:
 			timer.stop()
-
-
+		
 func _on_detection_area_body_exited(body):
+	player_in_detection_area = false
 	if body.name=="Player" and not player.player_caught:
 		timer.start(10)
 	
 func _on_timer_timeout():
 	player.decrement_ennemies_chasing_player()
-	currentMachineState = machineStatesEnum.stopped
+	look_around_animation_played = false
+	chase_stopped = true
+	currentMachineState = machineStatesEnum.looking_around
+	target_location = global_transform.origin
+	goto(0)
+	$AnimationPlayer.play("look_around")
 
 
 func _on_death_area_body_entered(body):
@@ -77,6 +93,7 @@ func _on_death_area_body_entered(body):
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "look_around":
+		chase_stopped = false
 		look_around_animation_played = true
 
 
