@@ -20,9 +20,6 @@
 background_mode = 2
 sky = SubResource("Sky_lm4ul")
 ambient_light_color = Color(0, 0, 0.211765, 1)
-ssao_enabled = true
-ssil_enabled = true
-sdfgi_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.008
 
