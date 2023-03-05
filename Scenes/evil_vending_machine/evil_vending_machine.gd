@@ -38,6 +38,8 @@ func _physics_process(_delta):
 			if raycast.get_collider():
 				if raycast.get_collider().name == "Player":
 					player.increment_ennemies_chasing_player()
+					look_around_animation_played = true
+					chase_stopped = false
 					currentMachineState=machineStatesEnum.chasing_player
 
 func goto(speed):
@@ -64,13 +66,14 @@ func _on_detection_area_body_exited(body):
 		timer.start(10)
 	
 func _on_timer_timeout():
-	player.decrement_ennemies_chasing_player()
-	look_around_animation_played = false
-	chase_stopped = true
-	currentMachineState = machineStatesEnum.looking_around
-	target_location = global_transform.origin
-	goto(0)
-	$AnimationPlayer.play("look_around")
+	if currentMachineState==machineStatesEnum.chasing_player:
+		player.decrement_ennemies_chasing_player()
+		look_around_animation_played = false
+		chase_stopped = true
+		currentMachineState = machineStatesEnum.looking_around
+		target_location = global_transform.origin
+		goto(0)
+		$AnimationPlayer.play("look_around")
 
 
 func _on_death_area_body_entered(body):
