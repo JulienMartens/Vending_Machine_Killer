@@ -29,8 +29,6 @@ transform = Transform3D(0.0977523, 0.0982769, -0.00762619, 0, 0.180861, 0.093228
 mesh = SubResource("CapsuleMesh_uqjpu")
 skeleton = NodePath("../..")
 
-[node name="HoldPosition" type="Node3D" parent="Camera"]
-
 [node name="UI" type="VBoxContainer" parent="Camera"]
 anchors_preset = -1
 anchor_left = 0.5
