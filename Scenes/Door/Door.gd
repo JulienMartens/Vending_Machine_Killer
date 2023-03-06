@@ -63,15 +63,21 @@ func interact():
 		if currentDoorPosition == doorPositionsEnum.Closed:
 			if playerPosition == "front":
 				$AnimationPlayer.play(doorPositionsEnum.OpenIn)
+				$DoorOpenPlayer.play()
 				currentDoorPosition = doorPositionsEnum.OpenIn
 			elif playerPosition == "back":
 				$AnimationPlayer.play(doorPositionsEnum.OpenOut)
+				$DoorOpenPlayer.play()
 				currentDoorPosition = doorPositionsEnum.OpenOut
 		elif currentDoorPosition == doorPositionsEnum.OpenIn:
 			$AnimationPlayer.play_backwards(doorPositionsEnum.OpenIn)
+			await $AnimationPlayer.animation_finished
+			$DoorClosePlayer.play()
 			currentDoorPosition = doorPositionsEnum.Closed
 		elif currentDoorPosition == doorPositionsEnum.OpenOut:
 			$AnimationPlayer.play_backwards(doorPositionsEnum.OpenOut)
+			await $AnimationPlayer.animation_finished
+			$DoorClosePlayer.play()
 			currentDoorPosition = doorPositionsEnum.Closed
 
 func _process(_delta):
@@ -81,4 +87,3 @@ func _process(_delta):
 			dialogue.text = "Ouvrir la porte"+"\n[" + key_name+ "]"
 		elif currentDoorPosition in [doorPositionsEnum.OpenIn,doorPositionsEnum.OpenOut]:
 			dialogue.text = "Fermer la porte"+"\n[" + key_name+ "]"
-		

@@ -1,6 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://bxmpocau8d6c0"]
+[gd_scene load_steps=19 format=3 uid="uid://oitd1g0n1kll"]
 
 [ext_resource type="Script" path="res://Scenes/Door/Door.gd" id="1_qsa20"]
+[ext_resource type="AudioStream" uid="uid://cd7s2avna8u5e" path="res://Scenes/Door/door_open.wav" id="2_gcr1o"]
+[ext_resource type="AudioStream" uid="uid://crivujnvli8aq" path="res://Scenes/Door/door_close.wav" id="3_ta7sy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pmc6t"]
 resource_name = "MetalDoor"
@@ -223,6 +225,7 @@ size = Vector3(0.662061, 0.665815, 6.27428)
 [node name="Door" type="Node3D"]
 
 [node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.32831e-10, 0, 1.16415e-10)
 
 [node name="Model" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(2.13113, -2.62722e-07, 0, 1.86309e-07, 3.00518, 0, 0, 0, -0.154975, 0.00257111, 0.00120282, 0.00157356)
@@ -268,6 +271,16 @@ shape = SubResource("BoxShape3D_2kkh6")
 [node name="Timer" type="Timer" parent="Node3D/Model"]
 wait_time = 10.0
 one_shot = true
+
+[node name="DoorOpenPlayer" type="AudioStreamPlayer3D" parent="Node3D/Model"]
+transform = Transform3D(0.469235, 4.10219e-08, 0, -2.90907e-08, 0.332759, 0, 0, 0, -6.45265, 1.89249, 0.950662, 0.0101536)
+stream = ExtResource("2_gcr1o")
+volume_db = -20.0
+
+[node name="DoorClosePlayer" type="AudioStreamPlayer3D" parent="Node3D/Model"]
+transform = Transform3D(0.469235, 4.10219e-08, 0, -2.90907e-08, 0.332759, 0, 0, 0, -6.45265, 1.89249, 0.950662, 0.0101536)
+stream = ExtResource("3_ta7sy")
+volume_db = -20.0
 
 [connection signal="screen_entered" from="Node3D/Model/VisibleOnScreenNotifier3D" to="Node3D/Model" method="_on_visible_on_screen_notifier_3d_screen_entered"]
 [connection signal="screen_exited" from="Node3D/Model/VisibleOnScreenNotifier3D" to="Node3D/Model" method="_on_visible_on_screen_notifier_3d_screen_exited"]
