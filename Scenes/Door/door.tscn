@@ -274,11 +274,13 @@ one_shot = true
 
 [node name="DoorOpenPlayer" type="AudioStreamPlayer3D" parent="Node3D/Model"]
 transform = Transform3D(0.469235, 4.10219e-08, 0, -2.90907e-08, 0.332759, 0, 0, 0, -6.45265, 1.89249, 0.950662, 0.0101536)
+visible = false
 stream = ExtResource("2_gcr1o")
 volume_db = -20.0
 
 [node name="DoorClosePlayer" type="AudioStreamPlayer3D" parent="Node3D/Model"]
 transform = Transform3D(0.469235, 4.10219e-08, 0, -2.90907e-08, 0.332759, 0, 0, 0, -6.45265, 1.89249, 0.950662, 0.0101536)
+visible = false
 stream = ExtResource("3_ta7sy")
 volume_db = -20.0
 
