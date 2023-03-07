@@ -20,7 +20,7 @@ offsets = PackedFloat32Array(0.28125, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fukeh"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gwh5o"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dkb5p"]
 seamless = true
 color_ramp = SubResource("Gradient_qv2vm")
 noise = SubResource("FastNoiseLite_fukeh")
@@ -30,7 +30,7 @@ noise = SubResource("FastNoiseLite_fukeh")
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ry2tg"]
 seed = 5
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_r8s28"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qyc6k"]
 seamless = true
 color_ramp = SubResource("Gradient_a1txb")
 noise = SubResource("FastNoiseLite_ry2tg")
@@ -51,19 +51,19 @@ shader_parameter/cloud_distortion = 1.95
 shader_parameter/cloud_strength = 1.0
 shader_parameter/cloud_cutoff = 0.013
 shader_parameter/cloud_fuzziness = 0.261
-shader_parameter/cloud_noise1 = SubResource("NoiseTexture2D_gwh5o")
-shader_parameter/cloud_noise2 = SubResource("NoiseTexture2D_r8s28")
+shader_parameter/cloud_noise1 = SubResource("NoiseTexture2D_dkb5p")
+shader_parameter/cloud_noise2 = SubResource("NoiseTexture2D_qyc6k")
 shader_parameter/day_bottom_color = Color(0, 0.345098, 0.34902, 1)
 shader_parameter/day_top_color = Color(0, 0, 0, 1)
 shader_parameter/night_bottom_color = Color(0, 0, 0, 1)
 shader_parameter/night_top_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Sky" id="Sky_7ch67"]
+[sub_resource type="Sky" id="Sky_imcqa"]
 sky_material = SubResource("ShaderMaterial_4l621")
 
 [sub_resource type="Environment" id="Environment_8xvxb"]
 background_mode = 2
-sky = SubResource("Sky_7ch67")
+sky = SubResource("Sky_imcqa")
 ambient_light_source = 2
 ambient_light_color = Color(0.156863, 0.160784, 0.176471, 1)
 reflected_light_source = 2

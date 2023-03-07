@@ -98,6 +98,8 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "look_around":
 		chase_stopped = false
 		look_around_animation_played = true
+	if anim_name == "win":
+		get_tree().change_scene_to_file("res://Menu/Death Menu/deathMenu.tscn")
 
 
 
