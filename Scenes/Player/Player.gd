@@ -12,6 +12,7 @@ var mouse_relative_y = 0
 var ennemies_present = false
 var ennemies_chasing_player = 0
 var player_caught = false
+var hidden = false
 @onready var donut_eaten = 0
 signal interact
 
@@ -61,6 +62,7 @@ func _physics_process(delta):
 		tired = true
 	if tired and STAMINA > MAX_STAMINA/2:
 		tired = false
+		
 	# Movement
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -87,6 +89,7 @@ func _physics_process(delta):
 		$AudioRotationNode.look_at(closest_ennemy_position)
 	else:
 		ennemyMusicAudioPlayer.stop()
+		
 func increment_donut():
 	donut_eaten+=1
 	if donut_eaten==10:
@@ -98,3 +101,9 @@ func increment_ennemies_chasing_player():
 	
 func decrement_ennemies_chasing_player():
 	ennemies_chasing_player -= 1
+
+func hide_player():
+	hidden = true
+	
+func unhide_player():
+	hidden = false

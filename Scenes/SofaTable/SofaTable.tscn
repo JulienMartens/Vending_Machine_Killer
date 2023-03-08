@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccelrgcqsjemo"]
+
+[ext_resource type="PackedScene" uid="uid://c6we5y6o1uq3r" path="res://Scenes/SofaTable/SofaTable.glb" id="1_ddv33"]
+[ext_resource type="Script" path="res://Scenes/SofaTable/SofaTable.gd" id="1_sjwjc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ra4ox"]
+size = Vector3(1.14899, 0.408623, 0.482643)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g3132"]
+size = Vector3(1.13875, 0.0559674, 0.475928)
+
+[node name="SofaTable" type="Node3D"]
+script = ExtResource("1_sjwjc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.293913, 0.001057)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.119401, -0.00219911)
+shape = SubResource("BoxShape3D_ra4ox")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.352924, 0.001057)
+shape = SubResource("BoxShape3D_g3132")
+
+[node name="3DModel" parent="StaticBody3D" groups=["navigation_mesh_source_group"] instance=ExtResource("1_ddv33")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20414, 0)
+
+[connection signal="body_entered" from="StaticBody3D/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="StaticBody3D/Area3D" to="." method="_on_area_3d_body_exited"]
