@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcolqeoj6f8m1"]
+[gd_scene load_steps=8 format=3 uid="uid://dcolqeoj6f8m1"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_ktb2n"]
 [ext_resource type="AudioStream" uid="uid://bsmvfvnq0w6v8" path="res://Scenes/Player/horror_chase_loop.wav" id="2_53hbd"]
@@ -6,6 +6,68 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uq044"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_uqjpu"]
+
+[sub_resource type="Animation" id="Animation_krvw5"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1, 0)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 1, 0)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 1.54015, -5.96046e-08)
+
+[sub_resource type="Animation" id="Animation_ds7k6"]
+resource_name = "crouch"
+length = 0.3
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1, 0, 0.3, 1, 0, -0.280022, 0)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 1, 0, 0.3, 1, 0, 0.516718, 0.413345)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 1.54015, -5.96046e-08, 0.3, 1, 0, 0.180096, -5.96046e-08)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape3D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.3, 1, -0.707107, 0, 0, 0.707107)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_372jt"]
+_data = {
+"RESET": SubResource("Animation_krvw5"),
+"crouch": SubResource("Animation_ds7k6")
+}
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0131631, 0)
@@ -21,7 +83,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_uqjpu")
 
 [node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54015, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54015, -5.96046e-08)
 current = true
 
 [node name="Hand" type="MeshInstance3D" parent="Camera"]
@@ -68,3 +130,8 @@ stream = ExtResource("2_53hbd")
 volume_db = -80.0
 max_db = -2.0
 autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_372jt")
+}

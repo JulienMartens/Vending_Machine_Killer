@@ -294,7 +294,7 @@ visible = false
 stream = ExtResource("13_46wa6")
 
 [node name="SofaTable" parent="." instance=ExtResource("14_lhgc3")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -10.4578, -1.55751, 9.41525)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4578, -0.577431, 9.41525)
 
 [node name="evil_vending_machine" parent="." instance=ExtResource("12_0kpvi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.9817, -0.528553, 22.3716)

@@ -13,6 +13,7 @@ var ennemies_present = false
 var ennemies_chasing_player = 0
 var player_caught = false
 var hidden = false
+var crouching = false
 @onready var donut_eaten = 0
 signal interact
 
@@ -48,13 +49,23 @@ func _physics_process(delta):
 	# Jump
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
+	# Crouch
+	if Input.is_action_just_pressed("crouch") and is_on_floor():
+		if not crouching :
+			crouching = true
+			$AnimationPlayer.play("crouch")
+		else:
+			crouching = false
+			$AnimationPlayer.play_backwards("crouch")
 	# Stamina
-	if STAMINA > 0 and Input.is_action_pressed('sprint') and not tired:
+	if STAMINA > 0 and Input.is_action_pressed('sprint') and not tired and not crouching:
 		SPEED = 12
 		STAMINA-=delta
 	else:
-		SPEED = 7
+		if crouching:
+			SPEED = 4
+		else:
+			SPEED = 7
 		if STAMINA < MAX_STAMINA:
 			STAMINA+=delta
 	if STAMINA < 0:
