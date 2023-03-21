@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://b3cfb0kuivtxa"]
 
 [ext_resource type="Material" uid="uid://cqpcmwcd2vw6t" path="res://Assets/Materials/Bricks/Bricks10.tres" id="1_6aon3"]
-[ext_resource type="PackedScene" uid="uid://bxmpocau8d6c0" path="res://Scenes/Door/door.tscn" id="1_mq3s7"]
+[ext_resource type="PackedScene" uid="uid://oitd1g0n1kll" path="res://Scenes/Door/door.tscn" id="1_mq3s7"]
 [ext_resource type="Material" uid="uid://ejfiuxvlkda2" path="res://Assets/Materials/Plaster/Plaster.tres" id="2_g5b5h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3jskb"]

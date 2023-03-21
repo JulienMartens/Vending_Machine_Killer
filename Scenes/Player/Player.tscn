@@ -1,11 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://dcolqeoj6f8m1"]
+[gd_scene load_steps=11 format=3 uid="uid://drpiywr0olkpq"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_ktb2n"]
+[ext_resource type="Shader" path="res://Scenes/Player/pixelate.gdshader" id="2_8x3vt"]
 [ext_resource type="AudioStream" uid="uid://bsmvfvnq0w6v8" path="res://Scenes/Player/horror_chase_loop.wav" id="2_53hbd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uq044"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_uqjpu"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_s7saf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lmkul"]
+render_priority = 0
+shader = ExtResource("2_8x3vt")
 
 [sub_resource type="Animation" id="Animation_krvw5"]
 length = 0.001
@@ -120,6 +127,11 @@ distance_fade_enabled = true
 distance_fade_begin = 2.0
 distance_fade_length = 2.0
 omni_range = 6.68824
+
+[node name="ShaderMesh" type="MeshInstance3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.453877)
+mesh = SubResource("PlaneMesh_s7saf")
+surface_material_override/0 = SubResource("ShaderMaterial_lmkul")
 
 [node name="AudioRotationNode" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.02445e-08, 0)

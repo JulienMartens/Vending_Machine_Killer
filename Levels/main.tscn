@@ -1,7 +1,7 @@
 [gd_scene load_steps=31 format=3 uid="uid://dxx8s8yvvhbdv"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_5w7m4"]
-[ext_resource type="PackedScene" uid="uid://dcolqeoj6f8m1" path="res://Scenes/Player/Player.tscn" id="2_fath2"]
+[ext_resource type="PackedScene" uid="uid://drpiywr0olkpq" path="res://Scenes/Player/Player.tscn" id="2_fath2"]
 [ext_resource type="Shader" path="res://Levels/sky.gdshader" id="2_fnmal"]
 [ext_resource type="PackedScene" uid="uid://bt7hecbroolb7" path="res://Scenes/evil_vending_machine/VendingMachineHD.glb" id="3_cvq1a"]
 [ext_resource type="PackedScene" uid="uid://cwxxtfs36agg0" path="res://Scenes/Buildings/BuildingBigX/building_big_x.tscn" id="4_4wm8i"]
