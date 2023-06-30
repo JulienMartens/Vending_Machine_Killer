@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://vqqs466hbysh"]
 
 [ext_resource type="Material" uid="uid://cqpcmwcd2vw6t" path="res://Assets/Materials/Bricks/Bricks10.tres" id="1_6rl3t"]
-[ext_resource type="PackedScene" uid="uid://bxmpocau8d6c0" path="res://Scenes/Door/door.tscn" id="1_bexwv"]
+[ext_resource type="PackedScene" uid="uid://oitd1g0n1kll" path="res://Scenes/Door/door.tscn" id="1_bexwv"]
 [ext_resource type="Material" uid="uid://ejfiuxvlkda2" path="res://Assets/Materials/Plaster/Plaster.tres" id="2_nwn78"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qqbhw"]
@@ -106,3 +106,8 @@ shape = SubResource("ConcavePolygonShape3D_o2cs5")
 
 [node name="Door" parent="." instance=ExtResource("1_bexwv")]
 transform = Transform3D(0.9, 0, 0, 0, 1, 0, 0, 0, 1, -1.96086, 0, 7.95994)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 5.51415, 0)
+spot_range = 5.55427
+spot_angle = 59.1448

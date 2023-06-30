@@ -123,3 +123,8 @@ transform = Transform3D(-1.62607e-08, 0, 0.4, 0, 0.4, 0, -0.371999, 0, -1.74846e
 
 [node name="Door5" parent="." instance=ExtResource("1_bk2mi")]
 transform = Transform3D(-1.62607e-08, 0, 0.4, 0, 0.4, 0, -0.371999, 0, -1.74846e-08, -9.833, -0.00213599, -5.32664)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.32, -6.11)
+spot_range = 10.2035
+spot_angle = 78.0844
