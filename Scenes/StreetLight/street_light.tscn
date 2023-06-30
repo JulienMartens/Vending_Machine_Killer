@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cycsdleu52ohv"]
+
+[ext_resource type="PackedScene" uid="uid://fu1drumy6jn7" path="res://Assets/Props/Blender/StreetLight.blend" id="1_wjgef"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lqa4x"]
+height = 12.2636
+radius = 0.182291
+
+[node name="StreetLight" instance=ExtResource("1_wjgef")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.90817, 0)
+shape = SubResource("CylinderShape3D_lqa4x")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 2.34931, 8.95761, 0)
+omni_range = 1.91984
+
+[node name="SpotLight3D" type="SpotLight3D" parent="StaticBody3D/OmniLight3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+spot_range = 14.3193
+spot_angle = 45.5504

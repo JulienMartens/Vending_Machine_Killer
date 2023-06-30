@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3b5ujaoas0ae"]
+
+[ext_resource type="PackedScene" uid="uid://ckpknxodnu0xt" path="res://Assets/Props/Blender/TVStand.blend" id="2_ax3b6"]
+[ext_resource type="PackedScene" uid="uid://bap0vxjd1bd08" path="res://Assets/Props/Blender/SofaTable.blend" id="3_njgkh"]
+[ext_resource type="MeshLibrary" uid="uid://6egbu60ks17g" path="res://Assets/Props/basic tiles/basic_tiles.tres" id="4_nojok"]
+[ext_resource type="PackedScene" uid="uid://oitd1g0n1kll" path="res://Scenes/Door/door.tscn" id="5_4r0ah"]
+[ext_resource type="PackedScene" uid="uid://d1pgpwuw6agpf" path="res://Scenes/Sofa/sofa.tscn" id="5_6u17f"]
+[ext_resource type="PackedScene" uid="uid://ccelrgcqsjemo" path="res://Scenes/SofaTable/SofaTable.tscn" id="6_i28in"]
+
+[node name="House" type="Node3D"]
+
+[node name="TVStand" parent="." instance=ExtResource("2_ax3b6")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.95355, 0.313882, 11.6838)
+
+[node name="SofaTable" parent="." instance=ExtResource("3_njgkh")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.05542, 0.165444, 11.7869)
+
+[node name="GridMap" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh_library = ExtResource("4_nojok")
+cell_size = Vector3(4, 3, 4)
+data = {
+"cells": PackedInt32Array(65535, 0, 655371, 65534, 0, 1, 0, 0, 1441793, 0, 1, 655363, 0, 2, 1048576, 65535, 2, 1048587, 65535, 3, 655361, 65534, 2, 1, 65534, 3, 1048577, 0, 3, 655361, 65534, 1, 1441792, 65535, 1, 1048587, 131070, 0, 4, 131070, 1, 4, 131071, 1, 4, 131071, 2, 4, 131070, 2, 4, 131070, 3, 4, 131071, 3, 4, 65536, 2, 4, 65536, 3, 4, 65536, 1, 4, 65536, 0, 4, 131071, 0, 4)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.45021, 2.85841, 10.6109)
+spot_angle = 57.2252
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -4.41203, 2.85841, 4.23862)
+spot_range = 5.79393
+spot_angle = 62.1426
+
+[node name="Door" parent="." instance=ExtResource("5_4r0ah")]
+transform = Transform3D(0.28, 0, 0, 0, 0.34, 0, 0, 0, 0.34, -2.58106, 0, 0.0517969)
+
+[node name="Sofa2" parent="." instance=ExtResource("5_6u17f")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.48386, 0.515837, 11.7624)
+
+[node name="Door2" parent="." instance=ExtResource("5_4r0ah")]
+transform = Transform3D(-1.22392e-08, 0, -0.34, 0, 0.34, 0, 0.28, 0, -1.48619e-08, -0.160189, 0, 5.40687)
+
+[node name="Door3" parent="." instance=ExtResource("5_4r0ah")]
+transform = Transform3D(-1.22392e-08, 0, -0.34, 0, 0.34, 0, 0.28, 0, -1.48619e-08, -0.160189, 0, 9.42449)
+
+[node name="SofaTable2" parent="." instance=ExtResource("6_i28in")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.88552, -0.0156851, 5.74709)
