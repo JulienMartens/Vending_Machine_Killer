@@ -1,6 +1,8 @@
 extends CharacterBody3D
 
 @onready var ennemyMusicAudioPlayer = $AudioRotationNode/AudioStreamPlayer3D
+@onready var insideAmbiantAudioPlayer = $InsideAmbiantAudioPlayer
+@onready var outsideAmbiantAudioPlayer = $OutsideAmbiantAudioPlayer
 var SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var STAMINA = 10
@@ -118,3 +120,22 @@ func hide_player():
 	
 func unhide_player():
 	hidden = false
+
+func toggle_inside_ambiant_player():
+	if insideAmbiantAudioPlayer.playing:
+		insideAmbiantAudioPlayer.stop()
+	else:
+		insideAmbiantAudioPlayer.play()
+
+func toggle_outside_ambiant_player():
+	if outsideAmbiantAudioPlayer.playing:
+		outsideAmbiantAudioPlayer.stop()
+	else:
+		outsideAmbiantAudioPlayer.play()
+
+func set_inside_ambiant_volume(volume):
+	insideAmbiantAudioPlayer.set_volume_db(volume)
+	
+func set_outside_ambiant_volume(volume):
+	outsideAmbiantAudioPlayer.set_volume_db(volume)
+	

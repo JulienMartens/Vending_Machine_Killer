@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://drpiywr0olkpq"]
+[gd_scene load_steps=13 format=3 uid="uid://drpiywr0olkpq"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_ktb2n"]
 [ext_resource type="Shader" path="res://Scenes/Player/pixelate.gdshader" id="2_8x3vt"]
 [ext_resource type="AudioStream" uid="uid://bsmvfvnq0w6v8" path="res://Scenes/Player/horror_chase_loop.wav" id="2_53hbd"]
+[ext_resource type="AudioStream" uid="uid://cd174r8h3galt" path="res://Assets/Sounds/Ambiant/the-ambience-room-tone-139064.mp3" id="4_icb43"]
+[ext_resource type="AudioStream" uid="uid://7cwlpqkd71dv" path="res://Assets/Sounds/Ambiant/night-ambient-120458.mp3" id="5_dgnyo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uq044"]
 
@@ -147,3 +149,11 @@ autoplay = true
 libraries = {
 "": SubResource("AnimationLibrary_372jt")
 }
+
+[node name="InsideAmbiantAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_icb43")
+volume_db = -9.007
+autoplay = true
+
+[node name="OutsideAmbiantAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_dgnyo")

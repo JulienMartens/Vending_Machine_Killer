@@ -287,7 +287,7 @@ mesh = SubResource("PlaneMesh_xexkm")
 surface_material_override/0 = ExtResource("4_7rngi")
 
 [node name="Player" parent="." instance=ExtResource("2_fath2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.402, -0.386236, -8.04987)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.0816, -0.386236, -11.4181)
 
 [node name="VendingMachine" type="RigidBody3D" parent="."]
 transform = Transform3D(1.2, 1.33227e-16, -4.47035e-09, 0, 1.2, 3.57628e-08, 4.47035e-09, -3.57628e-08, 1.2, -15.1044, 0.943406, -26.2949)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3b5ujaoas0ae"]
+[gd_scene load_steps=8 format=3 uid="uid://c3b5ujaoas0ae"]
 
 [ext_resource type="PackedScene" uid="uid://ckpknxodnu0xt" path="res://Assets/Props/Blender/TVStand.blend" id="2_ax3b6"]
 [ext_resource type="PackedScene" uid="uid://bap0vxjd1bd08" path="res://Assets/Props/Blender/SofaTable.blend" id="3_njgkh"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://oitd1g0n1kll" path="res://Scenes/Door/door.tscn" id="5_4r0ah"]
 [ext_resource type="PackedScene" uid="uid://d1pgpwuw6agpf" path="res://Scenes/Sofa/sofa.tscn" id="5_6u17f"]
 [ext_resource type="PackedScene" uid="uid://ccelrgcqsjemo" path="res://Scenes/SofaTable/SofaTable.tscn" id="6_i28in"]
+[ext_resource type="PackedScene" uid="uid://cc4xqp7hwsqyu" path="res://Scenes/AreaMusicChanger/area_music_changer.tscn" id="7_futbx"]
 
 [node name="House" type="Node3D"]
 
@@ -49,3 +50,6 @@ transform = Transform3D(-1.22392e-08, 0, -0.34, 0, 0.34, 0, 0.28, 0, -1.48619e-0
 
 [node name="SofaTable2" parent="." instance=ExtResource("6_i28in")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.88552, -0.0156851, 5.74709)
+
+[node name="AreaMusicChanger" parent="." instance=ExtResource("7_futbx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.89655, 0, 0.0015831)

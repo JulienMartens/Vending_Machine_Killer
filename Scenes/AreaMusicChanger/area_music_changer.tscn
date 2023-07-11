@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc4xqp7hwsqyu"]
+
+[ext_resource type="Script" path="res://Scenes/AreaMusicChanger/area_music_changer.gd" id="1_g3hwe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rt484"]
+size = Vector3(3.2, 2, 1)
+
+[node name="AreaMusicChanger" type="Node3D"]
+script = ExtResource("1_g3hwe")
+
+[node name="OuterArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OuterArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4)
+shape = SubResource("BoxShape3D_rt484")
+
+[node name="InnerArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InnerArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.96046e-08, -0.0999999)
+shape = SubResource("BoxShape3D_rt484")
+
+[connection signal="body_entered" from="OuterArea" to="." method="_on_outer_area_body_entered"]
+[connection signal="body_exited" from="OuterArea" to="." method="_on_outer_area_body_exited"]
+[connection signal="body_entered" from="InnerArea" to="." method="_on_inner_area_body_entered"]
+[connection signal="body_exited" from="InnerArea" to="." method="_on_inner_area_body_exited"]

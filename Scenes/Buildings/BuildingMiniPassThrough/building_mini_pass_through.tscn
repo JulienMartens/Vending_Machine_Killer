@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3cfb0kuivtxa"]
+[gd_scene load_steps=9 format=3 uid="uid://b3cfb0kuivtxa"]
 
 [ext_resource type="Material" uid="uid://cqpcmwcd2vw6t" path="res://Assets/Materials/Bricks/Bricks10.tres" id="1_6aon3"]
 [ext_resource type="PackedScene" uid="uid://oitd1g0n1kll" path="res://Scenes/Door/door.tscn" id="1_mq3s7"]
 [ext_resource type="Material" uid="uid://ejfiuxvlkda2" path="res://Assets/Materials/Plaster/Plaster.tres" id="2_g5b5h"]
+[ext_resource type="PackedScene" uid="uid://cc4xqp7hwsqyu" path="res://Scenes/AreaMusicChanger/area_music_changer.tscn" id="4_fev73"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3jskb"]
 resource_name = "Window"
@@ -112,3 +113,9 @@ transform = Transform3D(-0.9, 0, -8.74228e-08, 0, 1, 0, 7.86805e-08, 0, -1, 1.83
 transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, 2.5, 0, -2.5, -1.09278e-07, 0, 5.89494, 0)
 spot_range = 5.44235
 spot_angle = 53.0771
+
+[node name="AreaMusicChanger" parent="." instance=ExtResource("4_fev73")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0.699239, 0, -8.14756)
+
+[node name="AreaMusicChanger2" parent="." instance=ExtResource("4_fev73")]
+transform = Transform3D(-2.5, 0, -2.18557e-07, 0, 2.5, 0, 2.18557e-07, 0, -2.5, -0.177938, -5.96046e-07, 7.95033)

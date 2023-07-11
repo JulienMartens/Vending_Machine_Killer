@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://vqqs466hbysh"]
+[gd_scene load_steps=9 format=3 uid="uid://vqqs466hbysh"]
 
 [ext_resource type="Material" uid="uid://cqpcmwcd2vw6t" path="res://Assets/Materials/Bricks/Bricks10.tres" id="1_6rl3t"]
+[ext_resource type="PackedScene" uid="uid://cc4xqp7hwsqyu" path="res://Scenes/AreaMusicChanger/area_music_changer.tscn" id="1_adq5x"]
 [ext_resource type="PackedScene" uid="uid://oitd1g0n1kll" path="res://Scenes/Door/door.tscn" id="1_bexwv"]
 [ext_resource type="Material" uid="uid://ejfiuxvlkda2" path="res://Assets/Materials/Plaster/Plaster.tres" id="2_nwn78"]
 
@@ -93,6 +94,9 @@ data = PackedVector3Array(4, -12.8718, -18.928, 12, -7.1575, -18.928, 4, -7.1575
 
 [node name="Building_MiniDeadEnd" type="Node3D"]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="AreaMusicChanger" parent="." instance=ExtResource("1_adq5x")]
+transform = Transform3D(2.823, 0, 0, 0, 2.823, 0, 0, 0, 2.823, 0.224001, 5.96046e-07, 8.09704)
 
 [node name="MiniDeadEnd" type="MeshInstance3D" parent="." groups=["navigation_mesh_source_group"]]
 transform = Transform3D(0.489917, 0, 0, 0, 1, 0, 0, 0, 0.493533, 0, 19.885, -0.055)
