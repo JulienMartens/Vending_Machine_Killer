@@ -3,11 +3,9 @@ extends CharacterBody3D
 @onready var ennemyMusicAudioPlayer = $AudioRotationNode/AudioStreamPlayer3D
 @onready var insideAmbiantAudioPlayer = $InsideAmbiantAudioPlayer
 @onready var outsideAmbiantAudioPlayer = $OutsideAmbiantAudioPlayer
+@onready var movementAudioPlayer = $MovementAudioPlayer
 var SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-var STAMINA = 10
-var MAX_STAMINA = 10
-var tired = false
 var mouseSensibility = 1200
 var mouse_relative_x = 0
 var mouse_relative_y = 0
@@ -15,7 +13,16 @@ var ennemies_present = false
 var ennemies_chasing_player = 0
 var player_caught = false
 var hidden = false
+
+var STAMINA = 10
+var MAX_STAMINA = 10
 var crouching = false
+var sprinting = false
+var tired = false
+var walk_sound = preload("res://Assets/Sounds/walking.mp3")
+var run_sound = preload("res://Assets/Sounds/running.mp3")
+
+
 @onready var donut_eaten = 0
 signal interact
 
@@ -24,7 +31,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	#Captures mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
+	
 func _input(event):
 	if event is InputEventMouseMotion:
 		rotation.y -= event.relative.x / mouseSensibility
@@ -63,11 +70,13 @@ func _physics_process(delta):
 	if STAMINA > 0 and Input.is_action_pressed('sprint') and not tired and not crouching:
 		SPEED = 12
 		STAMINA-=delta
+		sprinting = true
 	else:
 		if crouching:
 			SPEED = 4
 		else:
 			SPEED = 7
+			sprinting = false
 		if STAMINA < MAX_STAMINA:
 			STAMINA+=delta
 	if STAMINA < 0:
@@ -75,14 +84,22 @@ func _physics_process(delta):
 		tired = true
 	if tired and STAMINA > MAX_STAMINA/2:
 		tired = false
-		
 	# Movement
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
+		if crouching and movementAudioPlayer.get_stream()!=walk_sound:
+			movementAudioPlayer.set_stream(walk_sound)
+		elif sprinting and movementAudioPlayer.get_stream()!=run_sound:
+			movementAudioPlayer.set_stream(run_sound)
+		elif not crouching and not sprinting and movementAudioPlayer.get_stream()!=walk_sound :
+			movementAudioPlayer.set_stream(walk_sound)
+		if not movementAudioPlayer.playing:
+			movementAudioPlayer.play()
 	else:
+		movementAudioPlayer.stop()
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		
@@ -106,7 +123,7 @@ func _physics_process(delta):
 func increment_donut():
 	donut_eaten+=1
 	if donut_eaten==10:
-		$Camera/UI/HBoxContainer/Dialogue.text = "BRAVO TU AS MANGÉ TOUS LES DONUTS WOW T'ES CHAUD !! \n Tu peux demander au dev d'ajouter ton nom a la liste des gens qui ont réussi, bien joué : \n Maxime Martens, le fabriquant de distributeurs automatiques"
+		$Camera/UI/HBoxContainer/Dialogue.text = "BRAVO TU AS MANGÉ TOUS LES DONUTS WOW T'ES CHAUD !! \n Liste des kings du donut:\nMaxime Martens\nArnaud Chopard-Lallier\nThomas Hostin"
 		get_tree().paused = true
 
 func increment_ennemies_chasing_player():
