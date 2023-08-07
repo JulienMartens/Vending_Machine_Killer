@@ -290,11 +290,11 @@ surface_material_override/0 = ExtResource("4_7rngi")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.0816, -0.386236, -11.4181)
 
 [node name="VendingMachine" type="RigidBody3D" parent="."]
-transform = Transform3D(1.2, 1.33227e-16, -4.47035e-09, 0, 1.2, 3.57628e-08, 4.47035e-09, -3.57628e-08, 1.2, -15.1044, 0.943406, -26.2949)
+transform = Transform3D(1.2, 1.33227e-16, -4.47035e-09, 0, 1.2, 3.57628e-08, 4.47035e-09, -3.57628e-08, 1.2, -15.1044, 0.943406, -27.7386)
 mass = 0.28
 
 [node name="VendingMachineHD" parent="VendingMachine" instance=ExtResource("3_cvq1a")]
-transform = Transform3D(4, -3.44107e-22, 0, 3.44107e-22, 4, 0, 0, 0, 4, 0.107509, -0.108357, -0.216835)
+transform = Transform3D(4, -3.44107e-22, 1.77636e-15, 3.70577e-22, 4, -1.42109e-14, -1.77636e-15, 1.42109e-14, 4, 0.10751, -0.108357, -0.216837)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VendingMachine"]
 transform = Transform3D(2.361, -1.27055e-21, 7.99361e-15, 8.73503e-22, 5, -7.10543e-15, -7.99361e-15, 1.42109e-14, 2.222, -0.0145092, 0.0403717, -0.241846)
@@ -335,11 +335,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.62, 4.02331e-06, 131.619)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4096, 4.26173e-06, 65.0971)
 
 [node name="PNJ" parent="." instance=ExtResource("6_aav65")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.47792, -0.528557, -6.75239)
+transform = Transform3D(0.0310793, 0, -0.999517, 0, 1, 0, 0.999517, 0, 0.0310793, 42.3991, -0.528557, -8.16402)
 
 [node name="Coin" parent="." instance=ExtResource("7_rnlaw")]
-transform = Transform3D(1.61283e-07, 0.998822, -0.0485231, 1, -1.62921e-07, -2.98023e-08, -3.76727e-08, -0.0485231, -0.998822, -3.68027, 3.8147e-06, 24.0522)
-visible = false
+transform = Transform3D(1.61283e-07, 0.998822, -0.0485231, 1, -1.62921e-07, -2.98023e-08, -3.76727e-08, -0.0485231, -0.998822, 28.6363, 3.69549e-06, 17.9992)
 
 [node name="EatingSoundPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_46wa6")

@@ -67,6 +67,18 @@ skeleton = NodePath("")
 surface_material_override/0 = ExtResource("1_iby0j")
 script = ExtResource("2_jfath")
 
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 1.26774e-07, 1.91434e-07, -1.86333e-07, -0.0390853, 0.999236, 1.34159e-07, -0.999236, -0.0390853, -5.52114e-08, 0.185014, -0.00878138)
+light_energy = 10.0
+spot_range = 0.481097
+spot_angle = 74.5312
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, -1.1724e-13, -1.56319e-13, 0, -7.45058e-08, -1, 0, 1, -7.45058e-08, -3.65599e-08, -0.229166, 0.0260406)
+light_energy = 10.0
+spot_range = 0.481097
+spot_angle = 74.5312
+
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.172764, 0)
 

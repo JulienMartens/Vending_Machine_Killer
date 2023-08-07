@@ -32,7 +32,7 @@ func _process(_delta):
 		look_at(target_location)
 		move_and_slide()
 		$AnimationPlayer.play("walk")
-		if $NavigationAgent3D.distance_to_target()<2:
+		if nav_agent.distance_to_target()<5:
 			$AnimationPlayer.play("RESET")
 			triggered_state = 3
 	if triggered_state == 6:
