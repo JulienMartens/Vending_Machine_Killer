@@ -67,7 +67,7 @@ background_mode = 2
 background_color = Color(0.10748, 0.10748, 0.10748, 1)
 sky = SubResource("Sky_l73ts")
 ambient_light_source = 2
-ambient_light_color = Color(0.211765, 0.211765, 0.231373, 1)
+ambient_light_color = Color(0.243137, 0.243137, 0.262745, 1)
 reflected_light_source = 2
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.008
@@ -287,7 +287,7 @@ mesh = SubResource("PlaneMesh_xexkm")
 surface_material_override/0 = ExtResource("4_7rngi")
 
 [node name="Player" parent="." instance=ExtResource("2_fath2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.0816, -0.386236, -11.4181)
+transform = Transform3D(-0.0329284, 0, 0.999458, 0, 1, 0, -0.999458, 0, -0.0329284, 64.206, -0.386236, -11.0738)
 
 [node name="VendingMachine" type="RigidBody3D" parent="."]
 transform = Transform3D(1.2, 1.33227e-16, -4.47035e-09, 0, 1.2, 3.57628e-08, 4.47035e-09, -3.57628e-08, 1.2, -15.1044, 0.943406, -27.7386)
@@ -335,7 +335,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.62, 4.02331e-06, 131.619)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4096, 4.26173e-06, 65.0971)
 
 [node name="PNJ" parent="." instance=ExtResource("6_aav65")]
-transform = Transform3D(0.0310793, 0, -0.999517, 0, 1, 0, 0.999517, 0, 0.0310793, 42.3991, -0.528557, -8.16402)
+transform = Transform3D(0.0310793, 0, -0.999517, 0, 1, 0, 0.999517, 0, 0.0310793, 24.5706, -0.528557, 4.27235)
 
 [node name="Coin" parent="." instance=ExtResource("7_rnlaw")]
 transform = Transform3D(1.61283e-07, 0.998822, -0.0485231, 1, -1.62921e-07, -2.98023e-08, -3.76727e-08, -0.0485231, -0.998822, 28.6363, 3.69549e-06, 17.9992)

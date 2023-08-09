@@ -4,7 +4,7 @@
 [ext_resource type="Shader" path="res://Levels/sky.gdshader" id="2_uurtn"]
 [ext_resource type="PackedScene" uid="uid://c17mojdlqve5l" path="res://Scenes/Buildings/BuildingBigFake/building_big_fake.tscn" id="3_kaqj2"]
 [ext_resource type="Material" uid="uid://vsu8101a1dh" path="res://Assets/Materials/Pavement/PavingStones.tres" id="4_t0ftc"]
-[ext_resource type="AudioStream" uid="uid://bsmvfvnq0w6v8" path="res://Scenes/Player/horror_chase_loop.wav" id="5_qe4qx"]
+[ext_resource type="AudioStream" uid="uid://cjbahghguhu6e" path="res://Scenes/Player/horror_chase_loop.mp3" id="5_qe4qx"]
 [ext_resource type="PackedScene" uid="uid://bt7hecbroolb7" path="res://Scenes/evil_vending_machine/VendingMachineHD.glb" id="6_rvl00"]
 [ext_resource type="Script" path="res://Menu/Main Menu/mainMenu.gd" id="7_4n4uu"]
 
@@ -58,7 +58,7 @@ sky_material = SubResource("ShaderMaterial_r007o")
 background_mode = 2
 sky = SubResource("Sky_7ch67")
 ambient_light_source = 2
-ambient_light_color = Color(0.156863, 0.160784, 0.176471, 1)
+ambient_light_color = Color(0.254902, 0.262745, 0.286275, 1)
 reflected_light_source = 2
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.008
@@ -292,11 +292,11 @@ offset_bottom = 652.0
 
 [node name="StartButton" type="Button" parent="Menu/Camera3D/VBoxContainer"]
 layout_mode = 2
-text = "Start Game"
+text = "menu_start"
 
 [node name="QuitButton" type="Button" parent="Menu/Camera3D/VBoxContainer"]
 layout_mode = 2
-text = "Quit Game"
+text = "menu_quit"
 
 [connection signal="pressed" from="Menu/Camera3D/VBoxContainer/StartButton" to="Menu" method="_on_start_button_pressed"]
 [connection signal="pressed" from="Menu/Camera3D/VBoxContainer/QuitButton" to="Menu" method="_on_quit_button_pressed"]

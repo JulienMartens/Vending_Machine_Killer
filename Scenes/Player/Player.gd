@@ -4,6 +4,7 @@ extends CharacterBody3D
 @onready var insideAmbiantAudioPlayer = $InsideAmbiantAudioPlayer
 @onready var outsideAmbiantAudioPlayer = $OutsideAmbiantAudioPlayer
 @onready var movementAudioPlayer = $MovementAudioPlayer
+@onready var stamina_bar = $Camera/PlayerUI/StaminaBar
 var SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var mouseSensibility = 1200
@@ -31,7 +32,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	#Captures mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
+	stamina_bar.set_value(MAX_STAMINA)
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		rotation.y -= event.relative.x / mouseSensibility
@@ -44,6 +46,7 @@ func _input(event):
 		
 func _physics_process(delta):
 	move_and_slide()
+	stamina_bar.set_value(STAMINA)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta

@@ -44,14 +44,14 @@ func _on_area_3d_body_entered(body):
 		player.axis_lock_linear_y = true
 		player.axis_lock_linear_z = true
 		camera_pnj.current = true
-		dialogueBox.text = "Wesh poto, bien ou bien ? \n Eh, j'ai un petit creux, viens on va s'acheter des donuts sucrés au sucre, il y a un distributeur juste la"
+		dialogueBox.text = tr("pnj_greet")
 		triggered_state = 1
 	if body.name=="Player" and triggered_state == 3:
 		player.axis_lock_linear_x = true
 		player.axis_lock_linear_y = true
 		player.axis_lock_linear_z = true
 		camera_pnj.current = true
-		dialogueBox.text = "Wesh en fait j'ai oublié que j'avais pas d'argent car je suis intermittent du spectacle ! \n Tu pourrais regarder si tu trouves une pièce de 1€ quelque part stp ?"
+		dialogueBox.text = tr("pnj_poor")
 		get_tree().get_root().get_node("World/Coin").visible = true
 		triggered_state = 4
 	if body.name=="Player" and triggered_state == 6:
@@ -59,12 +59,6 @@ func _on_area_3d_body_entered(body):
 		player.axis_lock_linear_y = true
 		player.axis_lock_linear_z = true
 		camera_pnj.current = true
-		dialogueBox.text = "IL S'EST FAIT FUMER"
-		await player.interact
-		dialogueBox.text = "Ca craint de fou, c'est pour ca que les loyers sont pas cher par ici"
-		await player.interact
-		dialogueBox.text = "Le meilleur moyen d'honorer sa mémoire c'est de manger un bon donut, \n c'était sa dernière volonté"
-		await player.interact
-		dialogueBox.text = "Enfin sa dernière volonté c'était que lui mange un donut mais maintenant c'est chaud"
+		dialogueBox.text =  tr("pnj_dead")
 		get_tree().get_root().get_node("World/Donuts").visible = true
 		triggered_state = 7
