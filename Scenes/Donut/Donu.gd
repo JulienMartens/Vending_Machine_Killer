@@ -9,11 +9,12 @@ var eaten = false
 var rand = RandomNumberGenerator.new()
 
 func _ready():
+	ResourceLoader.load_threaded_request("res://Scenes/evil_vending_machine/evil_vending_machine.tscn")
 	player.interact.connect(interact)
 
 func interact():
 	if player_close and donuts.visible :
-		var evil_vending_machine = load("res://Scenes/evil_vending_machine/evil_vending_machine.tscn").instantiate()
+		var evil_vending_machine = ResourceLoader.load_threaded_get("res://Scenes/evil_vending_machine/evil_vending_machine.tscn").instantiate()
 		evil_vending_machine.position.z = rand.randf_range(-49,49)
 		evil_vending_machine.position.x = rand.randf_range(-49,49)
 		get_tree().get_root().get_node("World").add_child(evil_vending_machine)
