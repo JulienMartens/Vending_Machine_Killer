@@ -84,6 +84,6 @@ func _process(_delta):
 	if visibleOnScreen and not playerPosition=="far":
 		var key_name = OS.get_keycode_string(InputMap.action_get_events("interact")[0].get_physical_keycode_with_modifiers())
 		if currentDoorPosition == doorPositionsEnum.Closed:
-			dialogue.set_text(tr("door_open")+"\n[" + key_name+ "]")
+			dialogue.set_text("[" + key_name+ "]\n"+tr("door_open"))
 		elif currentDoorPosition in [doorPositionsEnum.OpenIn,doorPositionsEnum.OpenOut]:
-			dialogue.set_text(tr("door_close")+"\n[" + key_name+ "]")
+			dialogue.set_text("[" + key_name+ "]\n"+tr("door_close"))

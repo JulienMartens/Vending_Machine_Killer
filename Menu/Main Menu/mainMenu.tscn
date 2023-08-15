@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://boqot1o46jpa4"]
+[gd_scene load_steps=31 format=3 uid="uid://boqot1o46jpa4"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_jbwly"]
 [ext_resource type="Shader" path="res://Levels/sky.gdshader" id="2_uurtn"]
@@ -7,6 +7,12 @@
 [ext_resource type="AudioStream" uid="uid://cjbahghguhu6e" path="res://Scenes/Player/horror_chase_loop.mp3" id="5_qe4qx"]
 [ext_resource type="PackedScene" uid="uid://bt7hecbroolb7" path="res://Scenes/evil_vending_machine/VendingMachineHD.glb" id="6_rvl00"]
 [ext_resource type="Script" path="res://Menu/Main Menu/mainMenu.gd" id="7_4n4uu"]
+[ext_resource type="Texture2D" uid="uid://but6iu7npwlw6" path="res://Assets/Images/fr_flag.jpg" id="8_hwwnt"]
+[ext_resource type="Texture2D" uid="uid://devvul7ppsopy" path="res://Assets/Images/fr_flag_active.jpg" id="9_683c2"]
+[ext_resource type="Texture2D" uid="uid://ctuhoskjxafer" path="res://Assets/Images/en_flag.jpg" id="10_a0wp8"]
+[ext_resource type="Texture2D" uid="uid://dgbvq5gdfupxe" path="res://Assets/Images/en_flag_active.jpg" id="11_yn04h"]
+[ext_resource type="Texture2D" uid="uid://dx7s1f52prkow" path="res://Assets/Images/es_flag.jpg" id="12_qh6d2"]
+[ext_resource type="Texture2D" uid="uid://byiyi6bdmikkv" path="res://Assets/Images/es_flag_active.jpg" id="13_pcqd3"]
 
 [sub_resource type="Gradient" id="Gradient_qfbq6"]
 offsets = PackedFloat32Array(0.28125, 1)
@@ -298,5 +304,34 @@ text = "menu_start"
 layout_mode = 2
 text = "menu_quit"
 
+[node name="VBoxContainer2" type="VBoxContainer" parent="Menu/Camera3D"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="FrButton" type="TextureButton" parent="Menu/Camera3D/VBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("8_hwwnt")
+texture_pressed = ExtResource("9_683c2")
+
+[node name="EnButton" type="TextureButton" parent="Menu/Camera3D/VBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("10_a0wp8")
+texture_pressed = ExtResource("11_yn04h")
+
+[node name="EsButton" type="TextureButton" parent="Menu/Camera3D/VBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("12_qh6d2")
+texture_pressed = ExtResource("13_pcqd3")
+
 [connection signal="pressed" from="Menu/Camera3D/VBoxContainer/StartButton" to="Menu" method="_on_start_button_pressed"]
 [connection signal="pressed" from="Menu/Camera3D/VBoxContainer/QuitButton" to="Menu" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Menu/Camera3D/VBoxContainer2/FrButton" to="Menu" method="_on_fr_button_pressed"]
+[connection signal="pressed" from="Menu/Camera3D/VBoxContainer2/EnButton" to="Menu" method="_on_en_button_pressed"]
+[connection signal="pressed" from="Menu/Camera3D/VBoxContainer2/EsButton" to="Menu" method="_on_es_button_pressed"]

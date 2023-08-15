@@ -126,7 +126,7 @@ func _physics_process(delta):
 func increment_donut():
 	donut_eaten+=1
 	if donut_eaten==10:
-		$Camera/UI/HBoxContainer/Dialogue.text = "BRAVO TU AS MANGÉ TOUS LES DONUTS WOW T'ES CHAUD !! \n Liste des kings du donut:\nMaxime Martens\nArnaud Chopard-Lallier\nThomas Hostin"
+		$Camera/UI/HBoxContainer/Dialogue.text = tr("win")
 		get_tree().paused = true
 
 func increment_ennemies_chasing_player():

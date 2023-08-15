@@ -92,7 +92,7 @@ func _on_death_area_body_entered(body):
 		player.get_node("AudioRotationNode/AudioStreamPlayer3D").stop()
 		$AudioStreamPlayer.play()
 		player.visible = false
-		label.text = "t mor sale merd"
+		label.text = tr("evm_dead")
 
 
 func _on_animation_player_animation_finished(anim_name):

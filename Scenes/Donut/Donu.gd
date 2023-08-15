@@ -28,7 +28,7 @@ func interact():
 func _on_area_3d_body_entered(body):
 	if body == player and donuts.visible :
 		var key_name = OS.get_keycode_string(InputMap.action_get_events("interact")[0].get_physical_keycode_with_modifiers())
-		dialogue.text = "Manger le donut sucré au sucre"+"\n[" + key_name+ "]"
+		dialogue.set_text("[" + key_name+ "]\n"+tr("donut_eat"))
 		player_close = true
 		$highlight.visible = true
 

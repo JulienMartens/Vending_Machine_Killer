@@ -21,7 +21,7 @@ func interact():
 func _on_area_3d_body_entered(body):
 	if body == player and visible:
 		var key_name = OS.get_keycode_string(InputMap.action_get_events("interact")[0].get_physical_keycode_with_modifiers())
-		dialogue.text = "Attraper la pièce de 1€"+"\n[" + key_name+ "]"
+		dialogue.set_text("[" + key_name+ "]\n"+tr("coin_grab"))
 		player_close = true
 		$highlight.visible = true
 
