@@ -30,6 +30,10 @@ noise = SubResource("FastNoiseLite_y30ki")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r007o"]
 shader = ExtResource("2_uurtn")
+shader_parameter/day_bottom_color = Color(0, 0.345098, 0.34902, 1)
+shader_parameter/day_top_color = Color(0, 0, 0, 1)
+shader_parameter/night_bottom_color = Color(0, 0, 0, 1)
+shader_parameter/night_top_color = Color(0, 0, 0, 1)
 shader_parameter/cloud_edge_day_color = Color(0.176471, 0.176471, 0.176471, 1)
 shader_parameter/cloud_main_day_color = Color(0.266667, 0.266667, 0.266667, 1)
 shader_parameter/cloud_edge_night_color = Color(0.133333, 0.168627, 0.223529, 1)
@@ -46,10 +50,6 @@ shader_parameter/cloud_cutoff = 0.013
 shader_parameter/cloud_fuzziness = 0.261
 shader_parameter/cloud_noise1 = SubResource("NoiseTexture2D_gwh5o")
 shader_parameter/cloud_noise2 = SubResource("NoiseTexture2D_r8s28")
-shader_parameter/day_bottom_color = Color(0, 0.345098, 0.34902, 1)
-shader_parameter/day_top_color = Color(0, 0, 0, 1)
-shader_parameter/night_bottom_color = Color(0, 0, 0, 1)
-shader_parameter/night_top_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Sky" id="Sky_7ch67"]
 sky_material = SubResource("ShaderMaterial_r007o")
