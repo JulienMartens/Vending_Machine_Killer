@@ -1,8 +1,42 @@
-[gd_scene load_steps=6 format=3 uid="uid://pbvwwsu83mae"]
+[gd_scene load_steps=8 format=3 uid="uid://pbvwwsu83mae"]
 
 [ext_resource type="Script" path="res://Scenes/Donut/Donu.gd" id="1_h62v2"]
+[ext_resource type="PackedScene" uid="uid://dw4r5fbpc4s8q" path="res://Assets/Props/Blender/SweetenedDonut.blend" id="2_xtskq"]
 
-[sub_resource type="TorusMesh" id="TorusMesh_ywjsx"]
+[sub_resource type="Animation" id="Animation_h3erh"]
+resource_name = "move"
+length = 3.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.75, 1, 1.55, 1.8, 2.35, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.1, 0), Vector3(0, 0.1, 0), Vector3(0, 0.2, 0), Vector3(0, 0.2, 0), Vector3(0, 0.1, 0), Vector3(0, 0.1, 0), Vector3(0, 0.2, 0), Vector3(0, 0.2, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.523599, 0, 0), Vector3(0.523599, 2.0944, 0), Vector3(0.523599, 4.18879, 0), Vector3(0.523599, 6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tlye1"]
+_data = {
+"move": SubResource("Animation_h3erh")
+}
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ck633"]
 _surfaces = [{
@@ -23,17 +57,23 @@ emission = Color(1, 1, 1, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_2juk7"]
 
 [node name="Donu" type="StaticBody3D"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.172764, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_h62v2")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("TorusMesh_ywjsx")
-skeleton = NodePath("../..")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../SweetenedDonut")
+autoplay = "move"
+libraries = {
+"": SubResource("AnimationLibrary_tlye1")
+}
+
+[node name="SweetenedDonut" parent="." instance=ExtResource("2_xtskq")]
+transform = Transform3D(2.94035, -1.35594, -2.34856, 0, 3.4641, -2, 2.71188, 1.47018, 2.54642, 0, 0.188928, 0)
 
 [node name="highlight" type="MeshInstance3D" parent="."]
 visible = false
 mesh = SubResource("ArrayMesh_ck633")
-skeleton = NodePath("../Mesh")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_75v6e")
 
 [node name="Area3D" type="Area3D" parent="."]
