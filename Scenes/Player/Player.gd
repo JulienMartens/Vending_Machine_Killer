@@ -124,7 +124,10 @@ func _physics_process(delta):
 		ennemyMusicAudioPlayer.stop()
 		
 func increment_donut():
+	if $"Camera/PlayerUI/DonutUi".visible==false:
+		$"Camera/PlayerUI/DonutUi".visible=true
 	donut_eaten+=1
+	$"Camera/PlayerUI/DonutUi/Donut amount".set_text("x "+str(donut_eaten))
 	if donut_eaten==10:
 		$Camera/UI/HBoxContainer/Dialogue.text = tr("win")
 		get_tree().paused = true

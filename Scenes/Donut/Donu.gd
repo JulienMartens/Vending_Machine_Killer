@@ -30,11 +30,11 @@ func _on_area_3d_body_entered(body):
 		var key_name = OS.get_keycode_string(InputMap.action_get_events("interact")[0].get_physical_keycode_with_modifiers())
 		dialogue.set_text("[" + key_name+ "]\n"+tr("donut_eat"))
 		player_close = true
-		$highlight.visible = true
+		$SweetenedDonut/highlight.visible = true
 
 
 func _on_area_3d_body_exited(body):
 	if body == player and donuts.visible and not eaten :
 		dialogue.text = ""
 		player_close = false
-		$highlight.visible = false
+		$SweetenedDonut/highligh.visible = false
