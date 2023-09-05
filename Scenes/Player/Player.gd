@@ -6,7 +6,7 @@ extends CharacterBody3D
 @onready var movementAudioPlayer = $MovementAudioPlayer
 @onready var stamina_bar = $Camera/PlayerUI/StaminaBar
 var SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 4
 var mouseSensibility = 1200
 var mouse_relative_x = 0
 var mouse_relative_y = 0
@@ -66,7 +66,7 @@ func _physics_process(delta):
 		if not crouching :
 			crouching = true
 			$AnimationPlayer.play("crouch")
-		else:
+		elif not hidden:
 			crouching = false
 			$AnimationPlayer.play_backwards("crouch")
 	# Stamina
