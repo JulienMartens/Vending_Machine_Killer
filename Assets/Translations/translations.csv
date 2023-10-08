@@ -1,15 +1,18 @@
 keys,fr,en,es
-menu_start,Lancer le jeu,Start game, Comenzar el juego
-menu_retry,Réessayer ?,Retry ?, Reanudar ?
-menu_quit,Quitter le jeu,Quit game, Abandonar el juego
-coin_grab,Attraper la pièce de 1€,Grab the 1€ coin, Atrapa la pieza
-donut_eat,Manger le donut sucré au sucre,Eat the delicious sugary donut with sugar, Comer la deliciosa rosquilla dulce de azucar
-door_open,Ouvrir la porte,Open the door, Abrir la puerta
-door_close,Fermer la porte,Close the door, Cerrar la puerta
-evm_dead,t mor sale merd,u ded now, estas muerto pendejo
+menu_start,Lancer le jeu,Start game,Comenzar el juego
+menu_retry,Réessayer ?,Retry ?,Reanudar ?
+menu_quit,Quitter le jeu,Quit game,Abandonar el juego
+key_grab,Prendre la clé\n(pourquoi elle est dans les toilettes ??)\n,Grab the key\n(why is it in the toilet ?)\n,Toma la llave (¿Por qué está en el baño?)
+coin_grab,Attraper la pièce de 1€,Grab the 1€ coin,Atrapa la pieza
+donut_eat,Manger le donut sucré au sucre,Eat the delicious sugary donut with sugar,Comer la deliciosa rosquilla dulce de azucar
+door_open,Ouvrir la porte,Open the door,Abrir la puerta
+door_close,Fermer la porte,Close the door,Cerrar la puerta
+door_locked,La porte est verouillée :( \nQu'est-ce que j'ai fait de la clé ??,The door is locked :(\nWhere did I put the key ??,La puerta está cerrada :(\n¿Dónde puse la llave?
+door_unlock,Dévérouiller la porte,Unlock the door,Desbloquear la puerta
+evm_dead,t mor sale merd,u ded now,estas muerto pendejo
 pnj_greet,"Wesh poto, bien ou bien ? \n Eh, j'ai un petit creux, viens on va s'acheter des donuts sucrés au sucre, il y a un distributeur juste la","Hey bro, how's it going ? I'm starving let's go get some sugary donuts with sugar, there's a vending machine right there","Hola hermano como estas ? Oye, tengo un poco de hambre, vamos a comprar unas deliciosa rosquilla dulce de azucar"
 pnj_poor,"Wesh en fait j'ai oublié que j'avais pas d'argent car je suis intermittent du spectacle ! \n Tu pourrais regarder si tu trouves une pièce de 1€ quelque part stp ?","Bro, I forgot but I'm like dirt poor 'cause I work in entertainment. \n Can you check if you can find a 1€ coin somewhere ?","¡Ay, ay, ay, lo había olvidado, pero no tengo nada de dinero, amigo mío!\n¿Puedes encontrarme una moneda de 1 euro en alguna parte, por favor?"
-pnj_dead,IL S'EST FAIT FUMER !!\n Je suis chokbar de bz !, HE GOT SMOKED !! What the effing fuck ?, ¡LO MATAMOS!\n¿Mierda qué pasó?
+pnj_dead,IL S'EST FAIT FUMER !!\n Je suis chokbar de bz !,HE GOT SMOKED !! What the effing fuck ?,¡LO MATAMOS!\n¿Mierda qué pasó?
 win,"MEC TU AS MANGÉ TOUS LES DONUTS WOW T'ES CHAUD !!","BRO YOU ATE ALL THE DONUTS, GREAT JOB !!","¡HERMANO, TE COMISTE TODAS LAS ROSQUILLAS DULCE DE AZUCAR!\n¡Estás caliente!"
 credits,Remerciements:\nMaxime Martens pour son aide et ses modèles 3D\nArnaud Chopard-Lallier pour ses tests et le bruit du mangeage de donut\nThomas Hostin pour ses tests,Special thanks\nMaxime Martens for his help and his 3D models\nArnaud Chopard-Lallier for his time spent testing and the donut eating noise\nThomas Hostin for his time spent testing,Gracias especiales:\nMaxime Martens por su ayuda y por sus modelos 3D\nArnaud Chopard-Lallier por sus pruebas y el ruido de comer donas\nThomas Hostin por sus pruebas
-developer_credits,Développé par Julien Martens\Envoyez-moi un message si ça vous a plu !,Developped by Julien Martens\nPlease send me a message if you enjoyed my game !, Codificado por Julien Martens\n¡Envíame un mensaje si te gustó!
+developer_credits,Développé par Julien Martens\nEnvoyez-moi un message si ça vous a plu !,Developped by Julien Martens\nPlease send me a message if you enjoyed my game !,Codificado por Julien Martens\nEnvíame un mensaje si te gustó!
