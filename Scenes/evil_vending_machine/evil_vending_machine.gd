@@ -10,6 +10,7 @@ var currentMachineState = machineStatesEnum.looking_around
 var look_around_animation_played = true
 var player_in_detection_area = false
 var time_since_trajectory_update = 0
+var target_waypoint = patrol_points[randi_range(1,patrol_points.size()-1)].global_transform.origin
 const CHASING_SPEED = 7.5
 const SPEED = 4
 const trajectory_update_frequency = 0.5 #500ms
@@ -33,13 +34,15 @@ func _physics_process(_delta):
 					nav_agent.set_target_position(target_location)
 				else:
 					stop_chasing((global_transform.origin + player.global_transform.origin)/2, CHASING_SPEED)
-			elif currentMachineState==machineStatesEnum.looking_around and look_around_animation_played:
+			elif (currentMachineState==machineStatesEnum.looking_around and look_around_animation_played):
+				$PatrolTimeoutTimer.start(15)
 				randomize()
-				target_location = patrol_points[randi_range(1,patrol_points.size()-1)].global_transform.origin
+				target_waypoint = patrol_points[randi_range(1,patrol_points.size()-1)].global_transform.origin
 				current_speed = SPEED
 				currentMachineState = machineStatesEnum.patrolling
 				look_around_animation_played = false
-				nav_agent.set_target_position(target_location)
+			elif currentMachineState==machineStatesEnum.patrolling:
+				nav_agent.set_target_position(target_waypoint)
 		goto(current_speed)
 		if player_in_detection_area and currentMachineState!=machineStatesEnum.chasing_player:
 			$RayCastNode.look_at(player.global_transform.origin)
@@ -113,3 +116,9 @@ func _on_navigation_agent_3d_navigation_finished():
 	if currentMachineState in [machineStatesEnum.patrolling,machineStatesEnum.looking_around]:
 		currentMachineState=machineStatesEnum.looking_around
 		$AnimationPlayer.play("look_around")
+
+
+func _on_patrol_timeout_timer_timeout():
+	# If machine is stuck and can't get to next waypoint, find a new one
+	target_waypoint = patrol_points[randi_range(1,patrol_points.size()-1)].global_transform.origin
+	
