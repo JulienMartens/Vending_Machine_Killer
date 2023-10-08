@@ -8,6 +8,7 @@ extends StaticBody3D
 @onready var patrol_points = get_tree().get_nodes_in_group("patrol_waypoints_group")
 var eaten = false
 var rand = RandomNumberGenerator.new()
+
 func _ready():
 	ResourceLoader.load_threaded_request("res://Scenes/evil_vending_machine/evil_vending_machine.tscn")
 	player.interact.connect(interact)
@@ -36,4 +37,4 @@ func _on_area_3d_body_exited(body):
 	if body == player and donuts.visible and not eaten :
 		dialogue.text = ""
 		player_close = false
-		$SweetenedDonut/highligh.visible = false
+		$SweetenedDonut/highlight.visible = false

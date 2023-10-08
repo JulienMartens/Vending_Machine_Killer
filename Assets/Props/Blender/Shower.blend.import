@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bdpkfswof13co"
-path="res://.godot/imported/Toilet.blend-186e3c7991d6d8b11f11a586c5f31ba2.scn"
+uid="uid://ddnhum613ql1y"
+path="res://.godot/imported/Shower.blend-f727e5949e409d613d2a5b68aeab4734.scn"
 
 [deps]
 
-source_file="res://Assets/Props/Blender/Toilet.blend"
-dest_files=["res://.godot/imported/Toilet.blend-186e3c7991d6d8b11f11a586c5f31ba2.scn"]
+source_file="res://Assets/Props/Blender/Shower.blend"
+dest_files=["res://.godot/imported/Shower.blend-f727e5949e409d613d2a5b68aeab4734.scn"]
 
 [params]
 

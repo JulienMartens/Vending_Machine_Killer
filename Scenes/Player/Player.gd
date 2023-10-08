@@ -14,6 +14,7 @@ var ennemies_present = false
 var ennemies_chasing_player = 0
 var player_caught = false
 var hidden = false
+var has_key = false
 
 var STAMINA = 10
 var MAX_STAMINA = 10
@@ -162,3 +163,5 @@ func set_inside_ambiant_volume(volume):
 func set_outside_ambiant_volume(volume):
 	outsideAmbiantAudioPlayer.set_volume_db(volume)
 	
+func add_door_key():
+	has_key=true
