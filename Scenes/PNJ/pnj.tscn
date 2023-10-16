@@ -1,123 +1,106 @@
-[gd_scene load_steps=10 format=3 uid="uid://lw58qoy2sxxo"]
+[gd_scene load_steps=5 format=3 uid="uid://lw58qoy2sxxo"]
 
 [ext_resource type="Script" path="res://Scenes/PNJ/pnj.gd" id="1_s4av3"]
+[ext_resource type="PackedScene" uid="uid://b3stqxcxigdsx" path="res://Assets/Props/Blender/Body.blend" id="2_hin7n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fmey5"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_20oxr"]
-
-[sub_resource type="TorusMesh" id="TorusMesh_or2ya"]
-inner_radius = 0.001
-outer_radius = 0.4
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dkjt4"]
 radius = 3.0
 
-[sub_resource type="Animation" id="Animation_ulyx1"]
-length = 0.001
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 1, 0)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_wxk3s"]
-resource_name = "dead"
-length = 0.001
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.707354, 0.70686)
-tracks/1/type = "position_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.390286, 0)
-tracks/2/type = "position_3d"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape3D")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0, 0.413677, 0)
-tracks/3/type = "rotation_3d"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("CollisionShape3D")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0.707, 0.707)
-
-[sub_resource type="Animation" id="Animation_smc7v"]
-resource_name = "walk"
-length = 1.6
-loop_mode = 1
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 1, 0, 0.4, 1, -0.412364, 1.04196, 0, 0.8, 1, 0, 1, 0, 1.2, 1, 0.591689, 1.02045, 0, 1.6, 1, 0, 1, 0)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.4, 1, 0, 0, 0.129799, 0.99154, 0.8, 1, 0, 0, 0, 1, 1.2, 1, 0, 0, -0.196793, 0.980445, 1.6, 1, 0, 0, 0, 1)
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_sbqhc"]
-_data = {
-"RESET": SubResource("Animation_ulyx1"),
-"dead": SubResource("Animation_wxk3s"),
-"walk": SubResource("Animation_smc7v")
-}
-
 [node name="PNJ" type="CharacterBody3D"]
 script = ExtResource("1_s4av3")
+
+[node name="Body" parent="." instance=ExtResource("2_hin7n")]
+transform = Transform3D(-0.4, 0, -3.49691e-08, 0, 0.4, 0, 3.49691e-08, 0, -0.4, -0.105553, 0, -0.00555074)
+
+[node name="Armature" parent="Body" index="0"]
+transform = Transform3D(0.01, 5.55112e-17, 0, 0, 0, -0.01, -5.55112e-17, 0.01, 0, -0.335581, 0, -2.98023e-08)
+
+[node name="Skeleton3D" parent="Body/Armature" index="0"]
+bones/0/position = Vector3(-44.9807, 325.256, -34.0547)
+bones/0/rotation = Quaternion(0.134511, 0.376173, -0.0116734, 0.91666)
+bones/1/position = Vector3(4.47035e-07, 28.2109, -2.68504)
+bones/1/rotation = Quaternion(0.0074889, 0.0306645, -0.203184, 0.978632)
+bones/2/position = Vector3(-4.61936e-07, 33.0614, -4.85778e-06)
+bones/2/rotation = Quaternion(0.0155974, 0.0184085, -0.0754187, 0.99686)
+bones/3/position = Vector3(2.03401e-06, 37.7845, 5.42402e-06)
+bones/3/rotation = Quaternion(0.0142344, 0.0169224, -0.0760461, 0.996859)
+bones/4/position = Vector3(-2.79397e-06, 42.5076, 9.07573e-07)
+bones/4/rotation = Quaternion(0.00669772, -0.00941729, 0.0420182, 0.99905)
+bones/5/position = Vector3(-1.9148e-06, 16.3876, 4.22987)
+bones/5/rotation = Quaternion(-0.151738, 0.0330023, 0.0448724, 0.98685)
+bones/6/position = Vector3(-4.76837e-07, 67.7308, 17.4823)
+bones/7/position = Vector3(17.6948, 36.1919, -0.607671)
+bones/7/rotation = Quaternion(-0.641229, -0.364974, 0.454112, -0.499401)
+bones/8/position = Vector3(-1.65037e-05, 37.1263, 1.33089e-05)
+bones/8/rotation = Quaternion(0.409365, -0.282548, 0.267775, 0.825157)
+bones/9/position = Vector3(5.66298e-06, 56.7158, -4.07203e-06)
+bones/9/rotation = Quaternion(-0.109338, -0.031752, 0.658827, 0.743629)
+bones/10/position = Vector3(3.16365e-05, 75.3514, 8.0427e-06)
+bones/10/rotation = Quaternion(-0.123596, -0.0394782, 0.385443, 0.913564)
+bones/11/position = Vector3(-4.20822e-06, 23.2988, 2.6617e-05)
+bones/11/rotation = Quaternion(0.0571903, 0.00306851, -0.106204, 0.992694)
+bones/12/position = Vector3(-2.19345e-05, 6.23922, -5.96049e-06)
+bones/12/rotation = Quaternion(0.112402, 0.0353131, -0.20495, 0.971655)
+bones/13/position = Vector3(-2.99366, 8.99164, 1.85808)
+bones/13/rotation = Quaternion(0.20449, 0.0976632, -0.110554, 0.96769)
+bones/14/position = Vector3(-1.55641, 2.86936, -0.0374345)
+bones/15/position = Vector3(-17.6948, 36.1907, -0.594618)
+bones/15/rotation = Quaternion(0.423959, -0.353571, 0.804849, 0.217863)
+bones/16/position = Vector3(2.94795e-06, 37.1263, 9.89001e-06)
+bones/16/rotation = Quaternion(0.159824, -0.29526, 0.0773073, 0.938776)
+bones/17/position = Vector3(-5.73525e-06, 56.7195, -2.00992e-05)
+bones/17/rotation = Quaternion(0.554855, -0.0582607, -0.0913646, 0.82486)
+bones/18/position = Vector3(1.30654e-05, 75.3563, -4.20454e-06)
+bones/18/rotation = Quaternion(-0.318908, 0.0803495, -0.384316, 0.862637)
+bones/19/position = Vector3(6.05801e-05, 24.1673, -7.98115e-06)
+bones/19/rotation = Quaternion(0.156583, 0.00194765, -0.007521, 0.987634)
+bones/20/position = Vector3(-5.72205e-06, 5.82122, 4.11271e-06)
+bones/20/rotation = Quaternion(0.119016, -0.0636523, 0.222052, 0.965648)
+bones/21/position = Vector3(2.57632, 7.17986, 3.38758)
+bones/21/rotation = Quaternion(0.0380269, -0.0424399, 0.0576066, 0.996711)
+bones/22/position = Vector3(1.8102, 3.56437, 1.65776)
+bones/23/position = Vector3(22.4666, -15.6805, -2.71653)
+bones/23/rotation = Quaternion(0.112418, 0.47271, 0.847328, -0.214342)
+bones/24/position = Vector3(9.70552e-07, 115.752, 1.68609e-05)
+bones/24/rotation = Quaternion(-0.55634, -0.211777, 0.14401, 0.790505)
+bones/25/position = Vector3(-8.17221e-06, 113.105, 1.25779e-05)
+bones/25/rotation = Quaternion(0.553835, -0.0717501, -0.0158123, 0.829379)
+bones/26/position = Vector3(4.47867e-06, 41.6711, 5.76055e-06)
+bones/26/rotation = Quaternion(0.17123, -0.0225611, 0.014086, 0.984872)
+bones/27/position = Vector3(-6.64685e-06, 16.7906, 2.38418e-06)
+bones/28/position = Vector3(-22.4666, -15.6805, -2.53387)
+bones/28/rotation = Quaternion(-0.233477, -0.0467199, 0.961124, 0.139811)
+bones/29/position = Vector3(1.21679e-06, 115.766, -1.44094e-05)
+bones/29/rotation = Quaternion(-0.342004, -0.0596273, 0.132662, 0.928374)
+bones/30/position = Vector3(-7.10647e-06, 113.111, 2.81933e-06)
+bones/30/rotation = Quaternion(0.285493, 0.116169, 0.0386259, 0.950529)
+bones/31/position = Vector3(4.63327e-06, 39.8325, 1.62303e-05)
+bones/31/rotation = Quaternion(0.212248, -0.00599092, 0.0042191, 0.977188)
+bones/32/position = Vector3(-3.98571e-06, 16.0971, -4.15742e-06)
+
+[node name="AnimationPlayer" parent="Body" index="1"]
+autoplay = "Idle"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.00260749, -1.99999, 0, 0.899996, 0.00579443, 0, 0, 0, 0.9, 0, 0.413677, 0)
 shape = SubResource("BoxShape3D_fmey5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_20oxr")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53797, -0.241094)
-mesh = SubResource("TorusMesh_or2ya")
-skeleton = NodePath("../..")
 
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_dkjt4")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 0, 1.5, -1.5)
+[node name="Camera3DDead" type="Camera3D" parent="."]
+transform = Transform3D(0.941512, -0.283515, 0.182139, -0.0158033, 0.502761, 0.864281, -0.336609, -0.816609, 0.468875, 0.141158, 1.77579, -0.275574)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_sbqhc")
-}
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 0, 1.6039, -1.02688)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 0.2
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+
+[editable path="Body"]

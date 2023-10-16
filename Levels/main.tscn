@@ -411,7 +411,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.409187, -1.99676e-06, 21.7
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 84.624, 0, -53.0175)
 
 [node name="Donu8" parent="Donuts" instance=ExtResource("4_gq7c6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.2926, 4.97699e-06, -10.8988)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.3602, 1.16229e-06, -12.8648)
 
 [node name="Donu2" parent="Donuts" instance=ExtResource("4_gq7c6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 183.47, 0, -51.4)
