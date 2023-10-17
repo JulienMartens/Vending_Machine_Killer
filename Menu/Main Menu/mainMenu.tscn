@@ -1,6 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://boqot1o46jpa4"]
+[gd_scene load_steps=32 format=3 uid="uid://boqot1o46jpa4"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_jbwly"]
+[ext_resource type="AudioStream" uid="uid://r788lp16256a" path="res://Assets/Sounds/Musics/menu-music.mp3" id="2_jnkpp"]
 [ext_resource type="Shader" path="res://Levels/sky.gdshader" id="2_uurtn"]
 [ext_resource type="PackedScene" uid="uid://c17mojdlqve5l" path="res://Scenes/Buildings/BuildingBigFake/building_big_fake.tscn" id="3_kaqj2"]
 [ext_resource type="Material" uid="uid://vsu8101a1dh" path="res://Assets/Materials/Pavement/PavingStones.tres" id="4_t0ftc"]
@@ -93,6 +94,10 @@ size = Vector3(0.765541, 0.505015, 0.461879)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_jbwly")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_jnkpp")
+autoplay = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_u1vm6")
