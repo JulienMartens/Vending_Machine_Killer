@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dxx8s8yvvhbdv"]
+[gd_scene load_steps=39 format=3 uid="uid://dxx8s8yvvhbdv"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_5w7m4"]
 [ext_resource type="PackedScene" uid="uid://drpiywr0olkpq" path="res://Scenes/Player/Player.tscn" id="2_fath2"]
@@ -16,6 +16,9 @@
 [ext_resource type="AudioStream" uid="uid://d1e5cfv0hfkh8" path="res://Scenes/Donut/eating.mp3" id="13_46wa6"]
 [ext_resource type="PackedScene" uid="uid://c3b5ujaoas0ae" path="res://Scenes/House/house.tscn" id="15_rjfhb"]
 [ext_resource type="PackedScene" uid="uid://cycsdleu52ohv" path="res://Scenes/StreetLight/street_light.tscn" id="16_4h73r"]
+[ext_resource type="Script" path="res://Levels/House_jumpscare.gd" id="17_q3n5q"]
+[ext_resource type="PackedScene" uid="uid://dau6gpggrm8od" path="res://Scenes/evil_vending_machine_idle/evil_vending_machine.tscn" id="18_5pirx"]
+[ext_resource type="AudioStream" uid="uid://dcmcte8dg8akx" path="res://Assets/Sounds/piano-jump-scare.mp3" id="18_bnglt"]
 
 [sub_resource type="Gradient" id="Gradient_qv2vm"]
 offsets = PackedFloat32Array(0.28125, 1)
@@ -95,6 +98,16 @@ agent_radius = 1.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1ox7a"]
 size = Vector3(0.765541, 0.505015, 0.461879)
+
+[sub_resource type="Curve3D" id="Curve3D_yr3rf"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.142362, -0.141423, 0.456371, 0, 0, 0, 0, 0, 0, -7.099, -0.14, 0.154),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wt10c"]
+radius = 2.45043
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_5w7m4")
@@ -374,7 +387,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.64821, -0.528555, 48.8545)
 transform = Transform3D(-0.0329284, 0, 0.999458, 0, 1, 0, -0.999458, 0, -0.0329284, 64.206, -0.386236, -11.0738)
 
 [node name="PNJ" parent="." instance=ExtResource("6_aav65")]
-transform = Transform3D(0.0310793, 0, -0.999517, 0, 1, 0, 0.999517, 0, 0.0310793, 44.9823, -0.528557, -8.24868)
+transform = Transform3D(0.0310793, 0, -0.999517, 0, 1, 0, 0.999517, 0, 0.0310793, 43.7577, -0.528557, -7.79696)
 
 [node name="Coin" parent="." instance=ExtResource("7_rnlaw")]
 transform = Transform3D(1.61283e-07, 0.998822, -0.0485231, 1, -1.62921e-07, -2.98023e-08, -3.76727e-08, -0.0485231, -0.998822, 28.6363, 3.69549e-06, 17.9992)
@@ -427,3 +440,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4096, 4.26173e-06, 65.0971
 
 [node name="EatingSoundPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_46wa6")
+
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(-0.0276425, 0, -0.999618, 0, 1, 0, 0.999618, 0, -0.0276425, 48.9579, -0.632944, -7.89989)
+visible = false
+curve = SubResource("Curve3D_yr3rf")
+script = ExtResource("17_q3n5q")
+
+[node name="HouseJumpscare" type="AudioStreamPlayer" parent="Path3D"]
+stream = ExtResource("18_bnglt")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.142362, -0.141423, 0.456371)
+rotation_mode = 0
+loop = false
+
+[node name="evil_vending_machine_anim" parent="Path3D/PathFollow3D" instance=ExtResource("18_5pirx")]
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.9133, 0, -7.46888)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.254433, 0, -0.372555)
+shape = SubResource("SphereShape3D_wt10c")
+
+[connection signal="body_entered" from="Area3D" to="Path3D" method="_on_area_3d_body_entered"]

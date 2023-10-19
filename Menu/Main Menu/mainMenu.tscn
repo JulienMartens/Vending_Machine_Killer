@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://boqot1o46jpa4"]
+[gd_scene load_steps=38 format=3 uid="uid://boqot1o46jpa4"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_jbwly"]
 [ext_resource type="AudioStream" uid="uid://r788lp16256a" path="res://Assets/Sounds/Musics/menu-music.mp3" id="2_jnkpp"]
@@ -6,14 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://c17mojdlqve5l" path="res://Scenes/Buildings/BuildingBigFake/building_big_fake.tscn" id="3_kaqj2"]
 [ext_resource type="Material" uid="uid://vsu8101a1dh" path="res://Assets/Materials/Pavement/PavingStones.tres" id="4_t0ftc"]
 [ext_resource type="AudioStream" uid="uid://cjbahghguhu6e" path="res://Scenes/Player/horror_chase_loop.mp3" id="5_qe4qx"]
+[ext_resource type="Script" path="res://Menu/Main Menu/Path3D.gd" id="6_1vyrp"]
 [ext_resource type="PackedScene" uid="uid://bt7hecbroolb7" path="res://Scenes/evil_vending_machine/VendingMachineHD.glb" id="6_rvl00"]
 [ext_resource type="Script" path="res://Menu/Main Menu/mainMenu.gd" id="7_4n4uu"]
+[ext_resource type="PackedScene" uid="uid://byrkgcxocwwlj" path="res://Scenes/evil_vending_machine_dancing/evil_vending_machine.tscn" id="7_5wj8n"]
 [ext_resource type="Texture2D" uid="uid://but6iu7npwlw6" path="res://Assets/Images/fr_flag.jpg" id="8_hwwnt"]
 [ext_resource type="Texture2D" uid="uid://devvul7ppsopy" path="res://Assets/Images/fr_flag_active.jpg" id="9_683c2"]
 [ext_resource type="Texture2D" uid="uid://ctuhoskjxafer" path="res://Assets/Images/en_flag.jpg" id="10_a0wp8"]
 [ext_resource type="Texture2D" uid="uid://dgbvq5gdfupxe" path="res://Assets/Images/en_flag_active.jpg" id="11_yn04h"]
 [ext_resource type="Texture2D" uid="uid://dx7s1f52prkow" path="res://Assets/Images/es_flag.jpg" id="12_qh6d2"]
 [ext_resource type="Texture2D" uid="uid://byiyi6bdmikkv" path="res://Assets/Images/es_flag_active.jpg" id="13_pcqd3"]
+[ext_resource type="FontFile" uid="uid://d0wsflsdp47wm" path="res://Assets/Fonts/PermanentMarker-Regular.ttf" id="15_v1gex"]
 
 [sub_resource type="Gradient" id="Gradient_qfbq6"]
 offsets = PackedFloat32Array(0.28125, 1)
@@ -89,8 +92,37 @@ agent_radius = 1.2
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_uqjpu"]
 
+[sub_resource type="Curve3D" id="Curve3D_csvrp"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 32.0643, -10.311, -5.20204, 0, 0, 0, 0, 0, 0, 31.322, 1.5, -2.261, 0, 0, 0, 0, 0, 0, -14.256, 1.5, -0.707, 0, 0, 0, 0, 0, 0, -39.4868, -3.01458, -13.6247),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="GDScript" id="GDScript_e4t8b"]
+script/source = "extends CharacterBody3D
+
+
+const SPEED = 5.0
+const JUMP_VELOCITY = 4.5
+
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting(\"physics/3d/default_gravity\")
+
+
+func _physics_process(delta):
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+"
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_4m6it"]
 size = Vector3(0.765541, 0.505015, 0.461879)
+
+[sub_resource type="LabelSettings" id="LabelSettings_okqou"]
+font = ExtResource("15_v1gex")
+font_size = 96
+font_color = Color(1, 0, 0, 1)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_jbwly")
@@ -192,6 +224,7 @@ mesh = SubResource("PlaneMesh_uggtc")
 surface_material_override/0 = ExtResource("4_t0ftc")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Static"]
+visible = false
 navigation_mesh = SubResource("NavigationMesh_xquvr")
 
 [node name="PatrolWaypoints" type="Node" parent="Static"]
@@ -232,10 +265,17 @@ mesh = SubResource("CapsuleMesh_uqjpu")
 [node name="Camera" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54015, 0)
 
-[node name="Hand" type="MeshInstance3D" parent="Player/Camera"]
-transform = Transform3D(0.0977523, 0.0982769, -0.00762619, 0, 0.180861, 0.0932286, 0.021083, -0.455665, 0.0353592, -0.433114, -0.36724, -0.400613)
-mesh = SubResource("CapsuleMesh_uqjpu")
-skeleton = NodePath("../..")
+[node name="Path3D" type="Path3D" parent="Player/Camera"]
+transform = Transform3D(-0.845299, 0, 0.534293, 0.0209856, 0.999228, 0.033201, -0.533881, 0.0392773, -0.844647, -31.7917, -17.7617, -7.62954)
+curve = SubResource("Curve3D_csvrp")
+script = ExtResource("6_1vyrp")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Player/Camera/Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.0643, -10.311, -5.20204)
+rotation_mode = 0
+
+[node name="evil_vending_machine" parent="Player/Camera/Path3D/PathFollow3D" instance=ExtResource("7_5wj8n")]
+script = SubResource("GDScript_e4t8b")
 
 [node name="UI" type="VBoxContainer" parent="Player/Camera"]
 anchors_preset = -1
@@ -296,10 +336,13 @@ transform = Transform3D(0.866182, 0, -0.499728, 0, 1, 0, 0.499728, 0, 0.866182, 
 current = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu/Camera3D"]
-offset_left = 28.0
-offset_top = 537.0
-offset_right = 299.0
-offset_bottom = 652.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -115.0
+offset_right = 276.0
+grow_vertical = 0
 
 [node name="StartButton" type="Button" parent="Menu/Camera3D/VBoxContainer"]
 layout_mode = 2
@@ -334,6 +377,24 @@ texture_pressed = ExtResource("11_yn04h")
 layout_mode = 2
 texture_normal = ExtResource("12_qh6d2")
 texture_pressed = ExtResource("13_pcqd3")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Menu/Camera3D"]
+custom_minimum_size = Vector2(1000, 300)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -549.0
+offset_right = 549.0
+offset_bottom = 500.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Menu/Camera3D/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Vending machine killer"
+label_settings = SubResource("LabelSettings_okqou")
 
 [connection signal="pressed" from="Menu/Camera3D/VBoxContainer/StartButton" to="Menu" method="_on_start_button_pressed"]
 [connection signal="pressed" from="Menu/Camera3D/VBoxContainer/QuitButton" to="Menu" method="_on_quit_button_pressed"]
