@@ -1,10 +1,10 @@
 class_name Interactable
 extends StaticBody3D
 
-@onready var player = get_tree().get_root().get_node("World/Player")
+@onready var player = get_tree().get_root().get_node(get_tree().current_scene.name+"/Player")
 @onready var dialogue = player.get_node("Camera/UI/HBoxContainer/Dialogue")
 @onready var player_close = false
-@onready var donuts = get_tree().get_root().get_node("World/Donuts")
+@onready var donuts = get_tree().get_root().get_node(get_tree().current_scene.name+"/Donuts")
 @onready var patrol_points = get_tree().get_nodes_in_group("patrol_waypoints_group")
 var eaten = false
 var rand = RandomNumberGenerator.new()

@@ -34,6 +34,8 @@ func _ready():
 	#Captures mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	stamina_bar.set_value(MAX_STAMINA)
+	if get_tree().current_scene.name == "WinWorld":
+		$Camera/PlayerUI.visible = false
 
 func _input(event):
 	if event is InputEventMouseMotion:

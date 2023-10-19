@@ -1,5 +1,5 @@
 extends Node3D
-@onready var player = get_tree().get_root().get_node("World/Player")
+@onready var player = get_tree().get_root().get_node(get_tree().current_scene.name+"/Player")
 
 
 func _on_area_3d_body_entered(body):

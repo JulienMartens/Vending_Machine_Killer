@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var player = get_tree().get_root().get_node("World/Player")
+@onready var player = get_tree().get_root().get_node(get_tree().current_scene.name+"/Player")
 var is_player_going_outside = true
 var in_outside_area = false
 var in_inside_area = false

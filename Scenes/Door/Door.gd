@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var player = get_tree().get_root().get_node("World/Player")
+@onready var player = get_tree().get_root().get_node(get_tree().current_scene.name+"/Player")
 @onready var dialogue = player.get_node("Camera/UI/HBoxContainer/Dialogue")
 @onready var timer = get_node("Timer")
 var playerPosition = "far"
