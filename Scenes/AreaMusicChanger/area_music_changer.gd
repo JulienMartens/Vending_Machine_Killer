@@ -8,9 +8,9 @@ var in_inside_area = false
 func _process(delta):
 		var distance_from_center = player.global_transform.origin.distance_to(self.global_transform.origin)
 		if in_inside_area:
-			player.set_inside_ambiant_volume(distance_from_center-9)
+			player.set_inside_ambiant_volume(distance_from_center)
 		if in_outside_area:
-			player.set_outside_ambiant_volume(distance_from_center)
+			player.set_outside_ambiant_volume(distance_from_center+10)
 			
 func _on_inner_area_body_entered(body):
 	if body == player :

@@ -63,6 +63,7 @@ crouch={
 [internationalization]
 
 locale/translation_remaps={
+"res://Scenes/PNJ/horror_chase_loop_short.mp3": PackedStringArray("res://Scenes/PNJ/Mexican-hat-dance_short.mp3:es_ES"),
 "res://Scenes/Player/horror_chase_loop.mp3": PackedStringArray("res://Scenes/Player/Mexican-hat-dance.mp3:es")
 }
 locale/translations=PackedStringArray("res://Assets/Translations/translations.fr.translation", "res://Assets/Translations/translations.en.translation", "res://Assets/Translations/translations.es.translation")

@@ -132,8 +132,7 @@ func increment_donut():
 	donut_eaten+=1
 	$"Camera/PlayerUI/DonutUi/Donut amount".set_text("x "+str(donut_eaten))
 	if donut_eaten==10:
-		$Camera/UI/HBoxContainer/Dialogue.text = tr("win")
-		get_tree().paused = true
+		get_tree().change_scene_to_file("res://Levels/win_level/win_level.tscn")
 
 func increment_ennemies_chasing_player():
 	ennemies_chasing_player += 1

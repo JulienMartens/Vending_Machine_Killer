@@ -449,6 +449,7 @@ script = ExtResource("17_q3n5q")
 
 [node name="HouseJumpscare" type="AudioStreamPlayer" parent="Path3D"]
 stream = ExtResource("18_bnglt")
+volume_db = -4.0
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.142362, -0.141423, 0.456371)

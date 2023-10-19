@@ -1,12 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://dau6gpggrm8od"]
+[gd_scene load_steps=19 format=3 uid="uid://dau6gpggrm8od"]
 
 [ext_resource type="AudioStream" uid="uid://dswelebghbh4d" path="res://Scenes/evil_vending_machine/vendingmachinelaugh.mp3" id="1_ahhbe"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5w5ix"]
 size = Vector3(1.86084, 1.22008, 1.11189)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7qn2x"]
-size = Vector3(0.748334, 1.0537, 0.403643)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uiviq"]
 resource_name = "MetalBody"
@@ -199,6 +196,16 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.25, 1, 0, 0.0624079, 0, 0.5, 1, 0, 0, 0, 0.75, 1, 0, 0.0768479, 0, 1, 1, 0, 0, 0)
 
+[sub_resource type="Animation" id="Animation_chh3b"]
+resource_name = "kill"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Animation_node")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.2, 1, 0.170863, 0, 0, 0.985295, 0.3, 1, 0.170863, 0, 0, 0.985295, 0.5, 1, -0.379319, 0, 0, 0.925266, 0.9, 1, 0, 0, 0, 1)
+
 [sub_resource type="Animation" id="Animation_lnffv"]
 resource_name = "look_around"
 length = 8.5
@@ -228,16 +235,6 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0.103227, 0, 0, 0.994658, 0.9, 1, 0.17094, 0, 0, 0.985281, 1.2, 1, 0.103227, 0, 0, 0.994658, 1.5, 1, 0.17094, 0, 0, 0.985281, 1.8, 1, 0.103227, 0, 0, 0.994658, 2.1, 1, 0.17094, 0, 0, 0.985281, 2.4, 1, 0.103227, 0, 0, 0.994658, 2.7, 1, 0.17094, 0, 0, 0.985281, 3, 1, 0.103227, 0, 0, 0.994658, 3.6, 1, 0, 0, 0, 1, 4, 1, 0, 0, 0, 1, 4.5, 1, 0.103227, 0, 0, 0.994658, 4.9, 1, 0.17094, 0, 0, 0.985281, 5.2, 1, 0.103227, 0, 0, 0.994658, 5.5, 1, 0.17094, 0, 0, 0.985281, 5.8, 1, 0.103227, 0, 0, 0.994658, 6.1, 1, 0.17094, 0, 0, 0.985281, 6.4, 1, 0.103227, 0, 0, 0.994658, 6.7, 1, 0.17094, 0, 0, 0.985281, 7, 1, 0.103227, 0, 0, 0.994658, 7.6, 1, 0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_chh3b"]
-resource_name = "kill"
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Animation_node")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.2, 1, 0.170863, 0, 0, 0.985295, 0.3, 1, 0.170863, 0, 0, 0.985295, 0.5, 1, -0.379319, 0, 0, 0.925266, 0.9, 1, 0, 0, 0, 1)
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dbr4r"]
 _data = {
 "RESET": SubResource("Animation_n1aaw"),
@@ -252,17 +249,6 @@ _data = {
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.85, 0, 2.22045e-15, 0, 1.8, -3.55271e-15, -2.66454e-15, 0, 0.8, 0.00551224, 1.10442, -0.208806)
 shape = SubResource("BoxShape3D_5w5ix")
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-radius = 1.0
-neighbor_distance = 10.0
-
-[node name="DeathArea" type="Area3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, -1.22775)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0115819, 0.0535405, 0.109007)
-shape = SubResource("BoxShape3D_7qn2x")
 
 [node name="Animation_node" type="Node3D" parent="."]
 
@@ -297,9 +283,6 @@ skeleton = NodePath("../../..")
 transform = Transform3D(0.109813, -0.417889, 7.30661e-09, -8.88178e-16, -2.18557e-08, -0.2, 0.167156, 0.274533, -4.80009e-09, -0.0985231, -0.19309, -0.539166)
 mesh = SubResource("CapsuleMesh_jb8v8")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, -5.01436e-08, -7.16126e-08, 0, 0.819152, -0.573576, 8.74228e-08, -0.573576, -0.819152, 0, 0.4, -1.4)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "RESET"
 libraries = {
@@ -308,21 +291,3 @@ libraries = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_ahhbe")
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-
-[node name="RayCastNode" type="Node3D" parent="."]
-
-[node name="RayCast3D" type="RayCast3D" parent="RayCastNode"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.71554, -0.64511)
-target_position = Vector3(0, -12, 0)
-
-[node name="PatrolTimeoutTimer" type="Timer" parent="."]
-wait_time = 15.0
-
-[connection signal="navigation_finished" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_navigation_finished"]
-[connection signal="body_entered" from="DeathArea" to="." method="_on_death_area_body_entered"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="PatrolTimeoutTimer" to="." method="_on_patrol_timeout_timer_timeout"]
