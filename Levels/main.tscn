@@ -13,12 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://c17mojdlqve5l" path="res://Scenes/Buildings/BuildingBigFake/building_big_fake.tscn" id="7_4keph"]
 [ext_resource type="PackedScene" uid="uid://djgkhp8v8ckrh" path="res://Scenes/Coin/coin.tscn" id="7_rnlaw"]
 [ext_resource type="PackedScene" uid="uid://ccelrgcqsjemo" path="res://Scenes/SofaTable/SofaTable.tscn" id="11_xgcpo"]
-[ext_resource type="AudioStream" uid="uid://d1e5cfv0hfkh8" path="res://Scenes/Donut/eating.mp3" id="13_46wa6"]
 [ext_resource type="PackedScene" uid="uid://c3b5ujaoas0ae" path="res://Scenes/House/house.tscn" id="15_rjfhb"]
 [ext_resource type="PackedScene" uid="uid://cycsdleu52ohv" path="res://Scenes/StreetLight/street_light.tscn" id="16_4h73r"]
 [ext_resource type="Script" path="res://Levels/House_jumpscare.gd" id="17_q3n5q"]
 [ext_resource type="PackedScene" uid="uid://dau6gpggrm8od" path="res://Scenes/evil_vending_machine_idle/evil_vending_machine.tscn" id="18_5pirx"]
 [ext_resource type="AudioStream" uid="uid://dcmcte8dg8akx" path="res://Assets/Sounds/piano-jump-scare.mp3" id="18_bnglt"]
+[ext_resource type="AudioStream" uid="uid://fgeugxofu2kq" path="res://Assets/Sounds/Ambiant/dark-choir-singing-16805.mp3" id="20_sq081"]
 
 [sub_resource type="Gradient" id="Gradient_qv2vm"]
 offsets = PackedFloat32Array(0.28125, 1)
@@ -438,9 +438,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.62, 4.02331e-06, 131.619)
 [node name="Donu10" parent="Donuts" instance=ExtResource("4_gq7c6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4096, 4.26173e-06, 65.0971)
 
-[node name="EatingSoundPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("13_46wa6")
-
 [node name="Path3D" type="Path3D" parent="."]
 transform = Transform3D(-0.0276425, 0, -0.999618, 0, 1, 0, 0.999618, 0, -0.0276425, 48.9579, -0.632944, -7.89989)
 visible = false
@@ -464,5 +461,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.9133, 0, -7.46888)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.254433, 0, -0.372555)
 shape = SubResource("SphereShape3D_wt10c")
+
+[node name="DarkChoirPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_sq081")
+volume_db = -35.0
+autoplay = true
 
 [connection signal="body_entered" from="Area3D" to="Path3D" method="_on_area_3d_body_entered"]

@@ -6,6 +6,7 @@ extends StaticBody3D
 @onready var player_close = false
 @onready var donuts = get_tree().get_root().get_node(get_tree().current_scene.name+"/Donuts")
 @onready var patrol_points = get_tree().get_nodes_in_group("patrol_waypoints_group")
+@onready var darkChoirPlayer = get_tree().get_root().get_node("World/DarkChoirPlayer")
 var eaten = false
 var rand = RandomNumberGenerator.new()
 
@@ -21,7 +22,8 @@ func interact():
 		dialogue.text = ""
 		player.increment_donut()
 		eaten = true
-		get_tree().get_root().get_node("World/EatingSoundPlayer").play()
+		var volume = darkChoirPlayer.get_volume_db()
+		darkChoirPlayer.set_volume_db(volume + 2.5)
 		queue_free()
 
 

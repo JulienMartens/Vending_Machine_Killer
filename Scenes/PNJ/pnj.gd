@@ -15,7 +15,7 @@ func _ready():
 	player.interact.connect(interact)
 	
 func interact():
-	if triggered_state in [1,4,8]:
+	if triggered_state in [1,4,9]:
 		player.axis_lock_linear_x = false
 		player.axis_lock_linear_y = false
 		player.axis_lock_linear_z = false
