@@ -10,18 +10,21 @@ extends CharacterBody3D
 @onready var VendingMachine_animation_player = $evil_vending_machine/AnimationPlayer
 var triggered_state = 0
 const SPEED = 8
+
 func _ready():
 	player.interact.connect(interact)
 	
 func interact():
-	if triggered_state in [1,4,9]:
+	if triggered_state==10:
+		get_tree().paused = false
+		player.get_node("Camera/messageFromBro").visible = false
+	if triggered_state in [1,4,10]:
 		player.axis_lock_linear_x = false
 		player.axis_lock_linear_y = false
 		player.axis_lock_linear_z = false
 		player.get_node("Camera").current = true
 		dialogueBox.text = ""
 		triggered_state += 1
-
 
 func give_back_camera(current_state, timeout=5):
 	await get_tree().create_timer(timeout).timeout
@@ -47,7 +50,7 @@ func take_camera(camera="standard"):
 func _process(_delta):
 	if triggered_state in [0,3,4]:
 		look_at(player.global_transform.origin)
-	if triggered_state == 2:
+	if triggered_state == 2 and not get_tree().paused:
 		var target_location = get_tree().get_root().get_node("World").get_node("VendingMachine").global_transform.origin
 		nav_agent.set_target_position(target_location)
 		var current_position : Vector3 = global_transform.origin
@@ -78,12 +81,22 @@ func _on_area_3d_body_entered(body):
 		triggered_state = 4
 		give_back_camera(triggered_state,10)
 	if body.name=="Player" and triggered_state == 8:
+		get_tree().paused = true
+		player.visible = false
 		var camera="dead"
 		take_camera(camera)
 		dialogueBox.text =  tr("pnj_dead")
 		get_tree().get_root().get_node("World/Donuts").visible = true
+		await get_tree().create_timer(5).timeout
+		dialogueBox.text =  tr("pnj_find_paper")
 		triggered_state = 9
-		give_back_camera(triggered_state,10)
+	if triggered_state == 9:
+		triggered_state=10
+		await get_tree().create_timer(5).timeout
+		var key_name = OS.get_keycode_string(InputMap.action_get_events("interact")[0].get_physical_keycode_with_modifiers())
+		dialogueBox.text = ("\n\n[" + key_name+ "]\n"+tr("exit_paper"))
+		player.get_node("Camera/messageFromBro").visible = true
+		player.visible = true
 
 func death_animation():
 	normalVendingMachine.queue_free()
@@ -104,3 +117,9 @@ func death_animation():
 	animation_player.play("Dying")
 	await give_back_camera(triggered_state,2.3)
 	VendingMachine.visible = false
+	spawn_first_machine()
+
+func spawn_first_machine():
+	var evil_vending_machine = ResourceLoader.load_threaded_get("res://Scenes/evil_vending_machine/evil_vending_machine.tscn").instantiate()
+	evil_vending_machine.position = self.global_transform.origin
+	get_tree().get_root().get_node("World").add_child(evil_vending_machine)

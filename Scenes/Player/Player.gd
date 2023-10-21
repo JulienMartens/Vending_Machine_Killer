@@ -38,7 +38,7 @@ func _ready():
 		$Camera/PlayerUI.visible = false
 
 func _input(event):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and not get_tree().paused:
 		rotation.y -= event.relative.x / mouseSensibility
 		$Camera.rotation.x -= event.relative.y / mouseSensibility
 		$Camera.rotation.x = clamp($Camera.rotation.x, deg_to_rad(-90), deg_to_rad(90) )
@@ -46,85 +46,87 @@ func _input(event):
 		mouse_relative_y = clamp(event.relative.y, -50, 10)
 	if event.is_action_pressed("interact"):
 		emit_signal("interact");
+	if event.is_action_pressed("menu"):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		$Camera/menuFilter.visible = true
+		get_tree().paused = true
 		
 func _physics_process(delta):
-	move_and_slide()
-	stamina_bar.set_value(STAMINA)
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-		
-# Push rigidbodies on collide	
-	for index in get_slide_collision_count():
-		var collision := get_slide_collision(index)
-		if collision.get_collider() is RigidBody3D:
-			collision.get_collider().apply_central_impulse(-collision.get_normal() * 0.3)
-			collision.get_collider().apply_impulse(-collision.get_normal() * 0.01, collision.get_position())
+	if get_tree().paused:
+		movementAudioPlayer.stop()
+	if not get_tree().paused:
+		move_and_slide()
+		stamina_bar.set_value(STAMINA)
+		# Add the gravity.
+		if not is_on_floor():
+			velocity.y -= gravity * delta
 
-	# Jump
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-	# Crouch
-	if Input.is_action_just_pressed("crouch") and is_on_floor():
-		if not crouching :
-			crouching = true
-			$AnimationPlayer.play("crouch")
-		elif not hidden:
-			crouching = false
-			$AnimationPlayer.play_backwards("crouch")
-	# Stamina
-	if STAMINA > 0 and Input.is_action_pressed('sprint') and not tired and not crouching:
-		SPEED = 12
-		STAMINA-=(delta*1.5)
-		sprinting = true
-	else:
-		if crouching:
-			SPEED = 4
+		# Jump
+		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
+		# Crouch
+		if Input.is_action_just_pressed("crouch") and is_on_floor():
+			if not crouching :
+				crouching = true
+				$AnimationPlayer.play("crouch")
+			elif not hidden:
+				crouching = false
+				$AnimationPlayer.play_backwards("crouch")
+		# Stamina
+		if STAMINA > 0 and Input.is_action_pressed('sprint') and not tired and not crouching:
+			SPEED = 12
+			sprinting = true
+
 		else:
-			SPEED = 7
-			sprinting = false
+			if crouching:
+				SPEED = 4
+			else:
+				SPEED = 7
+				sprinting = false
+		if STAMINA < 0:
+			SPEED = 4
+			tired = true
+		if tired and STAMINA > MAX_STAMINA/2:
+			tired = false
 		if STAMINA < MAX_STAMINA:
 			STAMINA+=(delta/2)
-	if STAMINA < 0:
-		SPEED = 4
-		tired = true
-	if tired and STAMINA > MAX_STAMINA/2:
-		tired = false
-	# Movement
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-		if crouching and movementAudioPlayer.get_stream()!=walk_sound:
-			movementAudioPlayer.set_stream(walk_sound)
-		elif sprinting and movementAudioPlayer.get_stream()!=run_sound:
-			movementAudioPlayer.set_stream(run_sound)
-		elif not crouching and not sprinting and movementAudioPlayer.get_stream()!=walk_sound :
-			movementAudioPlayer.set_stream(walk_sound)
-		if not movementAudioPlayer.playing:
-			movementAudioPlayer.play()
-	else:
-		movementAudioPlayer.stop()
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-		
-	# Scary Music player
-	if ennemies_present and ennemies_chasing_player:
-		var ennemies = get_tree().get_nodes_in_group("ennemies")
-		var closest_ennemy_position = ennemies[0].global_transform.origin
-		var closest_ennemy_distance = global_transform.origin.distance_to(closest_ennemy_position)
-		for ennemy in ennemies:
-			var current_ennemy_distance = global_transform.origin.distance_to(ennemy.global_transform.origin)
-			if closest_ennemy_distance > current_ennemy_distance:
-				closest_ennemy_position = ennemy.global_transform.origin
-				closest_ennemy_distance = current_ennemy_distance
-		if not ennemyMusicAudioPlayer.playing:
-			ennemyMusicAudioPlayer.play()
-		ennemyMusicAudioPlayer.volume_db=(-closest_ennemy_distance)
-		$AudioRotationNode.look_at(closest_ennemy_position)
-	else:
-		ennemyMusicAudioPlayer.stop()
+		# Movement
+		var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if direction:
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
+			if sprinting:
+				STAMINA-=(delta*1.5)
+			if crouching or not is_on_floor():
+				movementAudioPlayer.stop()
+			elif sprinting and movementAudioPlayer.get_stream()!=run_sound:
+				movementAudioPlayer.set_stream(run_sound)
+			elif not crouching and not sprinting and movementAudioPlayer.get_stream()!=walk_sound :
+				movementAudioPlayer.set_stream(walk_sound)
+			if not movementAudioPlayer.playing and not crouching and is_on_floor():
+				movementAudioPlayer.play()
+		else:
+			movementAudioPlayer.stop()
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
+			
+		# Scary Music player
+		if ennemies_present and ennemies_chasing_player:
+			var ennemies = get_tree().get_nodes_in_group("ennemies")
+			var closest_ennemy_position = ennemies[0].global_transform.origin
+			var closest_ennemy_distance = global_transform.origin.distance_to(closest_ennemy_position)
+			for ennemy in ennemies:
+				var current_ennemy_distance = global_transform.origin.distance_to(ennemy.global_transform.origin)
+				if closest_ennemy_distance > current_ennemy_distance:
+					closest_ennemy_position = ennemy.global_transform.origin
+					closest_ennemy_distance = current_ennemy_distance
+			if not ennemyMusicAudioPlayer.playing:
+				ennemyMusicAudioPlayer.play()
+			ennemyMusicAudioPlayer.volume_db=(-closest_ennemy_distance)
+			$AudioRotationNode.look_at(closest_ennemy_position)
+		else:
+			ennemyMusicAudioPlayer.stop()
 		
 func increment_donut():
 	if $"Camera/PlayerUI/DonutUi".visible==false:
