@@ -318,7 +318,7 @@ shape = SubResource("BoxShape3D_27b4y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.9511, -0.528555, 27.7474)
 
 [node name="Building_MiniPassThrough" parent="Static/Buildings" instance=ExtResource("5_g0ua5")]
-transform = Transform3D(-1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, 10.35, -0.528555, -23.2243)
+transform = Transform3D(-1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, 10.35, -0.528555, -22.5355)
 
 [node name="Building_MiniDeadEnd" parent="Static/Buildings" instance=ExtResource("6_lhjgk")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -38.6306, -0.528553, -41.91)
@@ -415,7 +415,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0243, -1.19209e-07, -42.04
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.99225, 8.01682e-06, 133.674)
 
 [node name="Donu5" parent="Donuts" instance=ExtResource("4_gq7c6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.084, 4.02331e-06, -7.22502)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 113.267, 4.02331e-06, -6.2429)
 
 [node name="Donu6" parent="Donuts" instance=ExtResource("4_gq7c6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.409187, -1.99676e-06, 21.7999)
