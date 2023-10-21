@@ -4959,6 +4959,16 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.25, 1, 0, 0, -0.0994413, 0.995043, 0.5, 1, 0, 0, 0, 1, 0.75, 1, 0, 0, 0.104581, 0.994516, 1, 1, 0, 0, 0, 1)
 
+[sub_resource type="Animation" id="Animation_g4o4n"]
+resource_name = "eyes out"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Animation_node/VendingMachine/Smile2")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.0581137, 0.036612, 0.0750052, 1, 1, -0.0581138, 0.036612, 0.122809)
+
 [sub_resource type="Animation" id="Animation_jevwl"]
 resource_name = "kill"
 length = 3.0
@@ -5005,16 +5015,6 @@ tracks/0/path = NodePath("Animation_node")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0.103227, 0, 0, 0.994658, 0.9, 1, 0.17094, 0, 0, 0.985281, 1.2, 1, 0.103227, 0, 0, 0.994658, 1.5, 1, 0.17094, 0, 0, 0.985281, 1.8, 1, 0.103227, 0, 0, 0.994658, 2.1, 1, 0.17094, 0, 0, 0.985281, 2.4, 1, 0.103227, 0, 0, 0.994658, 2.7, 1, 0.17094, 0, 0, 0.985281, 3, 1, 0.103227, 0, 0, 0.994658, 3.6, 1, 0, 0, 0, 1, 4, 1, 0, 0, 0, 1, 4.5, 1, 0.103227, 0, 0, 0.994658, 4.9, 1, 0.17094, 0, 0, 0.985281, 5.2, 1, 0.103227, 0, 0, 0.994658, 5.5, 1, 0.17094, 0, 0, 0.985281, 5.8, 1, 0.103227, 0, 0, 0.994658, 6.1, 1, 0.17094, 0, 0, 0.985281, 6.4, 1, 0.103227, 0, 0, 0.994658, 6.7, 1, 0.17094, 0, 0, 0.985281, 7, 1, 0.103227, 0, 0, 0.994658, 7.6, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_g4o4n"]
-resource_name = "eyes out"
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Animation_node/VendingMachine/Smile2")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -0.0581137, 0.036612, 0.0750052, 1, 1, -0.0581138, 0.036612, 0.122809)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_flxg6"]
 _data = {
