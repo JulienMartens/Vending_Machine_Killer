@@ -10,15 +10,29 @@ extends CharacterBody3D
 @onready var VendingMachine_animation_player = $evil_vending_machine/AnimationPlayer
 var triggered_state = 0
 const SPEED = 8
+func _ready():
+	player.interact.connect(interact)
+	
+func interact():
+	if triggered_state in [1,4,9]:
+		player.axis_lock_linear_x = false
+		player.axis_lock_linear_y = false
+		player.axis_lock_linear_z = false
+		player.get_node("Camera").current = true
+		dialogueBox.text = ""
+		triggered_state += 1
 
-func give_back_camera():
-	player.axis_lock_linear_x = false
-	player.axis_lock_linear_y = false
-	player.axis_lock_linear_z = false
-	player.get_node("Camera").current = true
-	dialogueBox.text = ""
-	triggered_state += 1
 
+func give_back_camera(current_state, timeout=5):
+	await get_tree().create_timer(timeout).timeout
+	if player.get_node("Camera").current == false and current_state==triggered_state:
+		player.axis_lock_linear_x = false
+		player.axis_lock_linear_y = false
+		player.axis_lock_linear_z = false
+		player.get_node("Camera").current = true
+		dialogueBox.text = ""
+		triggered_state += 1
+	
 func take_camera(camera="standard"):
 	player.axis_lock_linear_x = true
 	player.axis_lock_linear_y = true
@@ -56,23 +70,20 @@ func _on_area_3d_body_entered(body):
 		take_camera()
 		dialogueBox.text = tr("pnj_greet")
 		triggered_state = 1
-		await get_tree().create_timer(5).timeout
-		give_back_camera()
+		give_back_camera(triggered_state,8)
 	if body.name=="Player" and triggered_state == 3:
 		take_camera()
 		dialogueBox.text = tr("pnj_poor")
 		get_tree().get_root().get_node("World/Coin").visible = true
 		triggered_state = 4
-		await get_tree().create_timer(8).timeout
-		give_back_camera()
+		give_back_camera(triggered_state,10)
 	if body.name=="Player" and triggered_state == 8:
 		var camera="dead"
 		take_camera(camera)
 		dialogueBox.text =  tr("pnj_dead")
 		get_tree().get_root().get_node("World/Donuts").visible = true
 		triggered_state = 9
-		await get_tree().create_timer(5).timeout
-		give_back_camera()
+		give_back_camera(triggered_state,10)
 
 func death_animation():
 	normalVendingMachine.queue_free()
@@ -91,6 +102,5 @@ func death_animation():
 	VendingMachine_animation_player.play("kill")
 	await get_tree().create_timer(0.6).timeout
 	animation_player.play("Dying")
-	await get_tree().create_timer(2.3).timeout
-	give_back_camera()
+	await give_back_camera(triggered_state,2.3)
 	VendingMachine.visible = false
