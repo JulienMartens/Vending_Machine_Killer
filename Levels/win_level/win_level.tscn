@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c0avgf56lbx0q"]
+[gd_scene load_steps=39 format=3 uid="uid://c0avgf56lbx0q"]
 
 [ext_resource type="Shader" path="res://Levels/sky.gdshader" id="1_5rf1g"]
 [ext_resource type="AudioStream" uid="uid://cs1ebud8e8oe5" path="res://Assets/Sounds/Musics/win-music.mp3" id="1_5888y"]
@@ -23,10 +23,23 @@ size = Vector3(0.765541, 0.505015, 0.461879)
 
 [sub_resource type="Curve3D" id="Curve3D_45lce"]
 _data = {
-"points": PackedVector3Array(-0.0105133, -0.125955, -5.82879, 0, 0, 0, 340, 4.229, 19.873, 7.056, 0, 5.917, 0, 0, 0, -7.54966, 5.8983, 17.8324, 0, 0, 5, 0, 0, 5, -12.4, 5, -4.2, 0, 0, 0, 0, 0.002, 0, -12.4, 3.38, -39.884),
+"points": PackedVector3Array(-0.0105133, -0.125955, -5.82879, 0, 0, 0, 340, 4.229, 19.873, 7.056, 0, 5.917, 0, 0, 0, -7.54966, 5.8983, 17.8324, 0, 0, 5, 0, 0, 5, -12.4, 5.89, -4.2, 0, 0, 0, 0, 0.002, 0, -12.4, 3.8, -39.884),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_a2wmh"]
+font = ExtResource("4_j4av5")
+font_size = 96
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_a8ex5"]
+font = ExtResource("4_j4av5")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_34r5o"]
+font = ExtResource("4_j4av5")
+font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_8e3e4"]
 font = ExtResource("4_j4av5")
@@ -134,6 +147,37 @@ tilt_enabled = false
 transform = Transform3D(1, 0, 0, 0, 0.921871, 0.387518, 0, -0.387519, 0.921868, 0, 0, 0)
 script = ExtResource("1_wm6pf")
 
+[node name="Title" type="VBoxContainer" parent="Path3D/PathFollow3D/Camera3D"]
+visible = false
+custom_minimum_size = Vector2(1000, 100)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -563.0
+offset_right = 563.0
+offset_bottom = 141.0
+grow_horizontal = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="Path3D/PathFollow3D/Camera3D/Title"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Vending Machine Killer"
+label_settings = SubResource("LabelSettings_a2wmh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Path3D/PathFollow3D/Camera3D/Title"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="thank_you" type="Label" parent="Path3D/PathFollow3D/Camera3D/Title"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "thank_you"
+label_settings = SubResource("LabelSettings_a8ex5")
+horizontal_alignment = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Path3D/PathFollow3D/Camera3D"]
 anchors_preset = 7
 anchor_left = 0.5
@@ -153,7 +197,8 @@ alignment = 2
 layout_mode = 2
 size_flags_horizontal = 4
 text = "win"
-label_settings = SubResource("LabelSettings_8e3e4")
+label_settings = SubResource("LabelSettings_34r5o")
+horizontal_alignment = 1
 
 [node name="credits" type="Label" parent="Path3D/PathFollow3D/Camera3D/VBoxContainer"]
 visible = false
@@ -161,13 +206,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "credits"
 label_settings = SubResource("LabelSettings_8e3e4")
-
-[node name="developer_credits" type="Label" parent="Path3D/PathFollow3D/Camera3D/VBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-text = "developer_credits"
-label_settings = SubResource("LabelSettings_8e3e4")
+horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Path3D/PathFollow3D/Camera3D/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)

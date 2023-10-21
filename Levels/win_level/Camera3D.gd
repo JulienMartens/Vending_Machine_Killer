@@ -7,11 +7,10 @@ func _ready():
 
 func _physics_process(delta):
 	if state == 0:
-		await get_tree().create_timer(7).timeout
+		await get_tree().create_timer(15).timeout
 		$VBoxContainer/win.visible = false
 		$VBoxContainer/credits.visible = true
 		state = 1
 	if state == 1:
-		await get_tree().create_timer(10).timeout
-		$VBoxContainer/credits.visible = false
-		$VBoxContainer/developer_credits.visible = true
+		await get_tree().create_timer(20).timeout
+		$Title.visible = true
