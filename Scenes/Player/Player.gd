@@ -75,7 +75,7 @@ func _physics_process(delta):
 	# Stamina
 	if STAMINA > 0 and Input.is_action_pressed('sprint') and not tired and not crouching:
 		SPEED = 12
-		STAMINA-=delta
+		STAMINA-=(delta*1.5)
 		sprinting = true
 	else:
 		if crouching:
@@ -84,7 +84,7 @@ func _physics_process(delta):
 			SPEED = 7
 			sprinting = false
 		if STAMINA < MAX_STAMINA:
-			STAMINA+=delta
+			STAMINA+=(delta/2)
 	if STAMINA < 0:
 		SPEED = 4
 		tired = true
