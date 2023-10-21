@@ -4,14 +4,14 @@
 [ext_resource type="Material" uid="uid://dxb74h32rwbcw" path="res://Assets/Materials/Fabric/fabric.tres" id="2_4tn7t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_de5hk"]
-size = Vector3(2.17184, 0.762007, 0.818004)
+size = Vector3(2.17184, 1.16521, 0.867701)
 
 [node name="Sofa" instance=ExtResource("1_byohk")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0160736, -0.130254, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0160736, 0.0951199, 0)
 shape = SubResource("BoxShape3D_de5hk")
 
 [node name="Cube" parent="." index="2"]
