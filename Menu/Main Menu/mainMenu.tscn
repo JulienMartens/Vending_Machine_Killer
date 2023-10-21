@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://boqot1o46jpa4"]
+[gd_scene load_steps=41 format=3 uid="uid://boqot1o46jpa4"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_jbwly"]
 [ext_resource type="AudioStream" uid="uid://r788lp16256a" path="res://Assets/Sounds/Musics/menu-music.mp3" id="2_jnkpp"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://but6iu7npwlw6" path="res://Assets/Images/fr_flag.jpg" id="8_hwwnt"]
 [ext_resource type="Texture2D" uid="uid://devvul7ppsopy" path="res://Assets/Images/fr_flag_active.jpg" id="9_683c2"]
 [ext_resource type="Texture2D" uid="uid://ctuhoskjxafer" path="res://Assets/Images/en_flag.jpg" id="10_a0wp8"]
+[ext_resource type="Theme" uid="uid://bkwfulwwroxbd" path="res://Menu/Main Menu/button_theme.tres" id="11_fshdn"]
 [ext_resource type="Texture2D" uid="uid://dgbvq5gdfupxe" path="res://Assets/Images/en_flag_active.jpg" id="11_yn04h"]
 [ext_resource type="Texture2D" uid="uid://dx7s1f52prkow" path="res://Assets/Images/es_flag.jpg" id="12_qh6d2"]
 [ext_resource type="Texture2D" uid="uid://byiyi6bdmikkv" path="res://Assets/Images/es_flag_active.jpg" id="13_pcqd3"]
@@ -118,6 +119,10 @@ func _physics_process(delta):
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4m6it"]
 size = Vector3(0.765541, 0.505015, 0.461879)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p5jra"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kk53y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_okqou"]
 font = ExtResource("15_v1gex")
@@ -340,16 +345,22 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 10.0
-offset_top = -115.0
-offset_right = 276.0
+offset_top = -158.0
+offset_right = 397.0
 grow_vertical = 0
 
 [node name="StartButton" type="Button" parent="Menu/Camera3D/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme = ExtResource("11_fshdn")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_p5jra")
 text = "menu_start"
 
 [node name="QuitButton" type="Button" parent="Menu/Camera3D/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme = ExtResource("11_fshdn")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kk53y")
 text = "menu_quit"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Menu/Camera3D"]
@@ -383,9 +394,9 @@ custom_minimum_size = Vector2(1000, 300)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -549.0
-offset_right = 549.0
-offset_bottom = 500.0
+offset_left = -563.0
+offset_right = 563.0
+offset_bottom = 488.0
 grow_horizontal = 2
 alignment = 1
 
@@ -393,7 +404,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-text = "Vending machine killer"
+text = "Vending Machine Killer"
 label_settings = SubResource("LabelSettings_okqou")
 
 [connection signal="pressed" from="Menu/Camera3D/VBoxContainer/StartButton" to="Menu" method="_on_start_button_pressed"]

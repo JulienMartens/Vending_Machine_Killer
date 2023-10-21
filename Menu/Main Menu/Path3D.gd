@@ -1,6 +1,6 @@
 extends Path3D
 
-var move_speed = 1.5
+var move_speed = 2.5
 
 
 func _ready():
