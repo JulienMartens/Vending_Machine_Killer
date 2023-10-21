@@ -31,7 +31,6 @@ func take_camera(camera="standard"):
 		$Camera3DAnim.current = true
 
 func _process(_delta):
-	print_debug(triggered_state)
 	if triggered_state in [0,3,4]:
 		look_at(player.global_transform.origin)
 	if triggered_state == 2:
