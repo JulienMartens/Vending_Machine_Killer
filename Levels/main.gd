@@ -15,7 +15,3 @@ func _ready():
 		player.transform.origin =  Vector3(-13,0.5,12)
 		player.look_at(pnj.transform.origin)
 		get_node("Donuts").visible = true
-
-func _physics_process(_delta):
-	get_tree().call_group("ennemies","update_target_location", player.global_transform.origin)
-
