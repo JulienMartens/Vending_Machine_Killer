@@ -52,7 +52,14 @@ func _physics_process(_delta):
 					player.increment_ennemies_chasing_player()
 					look_around_animation_played = true
 					currentMachineState=machineStatesEnum.chasing_player
-
+		if player_in_detection_area and currentMachineState==machineStatesEnum.chasing_player:
+			$RayCastNode.look_at(player.global_transform.origin)
+			if raycast.get_collider():
+				if raycast.get_collider().name != "Player" and !player.hidden and timer.is_stopped():
+					timer.start(10)
+				elif raycast.get_collider().name == "Player" and !player.hidden:
+					timer.stop()
+					
 func goto(speed):
 	var current_position : Vector3 = global_transform.origin
 	var next_path_position : Vector3 = nav_agent.get_next_path_position()
