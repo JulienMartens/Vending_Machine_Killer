@@ -378,13 +378,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.6356, -0.528555, 16.8069)
 [node name="SofaTable4" parent="Static/Furniture" instance=ExtResource("8_laf5e")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -18.4832, -0.528555, 34.466)
 
-[node name="Player" parent="." instance=ExtResource("11_k2uon")]
-transform = Transform3D(-0.336234, 0.285202, -0.897556, -0.303263, 0.869492, 0.38989, 0.891615, 0.40329, -0.205862, 196.35, 15.2382, 35.573)
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Player"]
-transform = Transform3D(1, -1.78814e-07, -2.23517e-07, -1.78814e-07, 1, 1.41561e-07, 0, -2.23517e-08, 1, -0.0123386, 1.4626, -0.0947723)
-mesh = SubResource("TorusMesh_7h1q7")
-
 [node name="Body" parent="." instance=ExtResource("11_sjj4r")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -28.1782, 2.95449, -1.79495)
 
@@ -709,10 +702,10 @@ transform = Transform3D(0.0123217, 0, -0.999924, -0.217411, 0.976076, -0.0026790
 [node name="evil_vending_machine9" parent="." instance=ExtResource("12_mvrux")]
 transform = Transform3D(0.0111614, -0.0060714, -0.999919, 0.218142, 0.975911, -0.00349065, 0.975853, -0.218085, 0.012217, 125.111, -0.343963, 45.9986)
 
-[node name="Player2" parent="." instance=ExtResource("11_k2uon")]
-transform = Transform3D(-0.696076, 0, -0.717969, 0, 1, 0, 0.717969, 0, -0.696076, 14.4443, -0.656077, 36.125)
+[node name="Player" parent="." instance=ExtResource("11_k2uon")]
+transform = Transform3D(0.51861, 0, -0.855012, 0.165224, 0.981151, 0.100217, 0.838896, -0.193241, 0.508835, 81.0371, -0.656077, 46.2692)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Player2"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Player"]
 transform = Transform3D(1, -1.78814e-07, -2.23517e-07, -1.78814e-07, 1, 1.41561e-07, 0, -2.23517e-08, 1, -0.0123386, 1.4626, -0.0947723)
 mesh = SubResource("TorusMesh_7h1q7")
 
@@ -1267,4 +1260,4 @@ transform = Transform3D(0.269062, 0, 0.421433, 0, 0.5, 0, -0.421433, 0, 0.269062
 
 [connection signal="timeout" from="Path3D/Timer" to="Path3D" method="_on_timer_timeout"]
 
-[editable path="Player2"]
+[editable path="Player"]
