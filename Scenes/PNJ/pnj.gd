@@ -4,6 +4,7 @@ extends CharacterBody3D
 @onready var player = get_tree().get_root().get_node("World/Player")
 @onready var normalVendingMachine = get_tree().get_root().get_node("World/VendingMachine")
 @onready var dialogueBox = player.get_node("Camera/UI/HBoxContainer/Dialogue")
+@onready var paperDialogueBox = player.get_node("Camera/VBoxContainer/paperDialogue")
 @onready var nav_agent = $NavigationAgent3D
 @onready var animation_player = $Body/AnimationPlayer
 @onready var VendingMachine = $evil_vending_machine
@@ -13,11 +14,12 @@ const SPEED = 8
 
 func _ready():
 	player.interact.connect(interact)
-	
+
 func interact():
 	if triggered_state==10:
 		get_tree().paused = false
 		player.get_node("Camera/messageFromBro").visible = false
+		paperDialogueBox.text = ""
 	if triggered_state in [1,4,10]:
 		player.axis_lock_linear_x = false
 		player.axis_lock_linear_y = false
@@ -94,11 +96,15 @@ func _on_area_3d_body_entered(body):
 		triggered_state=10
 		await get_tree().create_timer(5).timeout
 		var key_name = OS.get_keycode_string(InputMap.action_get_events("interact")[0].get_physical_keycode_with_modifiers())
-		dialogueBox.text = ("\n\n[" + key_name+ "]\n"+tr("exit_paper"))
+		dialogueBox.text = ""
+		paperDialogueBox.text = ("[" + key_name+ "]\n"+tr("exit_paper"))
 		player.get_node("Camera/messageFromBro").visible = true
 		player.visible = true
 
 func death_animation():
+	self.transform.origin = normalVendingMachine.transform.origin +Vector3(0,0,2)
+	self.look_at(normalVendingMachine.transform.origin)
+	self.transform.origin += Vector3(0,-1.3,0)
 	normalVendingMachine.queue_free()
 	VendingMachine.visible = true
 	var camera="kill"
@@ -121,5 +127,5 @@ func death_animation():
 
 func spawn_first_machine():
 	var evil_vending_machine = ResourceLoader.load_threaded_get("res://Scenes/evil_vending_machine/evil_vending_machine.tscn").instantiate()
-	evil_vending_machine.position = self.global_transform.origin
+	evil_vending_machine.position = self.global_transform.origin+Vector3(0,0,5)
 	get_tree().get_root().get_node("World").add_child(evil_vending_machine)

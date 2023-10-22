@@ -394,7 +394,7 @@ transform = Transform3D(1.61283e-07, 0.998822, -0.0485231, 1, -1.62921e-07, -2.9
 visible = false
 
 [node name="VendingMachine" type="RigidBody3D" parent="."]
-transform = Transform3D(1.2, 1.33227e-16, -4.47035e-09, 0, 1.2, 3.57628e-08, 4.47035e-09, -3.57628e-08, 1.2, -15.1044, 0.943406, -27.7386)
+transform = Transform3D(1.2, 1.33227e-16, -4.47035e-09, 0, 1.2, 3.57628e-08, 4.47035e-09, -3.57628e-08, 1.2, -14.8169, 0.943406, -28.2614)
 mass = 0.28
 
 [node name="VendingMachineHD" parent="VendingMachine" instance=ExtResource("3_cvq1a")]
