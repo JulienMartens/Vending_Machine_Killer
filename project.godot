@@ -13,6 +13,8 @@ config_version=5
 config/name="Vending Machine Killer"
 run/main_scene="res://Menu/Main Menu/mainMenu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
+config/icon="res://Assets/Images/icon.png"
+config/windows_native_icon="res://Assets/Images/icon.ico"
 
 [autoload]
 
