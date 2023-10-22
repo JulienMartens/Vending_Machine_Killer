@@ -14,6 +14,10 @@ config/name="Vending Machine Killer"
 run/main_scene="res://Menu/Main Menu/mainMenu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 
+[autoload]
+
+GlobalVariables="*res://global_variables.gd"
+
 [input]
 
 ui_left={
