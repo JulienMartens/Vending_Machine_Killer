@@ -13,5 +13,4 @@ func _physics_process(delta):
 func _on_area_3d_body_entered(body):
 	if self.visible:
 		$HouseJumpscare.play()
-		move_speed = 5
-
+		move_speed = 10

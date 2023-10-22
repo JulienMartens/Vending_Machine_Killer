@@ -102,13 +102,13 @@ size = Vector3(0.765541, 0.505015, 0.461879)
 
 [sub_resource type="Curve3D" id="Curve3D_yr3rf"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.142362, -0.141423, 0.456371, 0, 0, 0, 0, 0, 0, -7.099, -0.14, 0.154),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 2, -0.141, 0.456, 0, 0, 0, 0, 0, 0, -12, -0.14, 0.154),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wt10c"]
-radius = 2.45043
+radius = 1.67096
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_5w7m4")
@@ -475,7 +475,7 @@ stream = ExtResource("18_bnglt")
 volume_db = -4.0
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.142362, -0.141423, 0.456371)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.141, 0.456)
 rotation_mode = 0
 loop = false
 
@@ -485,7 +485,7 @@ loop = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.9133, 0, -7.46888)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.254433, 0, -0.372555)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.480072, 0, -0.372555)
 shape = SubResource("SphereShape3D_wt10c")
 
 [node name="DarkChoirPlayer" type="AudioStreamPlayer" parent="."]

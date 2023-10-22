@@ -9,12 +9,12 @@ menu_sprint,"pour sprinter ! Attention à ta stamina !","to sprint ! Pay attenti
 menu_crouch,"pour ramper ! Tu peux te cacher sous les tables !","To crouch ! You can hide yourself under tables !", "¡Para gatear! ¡Puedes esconderte debajo de las mesas!"
 menu_jump,"[Espace] pour sauter ! Ca sert a rien mais les gens aiment bien sauter dans les jeux","[Space] to jump ! It's useless but people like to jump in video games","[Espacio] ¡Para saltar! Es inútil, pero a la gente le gusta meterse en los juegos."
 menu_mouse_sensitivity,"Sensibilité souris: ","Mouse sensitivity: ","Sensibilidad del mouse: "
-key_grab,Prendre la clé\n(pourquoi elle est dans les toilettes ??)\n,Grab the key\n(why is it in the toilet ?)\n,Toma la llave (¿Por qué está en el baño?)
+key_grab,Prendre la clé\n,Grab the key\n,Toma la llave
 coin_grab,Attraper la pièce de 1€,Grab the 1€ coin,Atrapa la pieza
 donut_eat,Manger le donut sucré au sucre,Eat the delicious sugary donut with sugar,Comer la deliciosa rosquilla dulce de azucar
 door_open,Ouvrir la porte,Open the door,Abrir la puerta
 door_close,Fermer la porte,Close the door,Cerrar la puerta
-door_locked,La porte est verouillée :( \nQu'est-ce que j'ai fait de la clé ??,The door is locked :(\nWhere did I put the key ??,La puerta está cerrada :(\n¿Dónde puse la llave?
+door_locked,La porte est verouillée :(,The door is locked :(,La puerta está cerrada :(
 door_unlock,Dévérouiller la porte,Unlock the door,Desbloquear la puerta
 evm_dead,t mor sale merd,u ded now,estas muerto pendejo
 pnj_greet,"Wesh poto, bien ou bien ? \n Eh, j'ai un petit creux, viens on va s'acheter des donuts sucrés au sucre, il y a un distributeur juste la","Hey bro, how's it going ? I'm starving let's go get some sugary donuts with sugar, there's a vending machine right there","Hola hermano como estas ? Oye, tengo un poco de hambre, vamos a comprar unas deliciosa rosquilla dulce de azucar"
