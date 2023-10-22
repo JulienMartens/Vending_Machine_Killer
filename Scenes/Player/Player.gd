@@ -7,7 +7,7 @@ extends CharacterBody3D
 @onready var stamina_bar = $Camera/PlayerUI/StaminaBar
 var SPEED = 5.0
 const JUMP_VELOCITY = 4
-var mouseSensibility = 1200
+var mouseSensibility = GlobalVariables.mouse_sensitivity
 var mouse_relative_x = 0
 var mouse_relative_y = 0
 var ennemies_present = false
@@ -38,6 +38,7 @@ func _ready():
 		$Camera/PlayerUI.visible = false
 
 func _input(event):
+	mouseSensibility = 1200 / GlobalVariables.mouse_sensitivity
 	if event is InputEventMouseMotion and not get_tree().paused:
 		rotation.y -= event.relative.x / mouseSensibility
 		$Camera.rotation.x -= event.relative.y / mouseSensibility

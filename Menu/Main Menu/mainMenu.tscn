@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://boqot1o46jpa4"]
+[gd_scene load_steps=43 format=3 uid="uid://boqot1o46jpa4"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_jbwly"]
 [ext_resource type="AudioStream" uid="uid://r788lp16256a" path="res://Assets/Sounds/Musics/menu-music.mp3" id="2_jnkpp"]
@@ -122,12 +122,17 @@ size = Vector3(0.765541, 0.505015, 0.461879)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p5jra"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_einas"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kk53y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_okqou"]
 font = ExtResource("15_v1gex")
 font_size = 96
 font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mr8at"]
+font = ExtResource("15_v1gex")
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_jbwly")
@@ -356,6 +361,12 @@ theme = ExtResource("11_fshdn")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_p5jra")
 text = "menu_start"
 
+[node name="ControlsButton" type="Button" parent="Menu/Camera3D/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("11_fshdn")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_einas")
+text = "menu_controls"
+
 [node name="QuitButton" type="Button" parent="Menu/Camera3D/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -407,8 +418,86 @@ size_flags_vertical = 8
 text = "Vending Machine Killer"
 label_settings = SubResource("LabelSettings_okqou")
 
+[node name="menuFilter" type="ColorRect" parent="Menu/Camera3D"]
+process_mode = 3
+visible = false
+custom_minimum_size = Vector2(300, 300)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -362.0
+offset_top = -162.5
+offset_right = 362.0
+offset_bottom = 162.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0705882, 0.0705882, 0.0705882, 0.768627)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Camera3D/menuFilter"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="controls" type="Label" parent="Menu/Camera3D/menuFilter/VBoxContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_mr8at")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/Camera3D/menuFilter/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/Camera3D/menuFilter/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "menu_mouse_sensitivity"
+
+[node name="sensitivity_value" type="Label" parent="Menu/Camera3D/menuFilter/VBoxContainer/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="Menu/Camera3D/menuFilter/VBoxContainer/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 4
+min_value = 0.5
+max_value = 2.0
+step = 0.05
+value = 1.0
+
+[node name="ExitControls" type="Button" parent="Menu/Camera3D/menuFilter"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -28.5
+offset_top = -59.0
+offset_right = 28.5
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme = ExtResource("11_fshdn")
+text = "Ok"
+
 [connection signal="pressed" from="Menu/Camera3D/VBoxContainer/StartButton" to="Menu" method="_on_start_button_pressed"]
+[connection signal="pressed" from="Menu/Camera3D/VBoxContainer/ControlsButton" to="Menu" method="_on_controls_button_pressed"]
 [connection signal="pressed" from="Menu/Camera3D/VBoxContainer/QuitButton" to="Menu" method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Menu/Camera3D/VBoxContainer2/FrButton" to="Menu" method="_on_fr_button_pressed"]
 [connection signal="pressed" from="Menu/Camera3D/VBoxContainer2/EnButton" to="Menu" method="_on_en_button_pressed"]
 [connection signal="pressed" from="Menu/Camera3D/VBoxContainer2/EsButton" to="Menu" method="_on_es_button_pressed"]
+[connection signal="changed" from="Menu/Camera3D/menuFilter/VBoxContainer/HBoxContainer/HSlider" to="Menu" method="_on_h_slider_changed"]
+[connection signal="value_changed" from="Menu/Camera3D/menuFilter/VBoxContainer/HBoxContainer/HSlider" to="Menu" method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="Menu/Camera3D/menuFilter/ExitControls" to="Menu" method="_on_exit_controls_pressed"]

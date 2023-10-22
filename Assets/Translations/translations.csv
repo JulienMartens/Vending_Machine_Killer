@@ -1,7 +1,14 @@
 keys,fr,en,es
 menu_start,Lancer le jeu,Start game,Comenzar el juego
+menu_resume,"Continuer","Continue","Continuar"
 menu_retry,Réessayer ?,Retry ?,Reanudar ?
+menu_controls,"Controles","Controls","Controles"
 menu_quit,Quitter le jeu,Quit game,Abandonar el juego
+menu_interact,"pour interagir avec l'environnement","to interact with the world","para interactuar con el medio ambiente"
+menu_sprint,"pour sprinter ! Attention à ta stamina !","to sprint ! Pay attention to your stamina !","¡Para correr rápido! ¡Presta atención a tu stamina !"
+menu_crouch,"pour ramper ! Tu peux te cacher sous les tables !","To crouch ! You can hide yourself under tables !", "¡Para gatear! ¡Puedes esconderte debajo de las mesas!"
+menu_jump,"[Espace] pour sauter ! Ca sert a rien mais les gens aiment bien sauter dans les jeux","[Space] to jump ! It's useless but people like to jump in video games","[Espacio] ¡Para saltar! Es inútil, pero a la gente le gusta meterse en los juegos."
+menu_mouse_sensitivity,"Sensibilité souris: ","Mouse sensitivity: ","Sensibilidad del mouse: "
 key_grab,Prendre la clé\n(pourquoi elle est dans les toilettes ??)\n,Grab the key\n(why is it in the toilet ?)\n,Toma la llave (¿Por qué está en el baño?)
 coin_grab,Attraper la pièce de 1€,Grab the 1€ coin,Atrapa la pieza
 donut_eat,Manger le donut sucré au sucre,Eat the delicious sugary donut with sugar,Comer la deliciosa rosquilla dulce de azucar
