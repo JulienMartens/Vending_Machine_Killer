@@ -57,8 +57,6 @@ func _physics_process(_delta):
 			if raycast.get_collider():
 				if raycast.get_collider().name != "Player" and !player.hidden and timer.is_stopped():
 					timer.start(10)
-				elif raycast.get_collider().name == "Player" and !player.hidden:
-					timer.stop()
 					
 func goto(speed):
 	var current_position : Vector3 = global_transform.origin
