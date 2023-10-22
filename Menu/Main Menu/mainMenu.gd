@@ -5,7 +5,7 @@ extends Node3D
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	$Camera3D/VBoxContainer2/FrButton.set_pressed_no_signal(true)
+	$Camera3D/HBoxContainer/VBoxContainer2/FrButton.set_pressed_no_signal(true)
 	slider.set_value_no_signal(GlobalVariables.mouse_sensitivity)
 	sensitivityText.text = str(GlobalVariables.mouse_sensitivity)
 
@@ -44,3 +44,8 @@ func _on_h_slider_value_changed(value):
 	GlobalVariables.mouse_sensitivity = slider.value
 	sensitivityText.text = str(slider.value)
 
+func _on_discord_button_pressed():
+	OS.shell_open("https://discord.gg/dNPfAz2r")
+
+func _on_donate_button_pressed():
+	OS.shell_open("https://ko-fi.com/streum")

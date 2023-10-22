@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://boqot1o46jpa4"]
+[gd_scene load_steps=46 format=3 uid="uid://boqot1o46jpa4"]
 
 [ext_resource type="AudioStream" uid="uid://r788lp16256a" path="res://Assets/Sounds/Musics/menu-music.mp3" id="2_jnkpp"]
 [ext_resource type="Shader" path="res://Levels/sky.gdshader" id="2_uurtn"]
@@ -13,8 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://devvul7ppsopy" path="res://Assets/Images/fr_flag_active.jpg" id="9_683c2"]
 [ext_resource type="Texture2D" uid="uid://ctuhoskjxafer" path="res://Assets/Images/en_flag.jpg" id="10_a0wp8"]
 [ext_resource type="Theme" uid="uid://bkwfulwwroxbd" path="res://Menu/Main Menu/button_theme.tres" id="11_fshdn"]
+[ext_resource type="Texture2D" uid="uid://c5neo0q88lvsq" path="res://Assets/Images/Discord-Logo.png" id="11_qboa4"]
 [ext_resource type="Texture2D" uid="uid://dgbvq5gdfupxe" path="res://Assets/Images/en_flag_active.jpg" id="11_yn04h"]
 [ext_resource type="Texture2D" uid="uid://dx7s1f52prkow" path="res://Assets/Images/es_flag.jpg" id="12_qh6d2"]
+[ext_resource type="Texture2D" uid="uid://cyn1ckur2jplq" path="res://Assets/Images/ko-fi-logo.png" id="13_ddoq2"]
 [ext_resource type="Texture2D" uid="uid://byiyi6bdmikkv" path="res://Assets/Images/es_flag_active.jpg" id="13_pcqd3"]
 [ext_resource type="FontFile" uid="uid://d0wsflsdp47wm" path="res://Assets/Fonts/PermanentMarker-Regular.ttf" id="15_v1gex"]
 
@@ -120,6 +122,12 @@ size = Vector3(0.765541, 0.505015, 0.461879)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_einas"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kk53y"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kfeh0"]
+font = ExtResource("15_v1gex")
+
+[sub_resource type="LabelSettings" id="LabelSettings_oxdwp"]
+font = ExtResource("15_v1gex")
 
 [sub_resource type="LabelSettings" id="LabelSettings_okqou"]
 font = ExtResource("15_v1gex")
@@ -357,28 +365,67 @@ theme = ExtResource("11_fshdn")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_kk53y")
 text = "menu_quit"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Menu/Camera3D"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/Camera3D"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
+offset_left = -49.0
+offset_top = -98.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="FrButton" type="TextureButton" parent="Menu/Camera3D/VBoxContainer2"]
+[node name="VBoxContainer4" type="VBoxContainer" parent="Menu/Camera3D/HBoxContainer"]
+layout_mode = 2
+
+[node name="DiscordButton" type="TextureButton" parent="Menu/Camera3D/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+texture_normal = ExtResource("11_qboa4")
+stretch_mode = 3
+
+[node name="Label2" type="Label" parent="Menu/Camera3D/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+text = "Discord"
+label_settings = SubResource("LabelSettings_kfeh0")
+horizontal_alignment = 1
+
+[node name="VBoxContainer6" type="VBoxContainer" parent="Menu/Camera3D/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="Menu/Camera3D/HBoxContainer"]
+layout_mode = 2
+
+[node name="DonateButton" type="TextureButton" parent="Menu/Camera3D/HBoxContainer/VBoxContainer5"]
+layout_mode = 2
+texture_normal = ExtResource("13_ddoq2")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Menu/Camera3D/HBoxContainer/VBoxContainer5"]
+layout_mode = 2
+text = "Tips"
+label_settings = SubResource("LabelSettings_oxdwp")
+horizontal_alignment = 1
+
+[node name="VBoxContainer8" type="VBoxContainer" parent="Menu/Camera3D/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Menu/Camera3D/HBoxContainer"]
+layout_mode = 2
+
+[node name="FrButton" type="TextureButton" parent="Menu/Camera3D/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("8_hwwnt")
 texture_pressed = ExtResource("9_683c2")
 
-[node name="EnButton" type="TextureButton" parent="Menu/Camera3D/VBoxContainer2"]
+[node name="EnButton" type="TextureButton" parent="Menu/Camera3D/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("10_a0wp8")
 texture_pressed = ExtResource("11_yn04h")
 
-[node name="EsButton" type="TextureButton" parent="Menu/Camera3D/VBoxContainer2"]
+[node name="EsButton" type="TextureButton" parent="Menu/Camera3D/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("12_qh6d2")
 texture_pressed = ExtResource("13_pcqd3")
@@ -484,9 +531,11 @@ text = "Ok"
 [connection signal="pressed" from="Menu/Camera3D/VBoxContainer/StartButton" to="Menu" method="_on_start_button_pressed"]
 [connection signal="pressed" from="Menu/Camera3D/VBoxContainer/ControlsButton" to="Menu" method="_on_controls_button_pressed"]
 [connection signal="pressed" from="Menu/Camera3D/VBoxContainer/QuitButton" to="Menu" method="_on_quit_button_pressed"]
-[connection signal="pressed" from="Menu/Camera3D/VBoxContainer2/FrButton" to="Menu" method="_on_fr_button_pressed"]
-[connection signal="pressed" from="Menu/Camera3D/VBoxContainer2/EnButton" to="Menu" method="_on_en_button_pressed"]
-[connection signal="pressed" from="Menu/Camera3D/VBoxContainer2/EsButton" to="Menu" method="_on_es_button_pressed"]
+[connection signal="pressed" from="Menu/Camera3D/HBoxContainer/VBoxContainer4/DiscordButton" to="Menu" method="_on_discord_button_pressed"]
+[connection signal="pressed" from="Menu/Camera3D/HBoxContainer/VBoxContainer5/DonateButton" to="Menu" method="_on_donate_button_pressed"]
+[connection signal="pressed" from="Menu/Camera3D/HBoxContainer/VBoxContainer2/FrButton" to="Menu" method="_on_fr_button_pressed"]
+[connection signal="pressed" from="Menu/Camera3D/HBoxContainer/VBoxContainer2/EnButton" to="Menu" method="_on_en_button_pressed"]
+[connection signal="pressed" from="Menu/Camera3D/HBoxContainer/VBoxContainer2/EsButton" to="Menu" method="_on_es_button_pressed"]
 [connection signal="changed" from="Menu/Camera3D/menuFilter/VBoxContainer/HBoxContainer/HSlider" to="Menu" method="_on_h_slider_changed"]
 [connection signal="value_changed" from="Menu/Camera3D/menuFilter/VBoxContainer/HBoxContainer/HSlider" to="Menu" method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="Menu/Camera3D/menuFilter/ExitControls" to="Menu" method="_on_exit_controls_pressed"]
