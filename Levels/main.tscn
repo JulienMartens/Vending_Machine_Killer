@@ -383,6 +383,26 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -19.76
 [node name="SofaTable4" parent="Static/Furniture" instance=ExtResource("11_xgcpo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.64821, -0.528555, 48.8545)
 
+[node name="ending_machine_spawns" type="Node3D" parent="Static"]
+
+[node name="Node3D" type="Node3D" parent="Static/ending_machine_spawns" groups=["ending_machine_spawns"]]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -48.1934, -8.10623e-06, 23.4677)
+
+[node name="Node3D2" type="Node3D" parent="Static/ending_machine_spawns" groups=["ending_machine_spawns"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.52296, 0, -48.5401)
+
+[node name="Node3D3" type="Node3D" parent="Static/ending_machine_spawns" groups=["ending_machine_spawns"]]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.02312, 0, 3.27745)
+
+[node name="Node3D4" type="Node3D" parent="Static/ending_machine_spawns" groups=["ending_machine_spawns"]]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13.117, 0, 48.6386)
+
+[node name="Node3D5" type="Node3D" parent="Static/ending_machine_spawns" groups=["ending_machine_spawns"]]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 15.8944, 7.62939e-06, -3.36579)
+
+[node name="Node3D6" type="Node3D" parent="Static/ending_machine_spawns" groups=["ending_machine_spawns"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.099, 0, -48.0906)
+
 [node name="Player" parent="." instance=ExtResource("2_fath2")]
 transform = Transform3D(-0.0329284, 0, 0.999458, 0, 1, 0, -0.999458, 0, -0.0329284, 64.206, -0.386236, -11.0738)
 

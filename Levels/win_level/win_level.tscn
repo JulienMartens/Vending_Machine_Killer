@@ -39,7 +39,7 @@ font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_34r5o"]
 font = ExtResource("4_j4av5")
-font_size = 32
+font_size = 28
 
 [sub_resource type="LabelSettings" id="LabelSettings_8e3e4"]
 font = ExtResource("4_j4av5")

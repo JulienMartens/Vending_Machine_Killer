@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhbjg843i360y"]
+
+[ext_resource type="Script" path="res://Scenes/ending_machine/ending_machine.gd" id="1_gmfi8"]
+[ext_resource type="PackedScene" uid="uid://bt7hecbroolb7" path="res://Scenes/evil_vending_machine/VendingMachineHD.glb" id="1_jtok2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ox7a"]
+size = Vector3(0.765541, 0.505015, 0.461879)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0q8u0"]
+size = Vector3(2.25241, 2.53237, 1.9035)
+
+[node name="VendingMachine" type="RigidBody3D"]
+transform = Transform3D(1.2, 1.33227e-16, -4.47035e-09, 0, 1.2, 3.57628e-08, 4.47035e-09, -3.57628e-08, 1.2, 0, 1.5, 0)
+mass = 0.28
+script = ExtResource("1_gmfi8")
+
+[node name="VendingMachineHD" parent="." instance=ExtResource("1_jtok2")]
+transform = Transform3D(4, -3.44107e-22, 1.77636e-15, 3.70577e-22, 4, -1.42109e-14, -1.77636e-15, 1.42109e-14, 4, 0.10751, -0.108357, -0.216837)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2.361, -1.27055e-21, 7.99361e-15, 8.73503e-22, 5, -7.10543e-15, -7.99361e-15, 1.42109e-14, 2.222, -0.0145092, 0.0403717, -0.241846)
+shape = SubResource("BoxShape3D_1ox7a")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, -1.32349e-23, 1.33227e-15, 2.64698e-23, 1, -1.06581e-14, -1.33227e-15, 1.06581e-14, 1, 4.37981e-09, 2.38419e-07, 1.17569)
+shape = SubResource("BoxShape3D_0q8u0")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var outsideAmbiantAudioPlayer = $OutsideAmbiantAudioPlayer
 @onready var movementAudioPlayer = $MovementAudioPlayer
 @onready var stamina_bar = $Camera/PlayerUI/StaminaBar
+@onready var ending_machine_spawns = get_tree().get_nodes_in_group("ending_machine_spawns")
 var SPEED = 5.0
 const JUMP_VELOCITY = 4
 var mouseSensibility = GlobalVariables.mouse_sensitivity
@@ -36,6 +37,7 @@ func _ready():
 	stamina_bar.set_value(MAX_STAMINA)
 	if get_tree().current_scene.name == "WinWorld":
 		$Camera/PlayerUI.visible = false
+	ResourceLoader.load_threaded_request("res://Scenes/ending_machine/ending_machine.tscn")
 
 func _input(event):
 	mouseSensibility = 1200 / GlobalVariables.mouse_sensitivity
@@ -134,8 +136,13 @@ func increment_donut():
 		$"Camera/PlayerUI/DonutUi".visible=true
 	donut_eaten+=1
 	$"Camera/PlayerUI/DonutUi/Donut amount".set_text("x "+str(donut_eaten))
-	if donut_eaten==10:
-		get_tree().change_scene_to_file("res://Levels/win_level/win_level.tscn")
+	if donut_eaten == 10:
+		randomize()
+		var ending_machine = ResourceLoader.load_threaded_get("res://Scenes/ending_machine/ending_machine.tscn").instantiate()
+		ending_machine_spawns[randi_range(1,ending_machine_spawns.size()-1)].add_child(ending_machine)
+		$Camera/UI/HBoxContainer/Dialogue.set_text(tr("find_ending_machine"))
+		await get_tree().create_timer(5).timeout
+		$Camera/UI/HBoxContainer/Dialogue.set_text("")
 
 func increment_ennemies_chasing_player():
 	ennemies_chasing_player += 1
