@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://boqot1o46jpa4"]
+[gd_scene load_steps=45 format=3 uid="uid://boqot1o46jpa4"]
 
 [ext_resource type="Script" path="res://Levels/main.gd" id="1_jbwly"]
 [ext_resource type="AudioStream" uid="uid://r788lp16256a" path="res://Assets/Sounds/Musics/menu-music.mp3" id="2_jnkpp"]
@@ -132,6 +132,12 @@ font_size = 96
 font_color = Color(1, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_mr8at"]
+font = ExtResource("15_v1gex")
+
+[sub_resource type="LabelSettings" id="LabelSettings_kdcmk"]
+font = ExtResource("15_v1gex")
+
+[sub_resource type="LabelSettings" id="LabelSettings_rb6bk"]
 font = ExtResource("15_v1gex")
 
 [node name="World" type="Node3D"]
@@ -460,11 +466,13 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Menu/Camera3D/menuFilter/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "menu_mouse_sensitivity"
+label_settings = SubResource("LabelSettings_kdcmk")
 
 [node name="sensitivity_value" type="Label" parent="Menu/Camera3D/menuFilter/VBoxContainer/HBoxContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
+label_settings = SubResource("LabelSettings_rb6bk")
 
 [node name="HSlider" type="HSlider" parent="Menu/Camera3D/menuFilter/VBoxContainer/HBoxContainer"]
 clip_contents = true
