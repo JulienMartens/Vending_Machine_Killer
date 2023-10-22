@@ -1,7 +1,7 @@
 keys,fr,en,es
 menu_start,Lancer le jeu,Start game,Comenzar el juego
 menu_resume,"Continuer","Continue","Continuar"
-menu_retry,Réessayer ?,Retry ?,Reanudar ?
+menu_retry,Réessayer,Retry,Reanudar
 menu_controls,"Controles","Controls","Controles"
 menu_quit,Quitter le jeu,Quit game,Abandonar el juego
 menu_interact,"pour interagir avec l'environnement","to interact with the world","para interactuar con el medio ambiente"

@@ -129,3 +129,6 @@ func spawn_first_machine():
 	var evil_vending_machine = ResourceLoader.load_threaded_get("res://Scenes/evil_vending_machine/evil_vending_machine.tscn").instantiate()
 	evil_vending_machine.position = self.global_transform.origin+Vector3(0,0,5)
 	get_tree().get_root().get_node("World").add_child(evil_vending_machine)
+
+func set_triggered_state(value:int):
+	triggered_state=value
