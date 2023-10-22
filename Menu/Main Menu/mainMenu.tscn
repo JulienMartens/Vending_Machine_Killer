@@ -431,6 +431,10 @@ grow_vertical = 2
 layout_mode = 2
 label_settings = SubResource("LabelSettings_mr8at")
 
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Camera3D/menuFilter/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Menu/Camera3D/menuFilter/VBoxContainer"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
