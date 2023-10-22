@@ -124,6 +124,7 @@ func death_animation():
 	await give_back_camera(triggered_state,2.3)
 	VendingMachine.visible = false
 	spawn_first_machine()
+	GlobalVariables.retry = true
 
 func spawn_first_machine():
 	var evil_vending_machine = ResourceLoader.load_threaded_get("res://Scenes/evil_vending_machine/evil_vending_machine.tscn").instantiate()

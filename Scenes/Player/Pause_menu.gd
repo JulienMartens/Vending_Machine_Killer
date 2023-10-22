@@ -28,3 +28,9 @@ func _on_exit_controls_pressed():
 func _on_h_slider_value_changed(value):
 	GlobalVariables.mouse_sensitivity = slider.value
 	sensitivityText.text = str(slider.value)
+
+
+func _on_start_button_pressed():
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Levels/main.tscn")
+
