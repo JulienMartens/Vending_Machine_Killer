@@ -16,6 +16,8 @@ var ennemies_chasing_player = 0
 var player_caught = false
 var hidden = false
 var has_key = false
+var staminaStyleBox = preload("res://Scenes/Player/StaminaStyleBox.tres")
+var staminaStyleBoxTired = preload("res://Scenes/Player/StaminaStyleBoxTired.tres")
 
 var STAMINA = 10
 var MAX_STAMINA = 10
@@ -89,8 +91,12 @@ func _physics_process(delta):
 		if STAMINA < 0:
 			SPEED = 4
 			tired = true
+			$Camera/PlayerUI/StaminaBar.add_theme_stylebox_override("fill",staminaStyleBoxTired)
+			$TiredAudioPlayer.play()
 		if tired and STAMINA > MAX_STAMINA/2:
 			tired = false
+			$Camera/PlayerUI/StaminaBar.add_theme_stylebox_override("fill",staminaStyleBox)
+
 		if STAMINA < MAX_STAMINA:
 			STAMINA+=(delta/2)
 		# Movement
