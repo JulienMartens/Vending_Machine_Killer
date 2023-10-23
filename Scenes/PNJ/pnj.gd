@@ -11,6 +11,7 @@ extends CharacterBody3D
 @onready var VendingMachine_animation_player = $evil_vending_machine/AnimationPlayer
 var triggered_state = 0
 const SPEED = 8
+var said_hi = false
 
 func _ready():
 	player.interact.connect(interact)
@@ -133,3 +134,17 @@ func spawn_first_machine():
 
 func set_triggered_state(value:int):
 	triggered_state=value
+
+func _on_first_encounter_area_body_entered(body):
+	if body.name=="Player" and not said_hi and not GlobalVariables.retry:
+		player.axis_lock_linear_x = true
+		player.axis_lock_linear_y = true
+		player.axis_lock_linear_z = true
+		player.look_at(self.global_transform.origin)
+		dialogueBox.text = tr("pnj_come_out")
+		await get_tree().create_timer(3).timeout
+		player.axis_lock_linear_x = false
+		player.axis_lock_linear_y = false
+		player.axis_lock_linear_z = false
+		said_hi = true
+		

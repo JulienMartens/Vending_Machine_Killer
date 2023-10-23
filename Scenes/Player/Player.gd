@@ -16,6 +16,7 @@ var ennemies_chasing_player = 0
 var player_caught = false
 var hidden = false
 var has_key = false
+var waking_up = false
 var staminaStyleBox = preload("res://Scenes/Player/StaminaStyleBox.tres")
 var staminaStyleBoxTired = preload("res://Scenes/Player/StaminaStyleBoxTired.tres")
 
@@ -40,7 +41,8 @@ func _ready():
 	if get_tree().current_scene.name == "WinWorld":
 		$Camera/PlayerUI.visible = false
 	ResourceLoader.load_threaded_request("res://Scenes/ending_machine/ending_machine.tscn")
-
+	wake_up_effect()
+	
 func _input(event):
 	mouseSensibility = 1200 / GlobalVariables.mouse_sensitivity
 	if event is InputEventMouseMotion and not get_tree().paused:
@@ -102,7 +104,7 @@ func _physics_process(delta):
 		# Movement
 		var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		if direction:
+		if direction and not waking_up:
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
 			if sprinting:
@@ -182,3 +184,26 @@ func set_outside_ambiant_volume(volume):
 	
 func add_door_key():
 	has_key=true
+
+func wake_up_effect():
+	if get_tree().current_scene.name == "World":
+		waking_up = true
+		await get_tree().create_timer(3).timeout
+		$Camera/PlayerUI/StaminaBar.visible = false
+		$AnimationPlayer.play("crouch")
+		$Camera/WakeUpEffect/WakeUpStreamPlayer.play()
+		await get_tree().create_timer(5).timeout
+		$Camera/WakeUpEffect/WakeUpAnimationPlayer.play("wake_up")
+		await get_tree().create_timer(8).timeout
+		$Camera/UI/HBoxContainer/Dialogue.set_text(tr("begin_headache"))
+		await get_tree().create_timer(6).timeout
+		$Camera/WakeUpEffect/WakeUpStreamPlayer.play()
+		$Camera/UI/HBoxContainer/Dialogue.set_text(tr("begin_ring"))
+		await get_tree().create_timer(2).timeout
+		$AnimationPlayer.speed_scale = 0.2
+		$AnimationPlayer.play_backwards("crouch")
+		await get_tree().create_timer(3).timeout
+		$AnimationPlayer.speed_scale = 1
+		waking_up = false
+		$Camera/PlayerUI/StaminaBar.visible = true
+		

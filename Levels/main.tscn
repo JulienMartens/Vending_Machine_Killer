@@ -410,7 +410,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 15.894
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.099, 0, -48.0906)
 
 [node name="Player" parent="." instance=ExtResource("2_fath2")]
-transform = Transform3D(-0.0329284, 0, 0.999458, 0, 1, 0, -0.999458, 0, -0.0329284, 64.206, -0.386236, -11.0738)
+transform = Transform3D(0.0329285, 0, -0.999458, 0, 1, 0, 0.999458, 0, 0.0329285, 64.7854, -0.128457, -11.0738)
 
 [node name="PNJ" parent="." instance=ExtResource("6_aav65")]
 transform = Transform3D(0.0310793, 0, -0.999517, 0, 1, 0, 0.999517, 0, 0.0310793, 43.7577, -0.528557, -7.79696)
