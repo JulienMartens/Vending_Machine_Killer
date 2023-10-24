@@ -110,7 +110,7 @@ func _on_area_3d_body_entered(body):
 func death_animation():
 	self.transform.origin = normalVendingMachine.transform.origin +Vector3(0,0,2)
 	self.look_at(normalVendingMachine.transform.origin)
-	self.transform.origin += Vector3(0,-1.3,0)
+	self.transform.origin += Vector3(0,-1.1,0)
 	normalVendingMachine.queue_free()
 	VendingMachine.visible = true
 	var camera="kill"
@@ -130,7 +130,7 @@ func death_animation():
 	await give_back_camera(triggered_state,2.3)
 	VendingMachine.visible = false
 	spawn_first_machine()
-	$Area3D/CollisionShape3D.queue_free()
+	$CollisionShape3D.queue_free()
 	GlobalVariables.retry = true
 
 func spawn_first_machine():
