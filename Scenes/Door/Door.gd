@@ -22,7 +22,7 @@ func _on_visible_on_screen_notifier_3d_screen_exited():
 func _on_back_area_body_entered(body):
 	if body == player :
 		playerPosition = "back"
-	if body.name == "evil_vending_machine" and currentDoorPosition == doorPositionsEnum.Closed:
+	if "evil_vending_machine" in body.name and currentDoorPosition == doorPositionsEnum.Closed:
 		vendingMachinePosition = "back"
 		$AnimationPlayer.play("BreakOut")
 		$HitAudioPlayer.play()
@@ -32,7 +32,7 @@ func _on_back_area_body_exited(body):
 	if body == player :
 		playerPosition = "far"
 		dialogue.text = ""
-	if body.name == "evil_vending_machine" :
+	if "evil_vending_machine" in body.name :
 		vendingMachinePosition = "far"
 		$HitAudioPlayer.stop()
 		timer.stop()
@@ -40,7 +40,7 @@ func _on_back_area_body_exited(body):
 func _on_front_area_body_entered(body):
 	if body == player :
 		playerPosition = "front"
-	if body.name == "evil_vending_machine" and currentDoorPosition == doorPositionsEnum.Closed:
+	if "evil_vending_machine" in body.name and currentDoorPosition == doorPositionsEnum.Closed:
 		$AnimationPlayer.play("BreakIn")
 		vendingMachinePosition = "front"
 		$HitAudioPlayer.play()
@@ -49,7 +49,7 @@ func _on_front_area_body_exited(body):
 	if body == player :
 		playerPosition = "far"
 		dialogue.text = ""
-	if body.name == "evil_vending_machine" :
+	if "evil_vending_machine" in body.name :
 		vendingMachinePosition = "far"
 		$HitAudioPlayer.stop()
 		timer.stop()

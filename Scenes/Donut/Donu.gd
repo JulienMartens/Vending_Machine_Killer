@@ -18,7 +18,7 @@ func interact():
 	if player_close and donuts.visible :
 		var evil_vending_machine = ResourceLoader.load_threaded_get("res://Scenes/evil_vending_machine/evil_vending_machine.tscn").instantiate()
 		evil_vending_machine.position = patrol_points[randi_range(1,patrol_points.size()-1)].global_transform.origin
-		get_tree().get_root().get_node("World").add_child(evil_vending_machine)
+		get_tree().get_root().get_node("World").add_child(evil_vending_machine,true)
 		dialogue.text = ""
 		player.increment_donut()
 		eaten = true
