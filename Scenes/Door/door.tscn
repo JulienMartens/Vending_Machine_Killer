@@ -1,8 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://oitd1g0n1kll"]
+[gd_scene load_steps=21 format=3 uid="uid://oitd1g0n1kll"]
 
 [ext_resource type="Script" path="res://Scenes/Door/Door.gd" id="1_qsa20"]
 [ext_resource type="AudioStream" uid="uid://cd7s2avna8u5e" path="res://Scenes/Door/door_open.wav" id="2_gcr1o"]
 [ext_resource type="AudioStream" uid="uid://crivujnvli8aq" path="res://Scenes/Door/door_close.wav" id="3_ta7sy"]
+[ext_resource type="AudioStream" uid="uid://feovrskkbdly" path="res://Scenes/Door/hit_door.mp3" id="4_yb8km"]
+[ext_resource type="AudioStream" uid="uid://bxolxoqgcxlsr" path="res://Scenes/Door/break_door.mp3" id="5_b4ulc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pmc6t"]
 resource_name = "MetalDoor"
@@ -268,7 +270,7 @@ transform = Transform3D(3, -8.52651e-14, 1.77636e-15, -9.9476e-14, 3, 1.05879e-2
 shape = SubResource("BoxShape3D_2kkh6")
 
 [node name="Timer" type="Timer" parent="Node3D/Model"]
-wait_time = 10.0
+wait_time = 3.5
 one_shot = true
 
 [node name="DoorOpenPlayer" type="AudioStreamPlayer3D" parent="Node3D/Model"]
@@ -282,6 +284,16 @@ transform = Transform3D(0.469235, 4.10219e-08, 0, -2.90907e-08, 0.332759, 0, 0, 
 visible = false
 stream = ExtResource("3_ta7sy")
 volume_db = -20.0
+
+[node name="HitAudioPlayer" type="AudioStreamPlayer3D" parent="Node3D/Model"]
+transform = Transform3D(0.469235, 4.10219e-08, 0, -2.90907e-08, 0.332759, 0, 0, 0, -6.45265, -0.00120645, -0.000400249, 0.0101536)
+stream = ExtResource("4_yb8km")
+volume_db = 3.0
+
+[node name="BreakAudioPlayer" type="AudioStreamPlayer3D" parent="Node3D/Model"]
+transform = Transform3D(0.469235, 4.10219e-08, 0, -2.90907e-08, 0.332759, 0, 0, 0, -6.45265, -0.00120645, -0.000400249, 0.0101536)
+stream = ExtResource("5_b4ulc")
+volume_db = 6.0
 
 [connection signal="screen_entered" from="Node3D/Model/VisibleOnScreenNotifier3D" to="Node3D/Model" method="_on_visible_on_screen_notifier_3d_screen_entered"]
 [connection signal="screen_exited" from="Node3D/Model/VisibleOnScreenNotifier3D" to="Node3D/Model" method="_on_visible_on_screen_notifier_3d_screen_exited"]

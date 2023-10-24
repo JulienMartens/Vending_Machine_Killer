@@ -22,24 +22,28 @@ func _on_visible_on_screen_notifier_3d_screen_exited():
 func _on_back_area_body_entered(body):
 	if body == player :
 		playerPosition = "back"
-	if body.name == "evil_vending_machine" and currentDoorPosition == doorPositionsEnum.Closed :
+	if body.name == "evil_vending_machine" and currentDoorPosition == doorPositionsEnum.Closed:
 		vendingMachinePosition = "back"
 		$AnimationPlayer.play("BreakOut")
+		$HitAudioPlayer.play()
 		timer.start()
+		
 func _on_back_area_body_exited(body):
 	if body == player :
 		playerPosition = "far"
 		dialogue.text = ""
 	if body.name == "evil_vending_machine" :
 		vendingMachinePosition = "far"
+		$HitAudioPlayer.stop()
 		timer.stop()
 
 func _on_front_area_body_entered(body):
 	if body == player :
 		playerPosition = "front"
-	if body.name == "evil_vending_machine" and currentDoorPosition == doorPositionsEnum.Closed :
+	if body.name == "evil_vending_machine" and currentDoorPosition == doorPositionsEnum.Closed:
 		$AnimationPlayer.play("BreakIn")
 		vendingMachinePosition = "front"
+		$HitAudioPlayer.play()
 		timer.start()
 func _on_front_area_body_exited(body):
 	if body == player :
@@ -47,17 +51,20 @@ func _on_front_area_body_exited(body):
 		dialogue.text = ""
 	if body.name == "evil_vending_machine" :
 		vendingMachinePosition = "far"
+		$HitAudioPlayer.stop()
 		timer.stop()
 		
 
 func _on_timer_timeout():
 	if vendingMachinePosition == "front":
 		$AnimationPlayer.play("BrokenIn")
+		$BreakAudioPlayer.play()
 	elif vendingMachinePosition == "back":
 		$AnimationPlayer.play("BrokenOut")
+		$BreakAudioPlayer.play()
 	currentDoorPosition = doorPositionsEnum.Broken
 	$StaticBody3D.queue_free()
-		
+
 func interact():
 	if visibleOnScreen and not playerPosition=="far":
 		if currentDoorPosition == doorPositionsEnum.Closed:
@@ -71,12 +78,10 @@ func interact():
 				currentDoorPosition = doorPositionsEnum.OpenOut
 		elif currentDoorPosition == doorPositionsEnum.OpenIn:
 			$AnimationPlayer.play_backwards(doorPositionsEnum.OpenIn)
-			await $AnimationPlayer.animation_finished
-			$DoorClosePlayer.play()
 			currentDoorPosition = doorPositionsEnum.Closed
+			$DoorClosePlayer.play()
 		elif currentDoorPosition == doorPositionsEnum.OpenOut:
 			$AnimationPlayer.play_backwards(doorPositionsEnum.OpenOut)
-			await $AnimationPlayer.animation_finished
 			$DoorClosePlayer.play()
 			currentDoorPosition = doorPositionsEnum.Closed
 
