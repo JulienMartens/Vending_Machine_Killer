@@ -13,7 +13,7 @@ var time_since_trajectory_update = 0
 var current_speed = 4
 const CHASING_SPEED = 8
 const SPEED = 4
-var trajectory_update_frequency = 0.5 #500ms
+var trajectory_update_frequency = 0.3 #300ms
 
 func _ready():
 		target_location = patrol_points[randi_range(1,patrol_points.size()-1)].global_transform.origin
@@ -46,6 +46,7 @@ func _physics_process(_delta):
 				nav_agent.set_target_position(target_location)
 		goto(current_speed)
 		if player_in_detection_area and currentMachineState!=machineStatesEnum.chasing_player:
+			print('CHASSE')
 			$RayCastNode.look_at(player.global_transform.origin)
 			if raycast.get_collider():
 				if raycast.get_collider().name == "Player" and !player.hidden:
@@ -57,7 +58,12 @@ func _physics_process(_delta):
 			if raycast.get_collider():
 				if raycast.get_collider().name != "Player" and !player.hidden and timer.is_stopped():
 					timer.start(10)
-					
+					print('OUKILE')
+
+				if raycast.get_collider().name == "Player" and !player.hidden:
+					timer.stop()
+					print('VU')
+
 func goto(speed):
 	var current_position : Vector3 = global_transform.origin
 	var next_path_position : Vector3 = nav_agent.get_next_path_position()
