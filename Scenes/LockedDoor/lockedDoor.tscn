@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://b5k7vw3y34orh"]
+[gd_scene load_steps=20 format=3 uid="uid://b5k7vw3y34orh"]
 
 [ext_resource type="Script" path="res://Scenes/LockedDoor/lockedDoor.gd" id="1_afrnp"]
 [ext_resource type="AudioStream" uid="uid://cd7s2avna8u5e" path="res://Scenes/Door/door_open.wav" id="2_je87r"]
 [ext_resource type="AudioStream" uid="uid://crivujnvli8aq" path="res://Scenes/Door/door_close.wav" id="3_0r8ff"]
+[ext_resource type="AudioStream" uid="uid://b1yysunjugtaj" path="res://Scenes/LockedDoor/unlock_door.mp3" id="4_t1gnj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pmc6t"]
 resource_name = "MetalDoor"
@@ -282,6 +283,12 @@ transform = Transform3D(0.469235, 4.10219e-08, 0, -2.90907e-08, 0.332759, 0, 0, 
 visible = false
 stream = ExtResource("3_0r8ff")
 volume_db = -20.0
+
+[node name="UnlockAudioPlayer" type="AudioStreamPlayer3D" parent="Node3D/Model"]
+transform = Transform3D(0.468869, 4.10219e-08, -0.0185203, -2.9068e-08, 0.332759, 1.14818e-09, -0.254681, 7.13356e-16, -6.44763, -0.00120645, -0.000400249, 0.0101536)
+stream = ExtResource("4_t1gnj")
+volume_db = 31.122
+max_db = 5.0
 
 [connection signal="screen_entered" from="Node3D/Model/VisibleOnScreenNotifier3D" to="Node3D/Model" method="_on_visible_on_screen_notifier_3d_screen_entered"]
 [connection signal="screen_exited" from="Node3D/Model/VisibleOnScreenNotifier3D" to="Node3D/Model" method="_on_visible_on_screen_notifier_3d_screen_exited"]

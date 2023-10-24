@@ -82,6 +82,7 @@ func interact():
 				$DoorClosePlayer.play()
 				currentDoorPosition = doorPositionsEnum.Closed
 		if player.has_key and locked:
+			$UnlockAudioPlayer.play()
 			locked = false
 
 func _process(_delta):
