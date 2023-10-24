@@ -186,7 +186,8 @@ func add_door_key():
 	has_key=true
 
 func wake_up_effect():
-	if get_tree().current_scene.name == "World":
+	if get_tree().current_scene.name == "World" and not GlobalVariables.retry:
+		$Camera/WakeUpEffect.color="000000"
 		waking_up = true
 		await get_tree().create_timer(3).timeout
 		$Camera/PlayerUI/StaminaBar.visible = false

@@ -5,7 +5,7 @@ var is_player_going_outside = true
 var in_outside_area = false
 var in_inside_area = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 		var distance_from_center = player.global_transform.origin.distance_to(self.global_transform.origin)
 		if in_inside_area:
 			player.set_inside_ambiant_volume(distance_from_center)

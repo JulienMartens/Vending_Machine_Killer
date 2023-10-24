@@ -19,7 +19,7 @@ door_close,Fermer la porte,Close the door,Cerrar la puerta
 door_locked,La porte est verouillée\n\nOù est-ce que j'ai mis la clé ?,The door is locked\n\nWhere did I put the key ?,La puerta está cerrada\n\n¿Dónde puse la llave?
 door_unlock,Dévérouiller la porte,Unlock the door,Desbloquear la puerta
 evm_dead,t mor sale merd,u ded now,estas muerto pendejo
-pnj_come_out,"Wesh poto, tu sors ?","Yo bro, you come out or what ?","Oye hermano, ¿vas a salir?"
+pnj_come_out,"Wesh poto, tu sors ou bien ?","Yo bro, you come out or what ?","Oye hermano, ¿vas a salir?"
 pnj_greet,"Wesh, bien ou bien ?\nEh, j'ai un petit creux, viens on va s'acheter des donuts sucrés au sucre, il y a un distributeur juste la","Hey bro, how's it going ?\nI'm starving let's go get some sugary donuts with sugar, there's a vending machine right there","Hola hermano como estas ?\nOye, tengo un poco de hambre, vamos a comprar unas deliciosa rosquilla dulce de azucar"
 pnj_poor,"Wesh en fait j'ai oublié que j'avais pas d'argent car je suis intermittent du spectacle ! \n Tu pourrais regarder si tu trouves une pièce de 1€ quelque part stp ?","Bro, I forgot but I'm like dirt poor 'cause I work in entertainment. \n Can you check if you can find a 1€ coin somewhere ?","¡Ay, ay, ay, lo había olvidado, pero no tengo nada de dinero, amigo mío!\n¿Puedes encontrarme una moneda de 1 euro en alguna parte, por favor?"
 pnj_wait, "Eh mais pourquoi ca lui prend aussi longtemps, j'ai faim moi","What is taking him so long ? I'm so hungry","¿Por qué tarda tanto? Tengo tanta hambre"

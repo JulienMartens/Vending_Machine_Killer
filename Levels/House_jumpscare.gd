@@ -11,6 +11,6 @@ func _physics_process(delta):
 		queue_free()
 		
 func _on_area_3d_body_entered(body):
-	if self.visible:
+	if body == player and self.visible:
 		$HouseJumpscare.play()
 		move_speed = 10
