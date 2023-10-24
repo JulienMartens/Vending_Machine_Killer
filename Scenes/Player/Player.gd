@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var outsideAmbiantAudioPlayer = $OutsideAmbiantAudioPlayer
 @onready var movementAudioPlayer = $MovementAudioPlayer
 @onready var stamina_bar = $Camera/PlayerUI/StaminaBar
+@onready var dialogueBox = $Camera/UI/HBoxContainer/Dialogue
 @onready var ending_machine_spawns = get_tree().get_nodes_in_group("ending_machine_spawns")
 var SPEED = 5.0
 const JUMP_VELOCITY = 4
@@ -19,6 +20,9 @@ var has_key = false
 var waking_up = false
 var staminaStyleBox = preload("res://Scenes/Player/StaminaStyleBox.tres")
 var staminaStyleBoxTired = preload("res://Scenes/Player/StaminaStyleBoxTired.tres")
+var dialogue_speed = 1.5
+var time_since_dialogue_update = 0
+var dialogue = false
 
 var STAMINA = 10
 var MAX_STAMINA = 10
@@ -57,6 +61,17 @@ func _input(event):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		$Camera/menuFilter.visible = true
 		get_tree().paused = true
+		
+func _process(delta):
+	if dialogueBox.visible_characters < dialogueBox.get_total_character_count() and dialogue :
+		if time_since_dialogue_update > 0.01/dialogue_speed:
+			dialogueBox.visible_characters += 1
+			time_since_dialogue_update  = 0
+		else:
+			time_since_dialogue_update+=delta
+	else:
+		dialogueBox.visible_characters = -1
+		dialogue = false
 		
 func _physics_process(delta):
 	if get_tree().paused:
@@ -148,9 +163,9 @@ func increment_donut():
 		randomize()
 		var ending_machine = ResourceLoader.load_threaded_get("res://Scenes/ending_machine/ending_machine.tscn").instantiate()
 		ending_machine_spawns[randi_range(1,ending_machine_spawns.size()-1)].add_child(ending_machine)
-		$Camera/UI/HBoxContainer/Dialogue.set_text(tr("find_ending_machine"))
+		dialogueBox.set_text(tr("find_ending_machine"))
 		await get_tree().create_timer(5).timeout
-		$Camera/UI/HBoxContainer/Dialogue.set_text("")
+		dialogueBox.set_text("")
 
 func increment_ennemies_chasing_player():
 	ennemies_chasing_player += 1
@@ -196,10 +211,10 @@ func wake_up_effect():
 		await get_tree().create_timer(5).timeout
 		$Camera/WakeUpEffect/WakeUpAnimationPlayer.play("wake_up")
 		await get_tree().create_timer(8).timeout
-		$Camera/UI/HBoxContainer/Dialogue.set_text(tr("begin_headache"))
+		set_dialogue_text("begin_headache")
 		await get_tree().create_timer(6).timeout
 		$Camera/WakeUpEffect/WakeUpStreamPlayer.play()
-		$Camera/UI/HBoxContainer/Dialogue.set_text(tr("begin_ring"))
+		set_dialogue_text("begin_ring")
 		await get_tree().create_timer(2).timeout
 		$AnimationPlayer.speed_scale = 0.2
 		$AnimationPlayer.play_backwards("crouch")
@@ -207,4 +222,12 @@ func wake_up_effect():
 		$AnimationPlayer.speed_scale = 1
 		waking_up = false
 		$Camera/PlayerUI/StaminaBar.visible = true
-		
+		$Camera/WakeUpEffect.queue_free()
+	else:
+		$Camera/WakeUpEffect.queue_free()
+
+func set_dialogue_text(text):
+	dialogue = true
+	print("PLAYER SET")
+	dialogueBox.visible_ratio = 0
+	dialogueBox.text = tr(text)

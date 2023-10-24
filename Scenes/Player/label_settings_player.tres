@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://fwiubicm4him"]
+
+[ext_resource type="FontFile" uid="uid://d0wsflsdp47wm" path="res://Assets/Fonts/PermanentMarker-Regular.ttf" id="1_ueafq"]
+
+[resource]
+font = ExtResource("1_ueafq")
+font_size = 20

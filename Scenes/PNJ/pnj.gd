@@ -9,6 +9,9 @@ extends CharacterBody3D
 @onready var animation_player = $Body/AnimationPlayer
 @onready var VendingMachine = $evil_vending_machine
 @onready var VendingMachine_animation_player = $evil_vending_machine/AnimationPlayer
+var playerLabelSettings = preload("res://Scenes/Player/label_settings_player.tres")
+var pnjLabelSettings = preload("res://Scenes/Player/label_settings_pnj.tres")
+
 var triggered_state = 0
 const SPEED = 8
 var said_hi = false
@@ -27,6 +30,7 @@ func interact():
 		player.axis_lock_linear_z = false
 		player.get_node("Camera").current = true
 		dialogueBox.text = ""
+		dialogueBox.set_label_settings(playerLabelSettings)
 		triggered_state += 1
 
 func give_back_camera(current_state, timeout=5):
@@ -37,6 +41,7 @@ func give_back_camera(current_state, timeout=5):
 		player.axis_lock_linear_z = false
 		player.get_node("Camera").current = true
 		dialogueBox.text = ""
+		dialogueBox.set_label_settings(playerLabelSettings)
 		triggered_state += 1
 	
 func take_camera(camera="standard"):
@@ -74,12 +79,12 @@ func _process(_delta):
 func _on_area_3d_body_entered(body):
 	if body.name=="Player" and not triggered_state:
 		take_camera()
-		dialogueBox.text = tr("pnj_greet")
+		set_dialogue_text("pnj_greet")
 		triggered_state = 1
 		give_back_camera(triggered_state,8)
 	if body.name=="Player" and triggered_state == 3:
 		take_camera()
-		dialogueBox.text = tr("pnj_poor")
+		set_dialogue_text("pnj_poor")
 		get_tree().get_root().get_node("World/Coin").visible = true
 		triggered_state = 4
 		give_back_camera(triggered_state,10)
@@ -110,9 +115,9 @@ func death_animation():
 	VendingMachine.visible = true
 	var camera="kill"
 	take_camera(camera)
-	dialogueBox.text = tr("pnj_wait")
+	set_dialogue_text("pnj_wait")
 	await get_tree().create_timer(5).timeout
-	dialogueBox.text = tr("pnj_steal")
+	set_dialogue_text("pnj_steal")
 	await get_tree().create_timer(8).timeout
 	dialogueBox.text = ""
 	VendingMachine_animation_player.play("eyes out")
@@ -125,6 +130,7 @@ func death_animation():
 	await give_back_camera(triggered_state,2.3)
 	VendingMachine.visible = false
 	spawn_first_machine()
+	$Area3D/CollisionShape3D.queue_free()
 	GlobalVariables.retry = true
 
 func spawn_first_machine():
@@ -141,10 +147,18 @@ func _on_first_encounter_area_body_entered(body):
 		player.axis_lock_linear_y = true
 		player.axis_lock_linear_z = true
 		player.look_at(self.global_transform.origin)
-		dialogueBox.text = tr("pnj_come_out")
-		await get_tree().create_timer(3).timeout
+		set_dialogue_text("pnj_come_out")
+		await get_tree().create_timer(2).timeout
 		player.axis_lock_linear_x = false
 		player.axis_lock_linear_y = false
 		player.axis_lock_linear_z = false
+		dialogueBox.set_text("")
+		dialogueBox.set_label_settings(playerLabelSettings)
 		said_hi = true
 		
+func set_dialogue_text(text):
+	player.dialogue = true
+	dialogueBox.visible_ratio = 0
+	dialogueBox.set_label_settings(pnjLabelSettings)
+	dialogueBox.text = tr(text)
+

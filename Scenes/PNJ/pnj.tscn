@@ -5027,7 +5027,7 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s0sch"]
-size = Vector3(1.48203, 2.78583, 8.81287)
+size = Vector3(1.48203, 2.78583, 10.2161)
 
 [node name="PNJ" type="CharacterBody3D"]
 process_mode = 3
@@ -5182,7 +5182,7 @@ volume_db = -6.656
 [node name="FirstEncounterArea" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FirstEncounterArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37038, -4.31109)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37038, -5.1877)
 shape = SubResource("BoxShape3D_s0sch")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

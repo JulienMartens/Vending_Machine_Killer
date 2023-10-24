@@ -10,6 +10,7 @@ func _ready():
 	sensitivityText.text = str(GlobalVariables.mouse_sensitivity)
 
 func _on_start_button_pressed():
+	GlobalVariables.retry=false
 	get_tree().change_scene_to_file("res://Levels/main.tscn")
 
 func _on_quit_button_pressed():
