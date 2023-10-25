@@ -8,9 +8,9 @@ func _ready():
 	$Camera3D/HBoxContainer/VBoxContainer2/FrButton.set_pressed_no_signal(true)
 	slider.set_value_no_signal(GlobalVariables.mouse_sensitivity)
 	sensitivityText.text = str(GlobalVariables.mouse_sensitivity)
+	$Camera3D/menuFilter/VBoxContainer/HBoxContainer2/CheckBox.set_pressed_no_signal(GlobalVariables.retry )
 
 func _on_start_button_pressed():
-	GlobalVariables.retry=false
 	get_tree().change_scene_to_file("res://Levels/main.tscn")
 
 func _on_quit_button_pressed():
@@ -50,3 +50,7 @@ func _on_discord_button_pressed():
 
 func _on_donate_button_pressed():
 	OS.shell_open("https://ko-fi.com/streum")
+
+func _on_check_box_pressed():
+	GlobalVariables.retry = $Camera3D/menuFilter/VBoxContainer/HBoxContainer2/CheckBox.is_pressed()
+	print(GlobalVariables.retry)

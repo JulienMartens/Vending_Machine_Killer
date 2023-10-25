@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://boqot1o46jpa4"]
+[gd_scene load_steps=47 format=3 uid="uid://boqot1o46jpa4"]
 
 [ext_resource type="AudioStream" uid="uid://r788lp16256a" path="res://Assets/Sounds/Musics/menu-music.mp3" id="2_jnkpp"]
 [ext_resource type="Shader" path="res://Levels/sky.gdshader" id="2_uurtn"]
@@ -141,6 +141,9 @@ font = ExtResource("15_v1gex")
 font = ExtResource("15_v1gex")
 
 [sub_resource type="LabelSettings" id="LabelSettings_rb6bk"]
+font = ExtResource("15_v1gex")
+
+[sub_resource type="LabelSettings" id="LabelSettings_topty"]
 font = ExtResource("15_v1gex")
 
 [node name="World" type="Node3D"]
@@ -512,6 +515,17 @@ max_value = 2.0
 step = 0.05
 value = 1.0
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="Menu/Camera3D/menuFilter/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/Camera3D/menuFilter/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "skip_beginning"
+label_settings = SubResource("LabelSettings_topty")
+
+[node name="CheckBox" type="CheckBox" parent="Menu/Camera3D/menuFilter/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
 [node name="ExitControls" type="Button" parent="Menu/Camera3D/menuFilter"]
 layout_mode = 1
 anchors_preset = 7
@@ -538,4 +552,5 @@ text = "Ok"
 [connection signal="pressed" from="Menu/Camera3D/HBoxContainer/VBoxContainer2/EsButton" to="Menu" method="_on_es_button_pressed"]
 [connection signal="changed" from="Menu/Camera3D/menuFilter/VBoxContainer/HBoxContainer/HSlider" to="Menu" method="_on_h_slider_changed"]
 [connection signal="value_changed" from="Menu/Camera3D/menuFilter/VBoxContainer/HBoxContainer/HSlider" to="Menu" method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="Menu/Camera3D/menuFilter/VBoxContainer/HBoxContainer2/CheckBox" to="Menu" method="_on_check_box_pressed"]
 [connection signal="pressed" from="Menu/Camera3D/menuFilter/ExitControls" to="Menu" method="_on_exit_controls_pressed"]
