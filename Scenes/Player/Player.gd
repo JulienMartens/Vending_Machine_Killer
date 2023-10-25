@@ -110,7 +110,7 @@ func _physics_process(delta):
 			tired = true
 			$Camera/PlayerUI/StaminaBar.add_theme_stylebox_override("fill",staminaStyleBoxTired)
 			$TiredAudioPlayer.play()
-		if tired and STAMINA > MAX_STAMINA/2:
+		if tired and STAMINA > MAX_STAMINA/3:
 			tired = false
 			$Camera/PlayerUI/StaminaBar.add_theme_stylebox_override("fill",staminaStyleBox)
 
