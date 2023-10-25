@@ -5,7 +5,7 @@ menu_start,Lancer le jeu,Start game,Comenzar el juego
 menu_resume,"Continuer","Continue","Continuar"
 menu_retry,Réessayer,Retry,Reanudar
 menu_back,Menu Principal,Main menu,Menú principal
-menu_controls,"Controles","Controls","Controles"
+menu_controls,"Controles & Options","Controls & options","Controles & opciones"
 menu_quit,Quitter le jeu,Quit game,Abandonar el juego
 menu_interact,"pour interagir avec l'environnement","to interact with the world","para interactuar con el medio ambiente"
 menu_sprint,"pour sprinter ! Attention à ta stamina !","to sprint ! Pay attention to your stamina !","¡Para correr rápido! ¡Presta atención a tu stamina !"

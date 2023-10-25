@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://boqot1o46jpa4"]
+[gd_scene load_steps=53 format=3 uid="uid://boqot1o46jpa4"]
 
 [ext_resource type="AudioStream" uid="uid://r788lp16256a" path="res://Assets/Sounds/Musics/menu-music.mp3" id="2_jnkpp"]
 [ext_resource type="Shader" path="res://Levels/sky.gdshader" id="2_uurtn"]
@@ -145,6 +145,18 @@ font = ExtResource("15_v1gex")
 
 [sub_resource type="LabelSettings" id="LabelSettings_topty"]
 font = ExtResource("15_v1gex")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqawy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_upp67"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_308pg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g8kro"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5si1o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qddd8"]
 
 [node name="World" type="Node3D"]
 
@@ -525,6 +537,14 @@ label_settings = SubResource("LabelSettings_topty")
 
 [node name="CheckBox" type="CheckBox" parent="Menu/Camera3D/menuFilter/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_oqawy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_upp67")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_308pg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_g8kro")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_5si1o")
+theme_override_styles/focus = SubResource("StyleBoxFlat_qddd8")
 
 [node name="ExitControls" type="Button" parent="Menu/Camera3D/menuFilter"]
 layout_mode = 1
