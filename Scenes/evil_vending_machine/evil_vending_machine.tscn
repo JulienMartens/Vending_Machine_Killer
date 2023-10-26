@@ -265,7 +265,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0115819, 0.0535405, 0.10900
 shape = SubResource("BoxShape3D_7qn2x")
 
 [node name="Animation_node" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="VendingMachine" type="Node3D" parent="Animation_node"]
 transform = Transform3D(-3.5, 0, -5.28485e-07, 0, 3.5, 0, 5.28486e-07, 0, -3.5, -0.100605, 0.776302, -0.234504)

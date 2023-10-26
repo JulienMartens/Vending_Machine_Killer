@@ -66,7 +66,7 @@ func goto(speed):
 	var new_velocity : Vector3 = next_path_position - current_position
 	new_velocity = new_velocity.normalized() * speed
 	set_velocity(new_velocity)
-	if currentMachineState==machineStatesEnum.chasing_player or nav_agent.distance_to_target()>3:
+	if currentMachineState==machineStatesEnum.chasing_player or nav_agent.distance_to_target()>5:
 		look_at(target_location)
 	move_and_slide()
 

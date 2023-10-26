@@ -18,6 +18,7 @@ var player_caught = false
 var hidden = false
 var has_key = false
 var waking_up = false
+var chaseMusicSpanish = preload("res://Scenes/Player/Mexican-hat-dance.mp3")
 var staminaStyleBox = preload("res://Scenes/Player/StaminaStyleBox.tres")
 var staminaStyleBoxTired = preload("res://Scenes/Player/StaminaStyleBoxTired.tres")
 var dialogue_speed = 1.5
@@ -45,8 +46,11 @@ func _ready():
 	if get_tree().current_scene.name == "WinWorld":
 		$Camera/PlayerUI.visible = false
 	ResourceLoader.load_threaded_request("res://Scenes/ending_machine/ending_machine.tscn")
+	print(TranslationServer.get_locale())
+	if TranslationServer.get_locale()=="es":
+		$AudioRotationNode/AudioStreamPlayer3D.set_stream(chaseMusicSpanish)
 	wake_up_effect()
-	
+
 func _input(event):
 	mouseSensibility = 1200 / GlobalVariables.mouse_sensitivity
 	if event is InputEventMouseMotion and not get_tree().paused:

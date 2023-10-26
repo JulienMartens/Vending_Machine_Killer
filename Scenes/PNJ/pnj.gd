@@ -11,6 +11,7 @@ extends CharacterBody3D
 @onready var VendingMachine_animation_player = $evil_vending_machine/AnimationPlayer
 var playerLabelSettings = preload("res://Scenes/Player/label_settings_player.tres")
 var pnjLabelSettings = preload("res://Scenes/Player/label_settings_pnj.tres")
+var chaseMusicSpanishShort = preload("res://Scenes/Player/Mexican-hat-dance.mp3")
 
 var triggered_state = 0
 const SPEED = 8
@@ -18,7 +19,8 @@ var said_hi = false
 
 func _ready():
 	player.interact.connect(interact)
-
+	if TranslationServer.get_locale()=="es":
+		$evil_vending_machine/ShortScaryPlayer.set_stream(chaseMusicSpanishShort)
 func interact():
 	if triggered_state==10:
 		get_tree().paused = false
