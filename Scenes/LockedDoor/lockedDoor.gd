@@ -12,7 +12,9 @@ var locked = true
 
 func _ready():
 	player.interact.connect(interact)
-
+	if GlobalVariables.retry == true:
+		locked = false
+	
 func _on_visible_on_screen_notifier_3d_screen_entered():
 	visibleOnScreen = true
 func _on_visible_on_screen_notifier_3d_screen_exited():
