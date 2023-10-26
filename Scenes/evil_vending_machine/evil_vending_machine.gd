@@ -108,11 +108,13 @@ func _on_death_area_body_entered(body):
 		$AnimationPlayer.play("win")
 		player.ennemies_present=false
 		player.get_node("AudioRotationNode/AudioStreamPlayer3D").stop()
-		$AudioStreamPlayer.play()
+		$LaughPlayer.play()
 		player.visible = false
-		label.text = tr("evm_dead")
-
-
+		await get_tree().create_timer(3.5).timeout
+		$DeathSoundPlayer.play()
+		await get_tree().create_timer(1.2).timeout
+		$CrushSoundPlayer.play()
+		
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "look_around":
 		look_around_animation_played = true

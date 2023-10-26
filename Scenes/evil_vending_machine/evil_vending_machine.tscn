@@ -1,7 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://daanr7clix57f"]
+[gd_scene load_steps=24 format=3 uid="uid://daanr7clix57f"]
 
 [ext_resource type="Script" path="res://Scenes/evil_vending_machine/evil_vending_machine.gd" id="1_ci7w0"]
 [ext_resource type="AudioStream" uid="uid://dswelebghbh4d" path="res://Scenes/evil_vending_machine/vendingmachinelaugh.mp3" id="3_0vd2q"]
+[ext_resource type="AudioStream" uid="uid://un8lfme8b2it" path="res://Scenes/evil_vending_machine/scary_death_sound.mp3" id="3_lje18"]
+[ext_resource type="AudioStream" uid="uid://glv32fribdwl" path="res://Scenes/evil_vending_machine/crushed.mp3" id="4_7lrfv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5w5ix"]
 size = Vector3(1.86084, 1.22008, 1.11189)
@@ -227,14 +229,14 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.6, 1, 0, -0.485306, 0, 0.
 
 [sub_resource type="Animation" id="Animation_cvw3n"]
 resource_name = "win"
-length = 8.0
+length = 6.5
 tracks/0/type = "rotation_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Animation_node")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0.103227, 0, 0, 0.994658, 0.9, 1, 0.17094, 0, 0, 0.985281, 1.2, 1, 0.103227, 0, 0, 0.994658, 1.5, 1, 0.17094, 0, 0, 0.985281, 1.8, 1, 0.103227, 0, 0, 0.994658, 2.1, 1, 0.17094, 0, 0, 0.985281, 2.4, 1, 0.103227, 0, 0, 0.994658, 2.7, 1, 0.17094, 0, 0, 0.985281, 3, 1, 0.103227, 0, 0, 0.994658, 3.6, 1, 0, 0, 0, 1, 4, 1, 0, 0, 0, 1, 4.5, 1, 0.103227, 0, 0, 0.994658, 4.9, 1, 0.17094, 0, 0, 0.985281, 5.2, 1, 0.103227, 0, 0, 0.994658, 5.5, 1, 0.17094, 0, 0, 0.985281, 5.8, 1, 0.103227, 0, 0, 0.994658, 6.1, 1, 0.17094, 0, 0, 0.985281, 6.4, 1, 0.103227, 0, 0, 0.994658, 6.7, 1, 0.17094, 0, 0, 0.985281, 7, 1, 0.103227, 0, 0, 0.994658, 7.6, 1, 0, 0, 0, 1)
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0.103227, 0, 0, 0.994658, 0.9, 1, 0.17094, 0, 0, 0.985281, 1.2, 1, 0.103227, 0, 0, 0.994658, 1.5, 1, 0.17094, 0, 0, 0.985281, 1.8, 1, 0.103227, 0, 0, 0.994658, 2.1, 1, 0.17094, 0, 0, 0.985281, 2.4, 1, 0.103227, 0, 0, 0.994658, 2.7, 1, 0.17094, 0, 0, 0.985281, 3, 1, 0.103227, 0, 0, 0.994658, 3.6, 1, 0, 0, 0, 1, 4, 1, 0, 0, 0, 1, 4.8, 1, -0.366647, 0, 0, 0.93036)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dbr4r"]
 _data = {
@@ -263,6 +265,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0115819, 0.0535405, 0.10900
 shape = SubResource("BoxShape3D_7qn2x")
 
 [node name="Animation_node" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.971098, -0.238682, 0, 0.238682, 0.971098, 0, 0, 0)
 
 [node name="VendingMachine" type="Node3D" parent="Animation_node"]
 transform = Transform3D(-3.5, 0, -5.28485e-07, 0, 3.5, 0, 5.28486e-07, 0, -3.5, -0.100605, 0.776302, -0.234504)
@@ -314,8 +317,15 @@ libraries = {
 "": SubResource("AnimationLibrary_dbr4r")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="LaughPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_0vd2q")
+
+[node name="DeathSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_lje18")
+
+[node name="CrushSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7lrfv")
+volume_db = 6.0
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
