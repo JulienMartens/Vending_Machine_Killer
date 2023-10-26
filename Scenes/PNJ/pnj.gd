@@ -128,6 +128,7 @@ func death_animation():
 	await get_tree().create_timer(0.6).timeout
 	animation_player.play("Dying")
 	await give_back_camera(triggered_state,2.3)
+	set_dialogue_text("pnj_find_dead", false)
 	VendingMachine.visible = false
 	spawn_first_machine()
 	$CollisionShape3D.queue_free()
@@ -156,9 +157,10 @@ func _on_first_encounter_area_body_entered(body):
 		dialogueBox.set_label_settings(playerLabelSettings)
 		said_hi = true
 		
-func set_dialogue_text(text):
+func set_dialogue_text(text,withPNJColor=true):
 	player.dialogue = true
 	dialogueBox.visible_ratio = 0
-	dialogueBox.set_label_settings(pnjLabelSettings)
+	if withPNJColor:
+		dialogueBox.set_label_settings(pnjLabelSettings)
 	dialogueBox.text = tr(text)
 

@@ -474,7 +474,7 @@ stream = ExtResource("18_bnglt")
 volume_db = 1.0
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.141, 0.456)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.141, 0.456)
 rotation_mode = 0
 loop = false
 
