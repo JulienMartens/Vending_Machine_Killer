@@ -21,6 +21,9 @@ func _ready():
 	player.interact.connect(interact)
 	if TranslationServer.get_locale()=="es":
 		$evil_vending_machine/ShortScaryPlayer.set_stream(chaseMusicSpanishShort)
+	if GlobalVariables.retry:
+		$CollisionShape3D.queue_free()
+
 func interact():
 	if triggered_state==10:
 		get_tree().paused = false
