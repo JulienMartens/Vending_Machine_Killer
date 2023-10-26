@@ -466,6 +466,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4096, 4.26173e-06, 65.0971
 
 [node name="Path3D" type="Path3D" parent="."]
 transform = Transform3D(-0.0276425, 0, -0.999618, 0, 1, 0, 0.999618, 0, -0.0276425, 48.9579, -0.632944, -7.89989)
+visible = false
 curve = SubResource("Curve3D_yr3rf")
 script = ExtResource("17_q3n5q")
 

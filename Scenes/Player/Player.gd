@@ -228,6 +228,5 @@ func wake_up_effect():
 
 func set_dialogue_text(text):
 	dialogue = true
-	print("PLAYER SET")
 	dialogueBox.visible_ratio = 0
 	dialogueBox.text = tr(text)

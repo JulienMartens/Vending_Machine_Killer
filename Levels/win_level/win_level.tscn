@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://c0avgf56lbx0q"]
+[gd_scene load_steps=40 format=3 uid="uid://c0avgf56lbx0q"]
 
 [ext_resource type="Shader" path="res://Levels/sky.gdshader" id="1_5rf1g"]
 [ext_resource type="AudioStream" uid="uid://cs1ebud8e8oe5" path="res://Assets/Sounds/Musics/win-music.mp3" id="1_5888y"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://by116xlngavvd" path="res://Scenes/Dancing_pnj/body.tscn" id="11_sjj4r"]
 [ext_resource type="PackedScene" uid="uid://byrkgcxocwwlj" path="res://Scenes/evil_vending_machine_dancing/evil_vending_machine.tscn" id="12_mvrux"]
 [ext_resource type="PackedScene" uid="uid://pbvwwsu83mae" path="res://Scenes/Donut/donu.tscn" id="16_buaci"]
+[ext_resource type="PackedScene" uid="uid://dau6gpggrm8od" path="res://Scenes/evil_vending_machine_idle/evil_vending_machine.tscn" id="16_tknh1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_44xau"]
 size = Vector3(0.765541, 0.505015, 0.461879)
@@ -214,6 +215,7 @@ layout_mode = 2
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_5888y")
+volume_db = -1.0
 autoplay = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -540,8 +542,8 @@ transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926
 [node name="evil_vending_machine6" parent="." instance=ExtResource("12_mvrux")]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -3.50885, 2.9545, 4.19994)
 
-[node name="evil_vending_machine7" parent="." instance=ExtResource("12_mvrux")]
-transform = Transform3D(-4.41213e-08, 0.999976, 0.0068766, 1.47026e-07, 0.00687659, -0.999976, -1, -4.31092e-08, -1.47326e-07, -18.0818, -0.295197, -26.1972)
+[node name="evil_vending_machine10" parent="." instance=ExtResource("16_tknh1")]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -18.3044, -0.286737, -26.3443)
 
 [node name="Body50" parent="." instance=ExtResource("11_sjj4r")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -16.7934, 0.338134, -26.4999)
